@@ -1,11 +1,11 @@
 {
   "source_repository": "julian-najas/manual-claude-code",
-  "source_commit": "e5ff0ef44137723078eec74f51d5ea4c3b8580f3",
-  "source_commit_corto": "e5ff0ef",
-  "source_limpio": false,
+  "source_commit": "8ae09ae9c2db6f89a61b637a2295a2f40a1f355b",
+  "source_commit_corto": "8ae09ae",
+  "source_limpio": true,
   "guide_version": "v2026.08",
   "written_against": "2.1.228",
-  "verified_against": "2.1.231 (Claude Code)",
-  "verified_at": "2026-08-13 10:38:21 UTC",
-  "generated_at": "2026-08-13T11:11:09Z"
+  "verified_against": "2.1.229 (Claude Code)",
+  "verified_at": "2026-08-13 17:06:04 UTC",
+  "generated_at": "2026-08-13T17:06:34Z"
 }

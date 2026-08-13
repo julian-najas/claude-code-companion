@@ -3,6 +3,7 @@
   "sintoma": "Se le olvida lo que le dije al principio",
   "causa": "Compactó. Esa instrucción tenía que estar en CLAUDE.md, no en el chat",
   "modulo": "M1",
+  "archivo": "M1-como-funciona.md",
   "titulo_modulo": "M1 · Qué es Claude Code y cómo funciona por dentro",
   "resuelve": "el modelo mental. Por qué hace lo que hace, y por qué a veces no lo hace.",
   "contexto": "Claude Code no es un chat que además escribe archivos. Es un arnés agéntico alrededor de un modelo: le da herramientas, gestión de contexto y un entorno donde ejecutar. Eso es lo que convierte un modelo de lenguaje en algo que trabaja.",
@@ -12,12 +13,16 @@
   ],
   "titulos_modulo": [
    "M1 · Qué es Claude Code y cómo funciona por dentro"
+  ],
+  "archivos": [
+   "M1-como-funciona.md"
   ]
  },
  {
   "sintoma": "Desconecto los MCP para ahorrar contexto",
   "causa": "Por defecto solo pesan los nombres. Mide con /mcp antes de amputar",
   "modulo": "M1",
+  "archivo": "M1-como-funciona.md",
   "titulo_modulo": "M1 · Qué es Claude Code y cómo funciona por dentro",
   "resuelve": "el modelo mental. Por qué hace lo que hace, y por qué a veces no lo hace.",
   "contexto": "Esto corrige un error que circula mucho, y que este mismo proyecto tenía publicado. Las definiciones de herramientas MCP están diferidas por defecto: solo se cargan los nombres, para que Claude sepa qué hay disponible, y los esquemas completos se traen bajo demanda mediante tool search cuando la tarea lo necesita. No es un peaje permanente proporcional al número de servidores, salvo que tú lo conviertas en uno:",
@@ -27,12 +32,16 @@
   ],
   "titulos_modulo": [
    "M1 · Qué es Claude Code y cómo funciona por dentro"
+  ],
+  "archivos": [
+   "M1-como-funciona.md"
   ]
  },
  {
   "sintoma": "Deshice con Esc Esc y la base de datos seguía modificada",
   "causa": "Los checkpoints solo cubren archivos. Nunca sistemas remotos",
   "modulo": "M1",
+  "archivo": "M1-como-funciona.md",
   "titulo_modulo": "M1 · Qué es Claude Code y cómo funciona por dentro",
   "resuelve": "el modelo mental. Por qué hace lo que hace, y por qué a veces no lo hace.",
   "contexto": "1. Los checkpoints son independientes de git y siguen disponibles al reanudar. 2. Solo cubren cambios en archivos. Al restaurar se saltan los enlaces simbólicos y los enlaces duros. 3. Lo que toca sistemas remotos no se puede rebobinar: bases de datos, APIs, despliegues. Por eso Claude pregunta antes de ejecutar comandos con efectos externos, y por eso ese permiso no se concede a la ligera.",
@@ -42,12 +51,16 @@
   ],
   "titulos_modulo": [
    "M1 · Qué es Claude Code y cómo funciona por dentro"
+  ],
+  "archivos": [
+   "M1-como-funciona.md"
   ]
  },
  {
   "sintoma": "Da respuestas plausibles pero incorrectas",
   "causa": "No hay contra qué verificar. El bucle se quedó en dos fases",
   "modulo": "M1",
+  "archivo": "M1-como-funciona.md",
   "titulo_modulo": "M1 · Qué es Claude Code y cómo funciona por dentro",
   "resuelve": "el modelo mental. Por qué hace lo que hace, y por qué a veces no lo hace.",
   "contexto": "Opinión operativa. La consecuencia práctica de que el bucle sea adaptativo es que la calidad de la fase de verificación la pones tú. Si el repositorio no tiene nada contra lo que verificar (tests, un linter, un esquema), el bucle se queda en dos fases y lo que sale es plausible en vez de correcto. Es la diferencia más grande entre un proyecto donde esto funciona y uno donde no, y no depende del modelo.",
@@ -57,12 +70,16 @@
   ],
   "titulos_modulo": [
    "M1 · Qué es Claude Code y cómo funciona por dentro"
+  ],
+  "archivos": [
+   "M1-como-funciona.md"
   ]
  },
  {
   "sintoma": "El resumen automático se repite sin avanzar",
   "causa": "Un archivo o salida gigante. Es el error de thrashing, está documentado",
   "modulo": "M1",
+  "archivo": "M1-como-funciona.md",
   "titulo_modulo": "M1 · Qué es Claude Code y cómo funciona por dentro",
   "resuelve": "el modelo mental. Por qué hace lo que hace, y por qué a veces no lo hace.",
   "contexto": "Caso de fallo documentado: si un solo archivo o salida es tan grande que el contexto se vuelve a llenar justo después de cada resumen, Claude Code deja de auto-compactar tras unos intentos y muestra un error en vez de entrar en bucle.",
@@ -72,12 +89,16 @@
   ],
   "titulos_modulo": [
    "M1 · Qué es Claude Code y cómo funciona por dentro"
+  ],
+  "archivos": [
+   "M1-como-funciona.md"
   ]
  },
  {
   "sintoma": "A mi compañero le existe un comando que a mí no",
   "causa": "Versiones distintas. Canal y minimumVersion",
   "modulo": "M2",
+  "archivo": "M2-instalacion-y-autenticacion.md",
   "titulo_modulo": "M2 · Instalación, autenticación y actualización",
   "resuelve": "un entorno reproducible y saber siempre contra qué versión trabajas.",
   "contexto": "Recomendación para un equipo: canal stable y un minimumVersion explícito en los settings del repositorio, más la versión anotada en el CLAUDE.md. Con eso, cuando alguien reporte un comportamiento raro, la primera pregunta ya tiene respuesta escrita.",
@@ -87,12 +108,16 @@
   ],
   "titulos_modulo": [
    "M2 · Instalación, autenticación y actualización"
+  ],
+  "archivos": [
+   "M2-instalacion-y-autenticacion.md"
   ]
  },
  {
   "sintoma": "Pasé a stable y me degradó",
   "causa": "No debería: pasar de latest a stable pregunta antes",
   "modulo": "M2",
+  "archivo": "M2-instalacion-y-autenticacion.md",
   "titulo_modulo": "M2 · Instalación, autenticación y actualización",
   "resuelve": "un entorno reproducible y saber siempre contra qué versión trabajas.",
   "contexto": "El detalle bien pensado: pasar de latest a stable no te degrada si ya estás en una versión más nueva. Al cambiar desde /config te pregunta si quieres quedarte en la actual o permitir la bajada; si eliges quedarte, fija minimumVersion en esa versión. Volver a latest lo limpia.",
@@ -102,12 +127,16 @@
   ],
   "titulos_modulo": [
    "M2 · Instalación, autenticación y actualización"
+  ],
+  "archivos": [
+   "M2-instalacion-y-autenticacion.md"
   ]
  },
  {
   "sintoma": "Homebrew no me actualiza a la última",
   "causa": "Las actualizaciones las lleva Homebrew, no Claude Code",
   "modulo": "M2",
+  "archivo": "M2-instalacion-y-autenticacion.md",
   "titulo_modulo": "M2 · Instalación, autenticación y actualización",
   "resuelve": "un entorno reproducible y saber siempre contra qué versión trabajas.",
   "contexto": "Claude doctor responde lo que importa para dar soporte a otro: método de instalación, plataforma, ruta, si las autoactualizaciones están activadas, qué canal sigue y cuándo fue el último intento de actualización y con qué resultado. En la máquina de esta guía:",
@@ -117,12 +146,16 @@
   ],
   "titulos_modulo": [
    "M2 · Instalación, autenticación y actualización"
+  ],
+  "archivos": [
+   "M2-instalacion-y-autenticacion.md"
   ]
  },
  {
   "sintoma": "En mi contenedor Alpine falla",
   "causa": "Distribuciones musl tienen dependencias propias",
   "modulo": "M2",
+  "archivo": "M2-instalacion-y-autenticacion.md",
   "titulo_modulo": "M2 · Instalación, autenticación y actualización",
   "resuelve": "un entorno reproducible y saber siempre contra qué versión trabajas.",
   "contexto": "- Windows: instalación nativa o vía WinGet, con su propia guía de puesta a punto. - WSL2: funciona, con un aviso del M18 que ahorra una tarde: hay un problema documentado de búsquedas lentas o incompletas en WSL. Si tu gente dice que \"no encuentra archivos que están ahí\", empieza por ahí y no por la configuración. - Alpine Linux y distribuciones basadas en musl: tienen sección propia, con dependencias adicionales. No des por hecho que lo que funciona en Debian funciona en Alpine, que es justo el caso de muchos contenedores de CI.",
@@ -132,12 +165,16 @@
   ],
   "titulos_modulo": [
    "M2 · Instalación, autenticación y actualización"
+  ],
+  "archivos": [
+   "M2-instalacion-y-autenticacion.md"
   ]
  },
  {
   "sintoma": "En WSL no encuentra archivos que están ahí",
   "causa": "Problema documentado de búsqueda en WSL",
   "modulo": "M2",
+  "archivo": "M2-instalacion-y-autenticacion.md",
   "titulo_modulo": "M2 · Instalación, autenticación y actualización",
   "resuelve": "un entorno reproducible y saber siempre contra qué versión trabajas.",
   "contexto": "- Windows: instalación nativa o vía WinGet, con su propia guía de puesta a punto. - WSL2: funciona, con un aviso del M18 que ahorra una tarde: hay un problema documentado de búsquedas lentas o incompletas en WSL. Si tu gente dice que \"no encuentra archivos que están ahí\", empieza por ahí y no por la configuración. - Alpine Linux y distribuciones basadas en musl: tienen sección propia, con dependencias adicionales. No des por hecho que lo que funciona en Debian funciona en Alpine, que es justo el caso de muchos contenedores de CI.",
@@ -147,12 +184,16 @@
   ],
   "titulos_modulo": [
    "M2 · Instalación, autenticación y actualización"
+  ],
+  "archivos": [
+   "M2-instalacion-y-autenticacion.md"
   ]
  },
  {
   "sintoma": "Mi script usa una clave que yo rechacé",
   "causa": "Con -p la clave se usa siempre que esté presente",
   "modulo": "M2",
+  "archivo": "M2-instalacion-y-autenticacion.md",
   "titulo_modulo": "M2 · Instalación, autenticación y actualización",
   "resuelve": "un entorno reproducible y saber siempre contra qué versión trabajas.",
   "contexto": "La trampa del número 3, que muerde en automatización. En modo interactivo se te pregunta una vez si apruebas o rechazas la clave, y tu elección se recuerda; el interruptor \"Use custom API key\" de /config solo aparece mientras la variable esté puesta en tu entorno. Pero en modo no interactivo con -p, la clave se usa siempre que esté presente.",
@@ -162,12 +203,16 @@
   ],
   "titulos_modulo": [
    "M2 · Instalación, autenticación y actualización"
+  ],
+  "archivos": [
+   "M2-instalacion-y-autenticacion.md"
   ]
  },
  {
   "sintoma": "claude doctor dice instalaciones duplicadas",
   "causa": "Restos de otra vía de instalación",
   "modulo": "M2",
+  "archivo": "M2-instalacion-y-autenticacion.md",
   "titulo_modulo": "M2 · Instalación, autenticación y actualización",
   "resuelve": "un entorno reproducible y saber siempre contra qué versión trabajas.",
   "contexto": "Tiene procedimiento propio por cada vía de instalación: nativa, Homebrew y WinGet. No es lo mismo y hacerlo mal deja restos que luego producen instalaciones duplicadas, que es una de las cosas que /doctor reporta.",
@@ -177,12 +222,16 @@
   ],
   "titulos_modulo": [
    "M2 · Instalación, autenticación y actualización"
+  ],
+  "archivos": [
+   "M2-instalacion-y-autenticacion.md"
   ]
  },
  {
   "sintoma": "El token de CI caducó de golpe",
   "causa": "Hay aviso de renovación antes. claude setup-token",
   "modulo": "M2",
+  "archivo": "M2-instalacion-y-autenticacion.md",
   "titulo_modulo": "M2 · Instalación, autenticación y actualización",
   "resuelve": "un entorno reproducible y saber siempre contra qué versión trabajas.",
   "contexto": "Genera un token de larga duración, y requiere una suscripción de Claude. Es la vía para CI y automatización cuando no quieres una clave de API rodando por ahí. La documentación cubre además renovar un inicio de sesión que está a punto de caducar, que es el aviso que aparece antes de que se rompa un flujo automático.",
@@ -192,12 +241,16 @@
   ],
   "titulos_modulo": [
    "M2 · Instalación, autenticación y actualización"
+  ],
+  "archivos": [
+   "M2-instalacion-y-autenticacion.md"
   ]
  },
  {
   "sintoma": "Mi ajuste no se aplica",
   "causa": "Otro ámbito o una variable de entorno lo sobrescriben. /status primero",
   "modulo": "M3",
+  "archivo": "M3-configuracion.md",
   "titulo_modulo": "M3 · El directorio `.claude/` y el sistema de configuración",
   "resuelve": "el \"no me hace caso\". Casi siempre es un problema de capas, no de sintaxis.",
   "contexto": "Cuando un ajuste no parece aplicarse, la causa casi siempre es que otro ámbito o una variable de entorno lo están sobrescribiendo. Las variables de entorno son una capa de override más, y es la que la gente olvida.",
@@ -207,12 +260,16 @@
   ],
   "titulos_modulo": [
    "M3 · El directorio `.claude/` y el sistema de configuración"
+  ],
+  "archivos": [
+   "M3-configuracion.md"
   ]
  },
  {
   "sintoma": "Mi allow local no sustituye al del proyecto",
   "causa": "Los permisos se fusionan, no se sobrescriben. Es por diseño",
   "modulo": "M3",
+  "archivo": "M3-configuracion.md",
   "titulo_modulo": "M3 · El directorio `.claude/` y el sistema de configuración",
   "resuelve": "el \"no me hace caso\". Casi siempre es un problema de capas, no de sintaxis.",
   "contexto": "1. Las reglas de permisos no sobrescriben: se fusionan. Esta es la que más sorpresas da. Si esperas que tu allow local sustituya al del proyecto, no pasa eso: se suman. Y unos pocos ajustes sensibles a seguridad honran el valor más restrictivo aunque venga de un ámbito que normalmente no podría imponerse.",
@@ -222,12 +279,16 @@
   ],
   "titulos_modulo": [
    "M3 · El directorio `.claude/` y el sistema de configuración"
+  ],
+  "archivos": [
+   "M3-configuracion.md"
   ]
  },
  {
   "sintoma": "No encuentro mis servidores MCP en settings.json",
   "causa": "Están en ~/.claude.json, otro archivo",
   "modulo": "M3",
+  "archivo": "M3-configuracion.md",
   "titulo_modulo": "M3 · El directorio `.claude/` y el sistema de configuración",
   "resuelve": "el \"no me hace caso\". Casi siempre es un problema de capas, no de sintaxis.",
   "contexto": "Fíjate en la fila de MCP, que es la que más despista: los servidores de usuario no van en ~/.claude/settings.json sino en ~/.claude.json, que es otro archivo. Buscar servidores MCP en el settings de usuario es una tarde perdida.",
@@ -237,12 +298,16 @@
   ],
   "titulos_modulo": [
    "M3 · El directorio `.claude/` y el sistema de configuración"
+  ],
+  "archivos": [
+   "M3-configuracion.md"
   ]
  },
  {
   "sintoma": "Cambié la política en el servidor y no llega",
   "causa": "Los settings cacheados persisten hasta el siguiente fetch correcto",
   "modulo": "M3",
+  "archivo": "M3-configuracion.md",
   "titulo_modulo": "M3 · El directorio `.claude/` y el sistema de configuración",
   "resuelve": "el \"no me hace caso\". Casi siempre es un problema de capas, no de sintaxis.",
   "contexto": "Opinión operativa. Si vas a desplegar para una flota, la regla práctica es no mezclar fuentes managed. Elige una y deja la otra vacía. La combinación de \"no se fusionan salvo dos excepciones\" con \"los settings cacheados persisten hasta el siguiente fetch correcto\" produce diagnósticos imposibles. /status te dice qué fuente managed está activa; úsalo antes de teorizar.",
@@ -252,12 +317,16 @@
   ],
   "titulos_modulo": [
    "M3 · El directorio `.claude/` y el sistema de configuración"
+  ],
+  "archivos": [
+   "M3-configuracion.md"
   ]
  },
  {
   "sintoma": "Puse los settings de servidor y los del plist se ignoran",
   "causa": "Correcto: dentro de managed no se fusionan, salvo env y las lock keys",
   "modulo": "M3",
+  "archivo": "M3-configuracion.md",
   "titulo_modulo": "M3 · El directorio `.claude/` y el sistema de configuración",
   "resuelve": "el \"no me hace caso\". Casi siempre es un problema de capas, no de sintaxis.",
   "contexto": "3. Dentro de managed, las fuentes no se fusionan. Se usa la primera que entregue una configuración no vacía: primero los settings de servidor, después los de endpoint (plist, registro). Si los de servidor entregan cualquier clave, los de endpoint se ignoran enteros. Con dos excepciones por clave: las cross-source lock keys (como los candados de la lista blanca del sandbox) y el bloque env, que sí se fusiona variable a variable, donde la fuente de mayor prioridad que la defina gana y las inferiores rellenan lo que quede sin fijar. env fusionado requiere v2.1.223 o posterior.",
@@ -267,12 +336,16 @@
   ],
   "titulos_modulo": [
    "M3 · El directorio `.claude/` y el sistema de configuración"
+  ],
+  "archivos": [
+   "M3-configuracion.md"
   ]
  },
  {
   "sintoma": "Mi settings.json entero dejó de aplicarse",
   "causa": "Usuario, proyecto y local son estrictos: si no valida, se rechaza completo",
   "modulo": "M3",
+  "archivo": "M3-configuracion.md",
   "titulo_modulo": "M3 · El directorio `.claude/` y el sistema de configuración",
   "resuelve": "el \"no me hace caso\". Casi siempre es un problema de capas, no de sintaxis.",
   "contexto": "- Managed es tolerante: una entrada inválida se retira o se degrada, y el resto se sigue aplicando. Los ajustes de credenciales del sandbox se degradan a mode: \"deny\" con aviso, para que la credencial quede bloqueada, no enmascarada, hasta que arregles la entrada. - Usuario, proyecto y local son estrictos: un archivo que no valida se rechaza entero y se reporta.",
@@ -282,12 +355,16 @@
   ],
   "titulos_modulo": [
    "M3 · El directorio `.claude/` y el sistema de configuración"
+  ],
+  "archivos": [
+   "M3-configuracion.md"
   ]
  },
  {
   "sintoma": "Pulso f en /doctor y no pasa nada",
   "causa": "Eso era anterior a v2.1.205",
   "modulo": "M3",
+  "archivo": "M3-configuracion.md",
   "titulo_modulo": "M3 · El directorio `.claude/` y el sistema de configuración",
   "resuelve": "el \"no me hace caso\". Casi siempre es un problema de capas, no de sintaxis.",
   "contexto": "1. Mira qué se ha cargado en contexto, antes de tocar nada. 2. /status para saber qué fuentes mandan. 3. /doctor para los errores de validación con su origen. 4. Arranca contra una configuración limpia para separar tu culpa de la del programa. Si en limpio no pasa, el problema es tuyo y está en una de tus capas.",
@@ -299,12 +376,17 @@
   "titulos_modulo": [
    "M3 · El directorio `.claude/` y el sistema de configuración",
    "M21 · Features retiradas, renombradas y trampas de tutoriales viejos"
+  ],
+  "archivos": [
+   "M3-configuracion.md",
+   "M21-retiradas-y-cambios.md"
   ]
  },
  {
   "sintoma": "Le digo que siempre haga X y no siempre lo hace",
   "causa": "Es contexto, no configuración. Si no es negociable, hook",
   "modulo": "M4",
+  "archivo": "M4-memoria-y-contexto.md",
   "titulo_modulo": "M4 · Memoria y contexto",
   "resuelve": "las instrucciones que se pierden, el CLAUDE.md que no para de crecer y el contexto que se agota.",
   "contexto": "CLAUDE.md no es un archivo de reglas que se cumplen. Es un texto que se lee. Para bloquear una acción pase lo que pase, hace falta un hook PreToolUse, que es código y no interpretación. Esta es la pregunta 01 del árbol de decisión y aquí está su fundamento documentado.",
@@ -314,12 +396,16 @@
   ],
   "titulos_modulo": [
    "M4 · Memoria y contexto"
+  ],
+  "archivos": [
+   "M4-memoria-y-contexto.md"
   ]
  },
  {
   "sintoma": "Se le olvidó lo que le dije al principio",
   "causa": "Se dio solo en conversación. Compactó y se fue",
   "modulo": "M4",
+  "archivo": "M4-memoria-y-contexto.md",
   "titulo_modulo": "M4 · Memoria y contexto",
   "resuelve": "las instrucciones que se pierden, el CLAUDE.md que no para de crecer y el contexto que se agota.",
   "contexto": "1. Se dio solo en la conversación. Es la causa más frecuente con diferencia. 2. Vive en un CLAUDE.md anidado que aún no se ha recargado. 3. Es una regla por ruta que no ha casado con ningún archivo desde entonces.",
@@ -329,12 +415,16 @@
   ],
   "titulos_modulo": [
    "M4 · Memoria y contexto"
+  ],
+  "archivos": [
+   "M4-memoria-y-contexto.md"
   ]
  },
  {
   "sintoma": "Mi regla de la API no se aplica",
   "causa": "Tiene paths y aún no ha leído ningún archivo que case",
   "modulo": "M4",
+  "archivo": "M4-memoria-y-contexto.md",
   "titulo_modulo": "M4 · Memoria y contexto",
   "resuelve": "las instrucciones que se pierden, el CLAUDE.md que no para de crecer y el contexto que se agota.",
   "contexto": "No se reinyecta automáticamente: los CLAUDE.md anidados en subdirectorios y las reglas con frontmatter paths. Vuelven a cargarse la próxima vez que Claude lea un archivo de ese subdirectorio o que case con el patrón.",
@@ -344,12 +434,16 @@
   ],
   "titulos_modulo": [
    "M4 · Memoria y contexto"
+  ],
+  "archivos": [
+   "M4-memoria-y-contexto.md"
   ]
  },
  {
   "sintoma": "El CLAUDE.md del subdirectorio no aparece",
   "causa": "No carga al arrancar, entra al leer archivos de ahí",
   "modulo": "M4",
+  "archivo": "M4-memoria-y-contexto.md",
   "titulo_modulo": "M4 · Memoria y contexto",
   "resuelve": "las instrucciones que se pierden, el CLAUDE.md que no para de crecer y el contexto que se agota.",
   "contexto": "Los CLAUDE.md de subdirectorios por debajo del directorio de trabajo no se cargan al arrancar: entran cuando Claude lee archivos de esos subdirectorios. Guarda ese dato, porque es media explicación de la sección 4.7.",
@@ -359,12 +453,16 @@
   ],
   "titulos_modulo": [
    "M4 · Memoria y contexto"
+  ],
+  "archivos": [
+   "M4-memoria-y-contexto.md"
   ]
  },
  {
   "sintoma": "Añadí un directorio con --add-dir y no lee su CLAUDE.md",
   "causa": "Necesitas CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1",
   "modulo": "M4",
+  "archivo": "M4-memoria-y-contexto.md",
   "titulo_modulo": "M4 · Memoria y contexto",
   "resuelve": "las instrucciones que se pierden, el CLAUDE.md que no para de crecer y el contexto que se agota.",
   "contexto": "Claude Code sube por el árbol de directorios desde tu directorio de trabajo, mirando en cada nivel si hay CLAUDE.md y CLAUDE.local.md. Si lanzas en foo/bar/, carga foo/bar/CLAUDE.md, foo/CLAUDE.md y los CLAUDE.local.md que haya al lado.",
@@ -374,12 +472,16 @@
   ],
   "titulos_modulo": [
    "M4 · Memoria y contexto"
+  ],
+  "archivos": [
+   "M4-memoria-y-contexto.md"
   ]
  },
  {
   "sintoma": "Rechacé un diálogo de imports y ya no me lo pide",
   "causa": "Es por diseño: quedan desactivados y no vuelve a preguntar",
   "modulo": "M4",
+  "archivo": "M4-memoria-y-contexto.md",
   "titulo_modulo": "M4 · Memoria y contexto",
   "resuelve": "las instrucciones que se pierden, el CLAUDE.md que no para de crecer y el contexto que se agota.",
   "contexto": "El aviso de seguridad de esta sección. Un import de un archivo de memoria del proyecto es externo cuando su ruta resuelve fuera del directorio de trabajo. La primera vez, Claude Code muestra un diálogo de aprobación listando los archivos. Si lo rechazas, los imports quedan desactivados y el diálogo no vuelve a aparecer. Existe para protegerte de lo que otros confirmen en un proyecto compartido. Los imports de los archivos de ámbito de usuario los escribiste tú, así que cargan sin diálogo.",
@@ -389,12 +491,16 @@
   ],
   "titulos_modulo": [
    "M4 · Memoria y contexto"
+  ],
+  "archivos": [
+   "M4-memoria-y-contexto.md"
   ]
  },
  {
   "sintoma": "En el monorepo se cuela el CLAUDE.md de otro equipo",
   "causa": "claudeMdExcludes",
   "modulo": "M4",
+  "archivo": "M4-memoria-y-contexto.md",
   "titulo_modulo": "M4 · Memoria y contexto",
   "resuelve": "las instrucciones que se pierden, el CLAUDE.md que no para de crecer y el contexto que se agota.",
   "contexto": "- Los comentarios HTML de bloque se eliminan antes de inyectar el contenido. <!-- nota para el que mantenga esto --> cuesta cero tokens. Los comentarios dentro de bloques de código sí se conservan, y todos siguen visibles si abres el archivo con la herramienta de lectura. Es documentación gratis para humanos. - claudeMdExcludes para saltarte los CLAUDE.md de otros equipos en un monorepo.",
@@ -404,12 +510,16 @@
   ],
   "titulos_modulo": [
    "M4 · Memoria y contexto"
+  ],
+  "archivos": [
+   "M4-memoria-y-contexto.md"
   ]
  },
  {
   "sintoma": "Claude elige una de dos reglas al azar",
   "causa": "Se contradicen. Poda periódica",
   "modulo": "M4",
+  "archivo": "M4-memoria-y-contexto.md",
   "titulo_modulo": "M4 · Memoria y contexto",
   "resuelve": "las instrucciones que se pierden, el CLAUDE.md que no para de crecer y el contexto que se agota.",
   "contexto": "Corolario práctico: cuanto más específica y concisa sea la instrucción, más consistentemente se sigue. \"Usa indentación de 2 espacios\" funciona; \"formatea bien el código\" no. Y si dos reglas se contradicen, Claude puede elegir una arbitrariamente, así que revisar y podar es trabajo de mantenimiento, no de perfeccionismo.",
@@ -419,12 +529,16 @@
   ],
   "titulos_modulo": [
    "M4 · Memoria y contexto"
+  ],
+  "archivos": [
+   "M4-memoria-y-contexto.md"
   ]
  },
  {
   "sintoma": "Solo hay cinco modos",
   "causa": "Son seis. Falta default, que en el CLI se llama Manual",
   "modulo": "M5",
+  "archivo": "M5-permisos-y-seguridad.md",
   "titulo_modulo": "M5 · Permisos, modos y seguridad operativa",
   "resuelve": "el falso dilema entre \"me pregunta por todo\" y \"le doy permiso para todo\".",
   "contexto": "Corrección a los tutoriales y a más de un inventario: hay seis modos, no cinco. El que se olvida siempre es el primero, y es el modo por defecto de toda la vida.",
@@ -434,12 +548,16 @@
   ],
   "titulos_modulo": [
    "M5 · Permisos, modos y seguridad operativa"
+  ],
+  "archivos": [
+   "M5-permisos-y-seguridad.md"
   ]
  },
  {
   "sintoma": "Puse manual y no lo reconoce",
   "causa": "El alias requiere v2.1.200 o posterior",
   "modulo": "M5",
+  "archivo": "M5-permisos-y-seguridad.md",
   "titulo_modulo": "M5 · Permisos, modos y seguridad operativa",
   "resuelve": "el falso dilema entre \"me pregunta por todo\" y \"le doy permiso para todo\".",
   "contexto": "Nota de nomenclatura que confunde a todo el mundo: el modo que revisa cada acción se llama Manual en el CLI, en claude --help, en las extensiones de VS Code y JetBrains y en la aplicación de escritorio. Pero su valor de configuración es default, que es el que usan los hooks y el SDK. El CLI acepta manual como alias allí donde escribas el valor, por ejemplo claude --permission-mode manual o \"defaultMode\": \"manual\". La etiqueta Manual y el alias requieren v2.1.200 o posterior.",
@@ -449,12 +567,16 @@
   ],
   "titulos_modulo": [
    "M5 · Permisos, modos y seguridad operativa"
+  ],
+  "archivos": [
+   "M5-permisos-y-seguridad.md"
   ]
  },
  {
   "sintoma": "Mi strictAllowlist del repositorio no hace nada",
   "causa": "Correcto: solo aplica desde usuario, gestionada o --settings",
   "modulo": "M5",
+  "archivo": "M5-permisos-y-seguridad.md",
   "titulo_modulo": "M5 · Permisos, modos y seguridad operativa",
   "resuelve": "el falso dilema entre \"me pregunta por todo\" y \"le doy permiso para todo\".",
   "contexto": "- No hay dominios permitidos de partida. La primera vez que un comando necesita un dominio nuevo, se pregunta. Aceptar lo permite para el resto de la sesión. Se pre-autorizan con allowedDomains, y las reglas allow de WebFetch también pre-autorizan dominios. - strictAllowlist: true deniega en vez de preguntar. Solo tiene efecto desde configuración de usuario, gestionada o --settings: ponerlo en el .claude/settings.json del repositorio no hace nada. Y solo se aplica a comandos en sandbox; las herramientas en proceso como WebFetch siguen sus propias reglas de permisos.",
@@ -464,12 +586,16 @@
   ],
   "titulos_modulo": [
    "M5 · Permisos, modos y seguridad operativa"
+  ],
+  "archivos": [
+   "M5-permisos-y-seguridad.md"
   ]
  },
  {
   "sintoma": "Enmascaré la credencial y la herramienta ya no autentica",
   "causa": "Falta network.tlsTerminate, así el proxy no puede sustituir",
   "modulo": "M5",
+  "archivo": "M5-permisos-y-seguridad.md",
   "titulo_modulo": "M5 · Permisos, modos y seguridad operativa",
   "resuelve": "el falso dilema entre \"me pregunta por todo\" y \"le doy permiso para todo\".",
   "contexto": "1. El proxy tiene que ver el contenido de la petición para sustituir dentro, así que hace falta network.tlsTerminate para que termine el TLS él mismo. Sin eso, el enmascarado falla sin exponer nada: el comando sigue viendo solo el centinela. 2. Para archivos de credenciales, la sustitución es comportamiento de Linux y WSL2. macOS bloquea el archivo en su lugar.",
@@ -479,12 +605,16 @@
   ],
   "titulos_modulo": [
    "M5 · Permisos, modos y seguridad operativa"
+  ],
+  "archivos": [
+   "M5-permisos-y-seguridad.md"
   ]
  },
  {
   "sintoma": "En macOS el archivo enmascarado no aparece",
   "causa": "En macOS se bloquea el archivo, no se sustituye",
   "modulo": "M5",
+  "archivo": "M5-permisos-y-seguridad.md",
   "titulo_modulo": "M5 · Permisos, modos y seguridad operativa",
   "resuelve": "el falso dilema entre \"me pregunta por todo\" y \"le doy permiso para todo\".",
   "contexto": "1. El proxy tiene que ver el contenido de la petición para sustituir dentro, así que hace falta network.tlsTerminate para que termine el TLS él mismo. Sin eso, el enmascarado falla sin exponer nada: el comando sigue viendo solo el centinela. 2. Para archivos de credenciales, la sustitución es comportamiento de Linux y WSL2. macOS bloquea el archivo en su lugar.",
@@ -494,12 +624,16 @@
   ],
   "titulos_modulo": [
    "M5 · Permisos, modos y seguridad operativa"
+  ],
+  "archivos": [
+   "M5-permisos-y-seguridad.md"
   ]
  },
  {
   "sintoma": "Le dije que limpiara el repo y no hizo force push",
   "causa": "Correcto. Una petición general no es intención explícita",
   "modulo": "M5",
+  "archivo": "M5-permisos-y-seguridad.md",
   "titulo_modulo": "M5 · Permisos, modos y seguridad operativa",
   "resuelve": "el falso dilema entre \"me pregunta por todo\" y \"le doy permiso para todo\".",
   "contexto": "- Descargar y ejecutar código, del estilo curl | bash - Enviar datos sensibles a endpoints externos - Despliegues y migraciones de producción - Borrado masivo en almacenamiento en la nube - Conceder permisos de IAM o de repositorio - Modificar infraestructura compartida - Destruir de forma irreversible archivos que ya existían antes de la sesión - force push - Confirmar o publicar un cambio que, al ejecutarse, sacaría secretos fuera del repositorio o ampliaría lo que expone un despliegue",
@@ -509,12 +643,16 @@
   ],
   "titulos_modulo": [
    "M5 · Permisos, modos y seguridad operativa"
+  ],
+  "archivos": [
+   "M5-permisos-y-seguridad.md"
   ]
  },
  {
   "sintoma": "El sandbox no protege de mi servidor MCP",
   "causa": "La herramienta Bash en sandbox solo aísla Bash. Necesitas el runtime",
   "modulo": "M5",
+  "archivo": "M5-permisos-y-seguridad.md",
   "titulo_modulo": "M5 · Permisos, modos y seguridad operativa",
   "resuelve": "el falso dilema entre \"me pregunta por todo\" y \"le doy permiso para todo\".",
   "contexto": "La distinción que hay que tener clara: la herramienta Bash en sandbox solo restringe Bash. Las herramientas de archivo integradas, los servidores MCP y los hooks siguen corriendo directamente en tu máquina. Si tu modelo de amenazas incluye un MCP de terceros o un hook, la primera fila no te vale y necesitas la segunda.",
@@ -524,12 +662,16 @@
   ],
   "titulos_modulo": [
    "M5 · Permisos, modos y seguridad operativa"
+  ],
+  "archivos": [
+   "M5-permisos-y-seguridad.md"
   ]
  },
  {
   "sintoma": "Detectó la inyección, ya estamos seguros",
   "causa": "Detectar no es impedir. Eso no es un control",
   "modulo": "M5",
+  "archivo": "M5-permisos-y-seguridad.md",
   "titulo_modulo": "M5 · Permisos, modos y seguridad operativa",
   "resuelve": "el falso dilema entre \"me pregunta por todo\" y \"le doy permiso para todo\".",
   "contexto": "Dos pasadas, la segunda con el repositorio limpio de cualquier pista de que era un ejercicio. Las dos veces detectó la inyección, la nombró, dijo que solo obedece las instrucciones del usuario y reportó exactamente lo que la inyección le pedía callar. El experimento completo, con el error de método que casi lo invalida, está en evidencias/EXP-001.",
@@ -539,12 +681,16 @@
   ],
   "titulos_modulo": [
    "M5 · Permisos, modos y seguridad operativa"
+  ],
+  "archivos": [
+   "M5-permisos-y-seguridad.md"
   ]
  },
  {
   "sintoma": "Hace algo razonable pero no lo que pedía",
   "causa": "Saltó a implementar sin explorar. Modo plan",
   "modulo": "M6",
+  "archivo": "M6-flujo-de-trabajo.md",
   "titulo_modulo": "M6 · El flujo de trabajo diario que de verdad funciona",
   "resuelve": "la diferencia entre una sesión que vigilas y una de la que te puedes ir.",
   "contexto": "1. Explorar. Entra en modo plan con Shift+Tab hasta que la barra muestre ⏸ plan mode on, o arranca con claude --permission-mode plan. Claude lee archivos y contesta preguntas sin cambiar nada. 2. Planificar. Pídele un plan detallado de implementación. Ctrl+G abre el plan en tu editor de texto para que lo edites directamente antes de que proceda. Ese atajo lo conoce muy poca gente y es donde se corrige el 80 % de lo que luego habría que deshacer. 3. Implementar. Sales del modo plan aprobando el plan. 4. Verificar. Lo de la sección siguiente, que es lo que realmente separa a los equipos que sacan partido de esto de los que no.",
@@ -554,12 +700,16 @@
   ],
   "titulos_modulo": [
    "M6 · El flujo de trabajo diario que de verdad funciona"
+  ],
+  "archivos": [
+   "M6-flujo-de-trabajo.md"
   ]
  },
  {
   "sintoma": "Tengo que revisarle todo",
   "causa": "No hay comprobación que pueda ejecutar. Eres tú el bucle",
   "modulo": "M6",
+  "archivo": "M6-flujo-de-trabajo.md",
   "titulo_modulo": "M6 · El flujo de trabajo diario que de verdad funciona",
   "resuelve": "la diferencia entre una sesión que vigilas y una de la que te puedes ir.",
   "contexto": "Dale algo que produzca un pasa o falla y el bucle se cierra solo: Claude hace el trabajo, ejecuta la comprobación, lee el resultado e itera hasta que pasa.",
@@ -569,12 +719,16 @@
   ],
   "titulos_modulo": [
    "M6 · El flujo de trabajo diario que de verdad funciona"
+  ],
+  "archivos": [
+   "M6-flujo-de-trabajo.md"
   ]
  },
  {
   "sintoma": "Rebobiné y el archivo seguía borrado",
   "causa": "Lo borró un comando de Bash. Eso no se registra",
   "modulo": "M6",
+  "archivo": "M6-flujo-de-trabajo.md",
   "titulo_modulo": "M6 · El flujo de trabajo diario que de verdad funciona",
   "resuelve": "la diferencia entre una sesión que vigilas y una de la que te puedes ir.",
   "contexto": "1. Los cambios hechos por comandos de Bash no se registran. Si Claude ejecuta rm, mv o cp, eso no se puede deshacer rebobinando. Solo se registran las ediciones hechas con las herramientas de edición de archivos. 2. Las ediciones de un subagente no se restauran, con una excepción precisa: una skill con context: fork en primer plano edita tu árbol de trabajo durante tu propio turno, así que sí se restaura. Cualquier otro subagente, incluida una skill bifurcada en segundo plano, que es el comportamiento por defecto, y una pasada de /code-review --fix en segundo plano: no. Para eso, git. 3. Los cambios externos no se registran. Solo lo editado dentro de la sesión actual. 4. Los enlaces simbólicos y duros no se restauran. 5. No sustituye al control de versiones. Es literal en la documentación.",
@@ -584,12 +738,16 @@
   ],
   "titulos_modulo": [
    "M6 · El flujo de trabajo diario que de verdad funciona"
+  ],
+  "archivos": [
+   "M6-flujo-de-trabajo.md"
   ]
  },
  {
   "sintoma": "Rebobiné y los cambios del subagente siguen ahí",
   "causa": "Solo se restauran los de un fork en primer plano",
   "modulo": "M6",
+  "archivo": "M6-flujo-de-trabajo.md",
   "titulo_modulo": "M6 · El flujo de trabajo diario que de verdad funciona",
   "resuelve": "la diferencia entre una sesión que vigilas y una de la que te puedes ir.",
   "contexto": "1. Los cambios hechos por comandos de Bash no se registran. Si Claude ejecuta rm, mv o cp, eso no se puede deshacer rebobinando. Solo se registran las ediciones hechas con las herramientas de edición de archivos. 2. Las ediciones de un subagente no se restauran, con una excepción precisa: una skill con context: fork en primer plano edita tu árbol de trabajo durante tu propio turno, así que sí se restaura. Cualquier otro subagente, incluida una skill bifurcada en segundo plano, que es el comportamiento por defecto, y una pasada de /code-review --fix en segundo plano: no. Para eso, git. 3. Los cambios externos no se registran. Solo lo editado dentro de la sesión actual. 4. Los enlaces simbólicos y duros no se restauran. 5. No sustituye al control de versiones. Es literal en la documentación.",
@@ -599,12 +757,16 @@
   ],
   "titulos_modulo": [
    "M6 · El flujo de trabajo diario que de verdad funciona"
+  ],
+  "archivos": [
+   "M6-flujo-de-trabajo.md"
   ]
  },
  {
   "sintoma": "En el monorepo no coge mi configuración",
   "causa": "El settings de proyecto se carga desde el directorio de arranque",
   "modulo": "M6",
+  "archivo": "M6-flujo-de-trabajo.md",
   "titulo_modulo": "M6 · El flujo de trabajo diario que de verdad funciona",
   "resuelve": "la diferencia entre una sesión que vigilas y una de la que te puedes ir.",
   "contexto": "Dónde arrancas importa. El .claude/settings.json del proyecto se carga desde tu directorio de arranque. Si arrancas desde la raíz, ponlo en la raíz; si arrancas desde cada paquete, hace falta un .claude/ en cada uno.",
@@ -614,12 +776,16 @@
   ],
   "titulos_modulo": [
    "M6 · El flujo de trabajo diario que de verdad funciona"
+  ],
+  "archivos": [
+   "M6-flujo-de-trabajo.md"
   ]
  },
  {
   "sintoma": "Se le va el contexto en leer dist/",
   "causa": "Está en .gitignore y ya se excluye. Lo confirmado en git necesita deny",
   "modulo": "M6",
+  "archivo": "M6-flujo-de-trabajo.md",
   "titulo_modulo": "M6 · El flujo de trabajo diario que de verdad funciona",
   "resuelve": "la diferencia entre una sesión que vigilas y una de la que te puedes ir.",
   "contexto": "Bloquea la lectura de código generado y de terceros. Las búsquedas de contenido respetan .gitignore por defecto, así que node_modules/, dist/ y build/ ya quedan fuera sin configurar nada. Para lo que sí está confirmado en git, como un SDK copiado o código generado que se versiona, hacen falta reglas Read en permissions.deny.",
@@ -629,12 +795,16 @@
   ],
   "titulos_modulo": [
    "M6 · El flujo de trabajo diario que de verdad funciona"
+  ],
+  "archivos": [
+   "M6-flujo-de-trabajo.md"
   ]
  },
  {
   "sintoma": "Cada tarea acaba en un refactor gigante",
   "causa": "Falta acotar el encargo en el plan",
   "modulo": "M6",
+  "archivo": "M6-flujo-de-trabajo.md",
   "titulo_modulo": "M6 · El flujo de trabajo diario que de verdad funciona",
   "resuelve": "la diferencia entre una sesión que vigilas y una de la que te puedes ir.",
   "contexto": "Opinión operativa. El corolario incómodo es que un repositorio sin tests no solo es peor de mantener: es más caro de agentificar. Cada tarea necesita que tú hagas de verificador. Si estás decidiendo dónde invertir primero, la respuesta casi nunca es \"mejor prompt\" y casi siempre es \"algo que devuelva pasa o falla\".",
@@ -644,12 +814,16 @@
   ],
   "titulos_modulo": [
    "M6 · El flujo de trabajo diario que de verdad funciona"
+  ],
+  "archivos": [
+   "M6-flujo-de-trabajo.md"
   ]
  },
  {
   "sintoma": "/mi-skill funciona pero nunca se activa sola",
   "causa": "Frontmatter mal formado: cuerpo cargado, metadatos vacíos. --debug",
   "modulo": "M7",
+  "archivo": "M7-extension.md",
   "titulo_modulo": "M7 · Extensión: skills, comandos, output styles y barra de estado",
   "resuelve": "la skill que escribiste bien y no se activa nunca sola.",
   "contexto": "La causa que nadie diagnostica sola. Si el YAML del frontmatter está mal formado, Claude Code carga el cuerpo de la skill con los metadatos vacíos. El resultado es de manual de terror: /nombre-de-skill sigue funcionando perfectamente a mano, así que juras que la skill está bien, pero Claude no tiene ninguna description contra la que casar y por eso no se activa nunca sola. Se ve con --debug, que muestra el error de análisis.",
@@ -659,12 +833,16 @@
   ],
   "titulos_modulo": [
    "M7 · Extensión: skills, comandos, output styles y barra de estado"
+  ],
+  "archivos": [
+   "M7-extension.md"
   ]
  },
  {
   "sintoma": "Se activa cuando no toca",
   "causa": "Descripción demasiado genérica. Estréchala o desactiva la invocación por modelo",
   "modulo": "M7",
+  "archivo": "M7-extension.md",
   "titulo_modulo": "M7 · Extensión: skills, comandos, output styles y barra de estado",
   "resuelve": "la skill que escribiste bien y no se activa nunca sola.",
   "contexto": "El problema simétrico al de 7.2, y se resuelve por el mismo sitio: la descripción es demasiado genérica y casa con tareas que no le tocan. Se estrecha nombrando el dominio y el disparador concreto.",
@@ -674,12 +852,16 @@
   ],
   "titulos_modulo": [
    "M7 · Extensión: skills, comandos, output styles y barra de estado"
+  ],
+  "archivos": [
+   "M7-extension.md"
   ]
  },
  {
   "sintoma": "Dejó de seguir el procedimiento a mitad de sesión",
   "causa": "Compactó y esa skill se salió del presupuesto de 25.000 tokens",
   "modulo": "M7",
+  "archivo": "M7-extension.md",
   "titulo_modulo": "M7 · Extensión: skills, comandos, output styles y barra de estado",
   "resuelve": "la skill que escribiste bien y no se activa nunca sola.",
   "contexto": "Opinión operativa. Esos dos números explican un fallo que se diagnostica fatal: una sesión larga con seis skills invocadas y una tarea que \"de repente deja de seguir el procedimiento\". No es que se olvide: es que esa skill se quedó fuera del presupuesto de 25.000 tokens al compactar. La cura no es repetir la instrucción, es volver a invocar la skill o mover lo esencial al CLAUDE.md.",
@@ -689,12 +871,16 @@
   ],
   "titulos_modulo": [
    "M7 · Extensión: skills, comandos, output styles y barra de estado"
+  ],
+  "archivos": [
+   "M7-extension.md"
   ]
  },
  {
   "sintoma": "Me sigue pidiendo permiso pese a allowed-tools",
   "causa": "Caducó con tu mensaje anterior. Reinvoca, o usa reglas allow",
   "modulo": "M7",
+  "archivo": "M7-extension.md",
   "titulo_modulo": "M7 · Extensión: skills, comandos, output styles y barra de estado",
   "resuelve": "la skill que escribiste bien y no se activa nunca sola.",
   "contexto": "1. El permiso caduca con tu siguiente mensaje. Invocarla otra vez lo vuelve a aplicar para ese turno. 2. No restringe nada. Todas las herramientas siguen siendo invocables; tus ajustes de permisos siguen gobernando las que no estén listadas. Es una lista de pre-aprobación, no una jaula. 3. Para pre-aprobar durante toda la sesión, lo correcto son reglas allow en los permisos, no esto. 4. ⚠️ Para skills confirmadas en el .claude/skills/ de un proyecto, allowed-tools surte efecto tras aceptar el diálogo de confianza del espacio de trabajo. Y aquí está el aviso literal de la documentación, que conviene traducir sin suavizar: revisa las skills de un proyecto antes de confiar en el repositorio, porque una skill puede concederse a sí misma acceso amplio a herramientas.",
@@ -704,12 +890,16 @@
   ],
   "titulos_modulo": [
    "M7 · Extensión: skills, comandos, output styles y barra de estado"
+  ],
+  "archivos": [
+   "M7-extension.md"
   ]
  },
  {
   "sintoma": "El subagente de la skill no sabe de qué hablamos",
   "causa": "context: fork no comparte tu historial. Por diseño",
   "modulo": "M7",
+  "archivo": "M7-extension.md",
   "titulo_modulo": "M7 · Extensión: skills, comandos, output styles y barra de estado",
   "resuelve": "la skill que escribiste bien y no se activa nunca sola.",
   "contexto": "Context: fork en el frontmatter hace que la skill corra aislada. El contenido de la skill pasa a ser el prompt que dirige al subagente, que no tiene acceso a tu historial de conversación.",
@@ -719,12 +909,16 @@
   ],
   "titulos_modulo": [
    "M7 · Extensión: skills, comandos, output styles y barra de estado"
+  ],
+  "archivos": [
+   "M7-extension.md"
   ]
  },
  {
   "sintoma": "Puse yes en un booleano y no funciona",
   "causa": "Requiere v2.1.218 o posterior",
   "modulo": "M7",
+  "archivo": "M7-extension.md",
   "titulo_modulo": "M7 · Extensión: skills, comandos, output styles y barra de estado",
   "resuelve": "la skill que escribiste bien y no se activa nunca sola.",
   "contexto": "",
@@ -734,12 +928,16 @@
   ],
   "titulos_modulo": [
    "M7 · Extensión: skills, comandos, output styles y barra de estado"
+  ],
+  "archivos": [
+   "M7-extension.md"
   ]
  },
  {
   "sintoma": "Cambié el output style y sigue pidiendo permisos",
   "causa": "Correcto. Son ejes independientes",
   "modulo": "M7",
+  "archivo": "M7-extension.md",
   "titulo_modulo": "M7 · Extensión: skills, comandos, output styles y barra de estado",
   "resuelve": "la skill que escribiste bien y no se activa nunca sola.",
   "contexto": "1. El permiso caduca con tu siguiente mensaje. Invocarla otra vez lo vuelve a aplicar para ese turno. 2. No restringe nada. Todas las herramientas siguen siendo invocables; tus ajustes de permisos siguen gobernando las que no estén listadas. Es una lista de pre-aprobación, no una jaula. 3. Para pre-aprobar durante toda la sesión, lo correcto son reglas allow en los permisos, no esto. 4. ⚠️ Para skills confirmadas en el .claude/skills/ de un proyecto, allowed-tools surte efecto tras aceptar el diálogo de confianza del espacio de trabajo. Y aquí está el aviso literal de la documentación, que conviene traducir sin suavizar: revisa las skills de un proyecto antes de confiar en el repositorio, porque una skill puede concederse a sí misma acceso amplio a herramientas.",
@@ -749,12 +947,16 @@
   ],
   "titulos_modulo": [
    "M7 · Extensión: skills, comandos, output styles y barra de estado"
+  ],
+  "archivos": [
+   "M7-extension.md"
   ]
  },
  {
   "sintoma": "Han desaparecido las pistas de teclado del pie",
   "causa": "Tienes barra de estado configurada",
   "modulo": "M7",
+  "archivo": "M7-extension.md",
   "titulo_modulo": "M7 · Extensión: skills, comandos, output styles y barra de estado",
   "resuelve": "la skill que escribiste bien y no se activa nunca sola.",
   "contexto": "El coste oculto de ponerla, que no cuenta casi nadie. La barra se dibuja en su propia fila encima de las insignias del pie, pero con una barra de estado configurada, Claude Code deja de mostrar la mayoría de las pistas de teclado del pie, incluidas esc to interrupt, el ? for shortcuts y la de mantener espacio para dictar. Si tu equipo tiene gente que empieza, es un peaje real: ganas métricas y pierdes descubribilidad.",
@@ -764,12 +966,16 @@
   ],
   "titulos_modulo": [
    "M7 · Extensión: skills, comandos, output styles y barra de estado"
+  ],
+  "archivos": [
+   "M7-extension.md"
   ]
  },
  {
   "sintoma": "Definí la URL en el proyecto y la cabecera en local",
   "causa": "Los campos no se fusionan. Gana una fuente entera",
   "modulo": "M8",
+  "archivo": "M8-mcp.md",
   "titulo_modulo": "M8 · MCP a fondo",
   "resuelve": "integrar sin regalar contexto ni permisos, y sin que la factura suba sin que te enteres.",
   "contexto": "- Se usa la entrada entera de la fuente que gana. Los campos no se fusionan entre ámbitos. No puedes definir la URL en el proyecto y la cabecera de autenticación en local: o una o la otra. - Los tres primeros ámbitos detectan duplicados por nombre. Los plugins y los conectores, por endpoint. Así que un plugin que apunte a la misma URL que un servidor tuyo se trata como duplicado aunque se llame distinto.",
@@ -779,12 +985,16 @@
   ],
   "titulos_modulo": [
    "M8 · MCP a fondo"
+  ],
+  "archivos": [
+   "M8-mcp.md"
   ]
  },
  {
   "sintoma": "Tengo el servidor dos veces y solo conecta uno",
   "causa": "Duplicado. Los tres ámbitos casan por nombre; plugins y conectores, por endpoint",
   "modulo": "M8",
+  "archivo": "M8-mcp.md",
   "titulo_modulo": "M8 · MCP a fondo",
   "resuelve": "integrar sin regalar contexto ni permisos, y sin que la factura suba sin que te enteres.",
   "contexto": "- Se usa la entrada entera de la fuente que gana. Los campos no se fusionan entre ámbitos. No puedes definir la URL en el proyecto y la cabecera de autenticación en local: o una o la otra. - Los tres primeros ámbitos detectan duplicados por nombre. Los plugins y los conectores, por endpoint. Así que un plugin que apunte a la misma URL que un servidor tuyo se trata como duplicado aunque se llame distinto.",
@@ -794,12 +1004,16 @@
   ],
   "titulos_modulo": [
    "M8 · MCP a fondo"
+  ],
+  "archivos": [
+   "M8-mcp.md"
   ]
  },
  {
   "sintoma": "Con el gateway me como el contexto",
   "causa": "Tool search se desactiva con ANTHROPIC_BASE_URL no first-party",
   "modulo": "M8",
+  "archivo": "M8-mcp.md",
   "titulo_modulo": "M8 · MCP a fondo",
   "resuelve": "integrar sin regalar contexto ni permisos, y sin que la factura suba sin que te enteres.",
   "contexto": "Opinión operativa, y es la más importante de este módulo. Si tu arquitectura es un gateway propio, que es el caso de uso ancla de esta guía, estás por defecto en la primera fila de esa tabla: tool search desactivado, y por tanto el peaje permanente de MCP de vuelta, proporcional a cuántas herramientas tengas conectadas.",
@@ -809,12 +1023,16 @@
   ],
   "titulos_modulo": [
    "M8 · MCP a fondo"
+  ],
+  "archivos": [
+   "M8-mcp.md"
   ]
  },
  {
   "sintoma": "Puse ENABLE_TOOL_SEARCH y sigue cargando todo",
   "causa": "Foundry en Azure lo rechaza en servidor, o tienes las betas experimentales desactivadas",
   "modulo": "M8",
+  "archivo": "M8-mcp.md",
   "titulo_modulo": "M8 · MCP a fondo",
   "resuelve": "integrar sin regalar contexto ni permisos, y sin que la factura suba sin que te enteres.",
   "contexto": "Con un matiz que importa a quien escribe servidores: la variable aplica a las herramientas que no declaran su propio límite. Una herramienta que fije anthropic/maxResultSizeChars en su respuesta de tools/list usa ese valor para el contenido de texto, pase lo que pase con MAX_MCP_OUTPUT_TOKENS. Las que devuelven imágenes sí siguen sujetas a la variable.",
@@ -824,12 +1042,16 @@
   ],
   "titulos_modulo": [
    "M8 · MCP a fondo"
+  ],
+  "archivos": [
+   "M8-mcp.md"
   ]
  },
  {
   "sintoma": "La herramienta devuelve menos de lo que debería",
   "causa": "Límite de salida. Sube MAX_MCP_OUTPUT_TOKENS",
   "modulo": "M8",
+  "archivo": "M8-mcp.md",
   "titulo_modulo": "M8 · MCP a fondo",
   "resuelve": "integrar sin regalar contexto ni permisos, y sin que la factura suba sin que te enteres.",
   "contexto": "Con un matiz que importa a quien escribe servidores: la variable aplica a las herramientas que no declaran su propio límite. Una herramienta que fije anthropic/maxResultSizeChars en su respuesta de tools/list usa ese valor para el contenido de texto, pase lo que pase con MAX_MCP_OUTPUT_TOKENS. Las que devuelven imágenes sí siguen sujetas a la variable.",
@@ -839,12 +1061,16 @@
   ],
   "titulos_modulo": [
    "M8 · MCP a fondo"
+  ],
+  "archivos": [
+   "M8-mcp.md"
   ]
  },
  {
   "sintoma": "claude mcp serve no imprime nada",
   "causa": "Correcto. Silencio y bloqueo significan que funciona",
   "modulo": "M8",
+  "archivo": "M8-mcp.md",
   "titulo_modulo": "M8 · MCP a fondo",
   "resuelve": "integrar sin regalar contexto ni permisos, y sin que la factura suba sin que te enteres.",
   "contexto": "El detalle que hace perder media hora a todo el mundo: el comando no imprime nada al arrancar. Un servidor stdio se comunica por entrada y salida estándar, así que un terminal silencioso y bloqueado significa que está funcionando y esperando cliente. No está colgado.",
@@ -854,12 +1080,16 @@
   ],
   "titulos_modulo": [
    "M8 · MCP a fondo"
+  ],
+  "archivos": [
+   "M8-mcp.md"
   ]
  },
  {
   "sintoma": "La sesión se congela con una consulta larga",
   "causa": "A los 2 minutos pasa a segundo plano. Requiere v2.1.212+",
   "modulo": "M8",
+  "archivo": "M8-mcp.md",
   "titulo_modulo": "M8 · MCP a fondo",
   "resuelve": "integrar sin regalar contexto ni permisos, y sin que la factura suba sin que te enteres.",
   "contexto": "Una llamada a una herramienta MCP que sigue corriendo a los dos minutos pasa a tarea en segundo plano en lugar de bloquear la sesión. Requiere v2.1.212 o posterior.",
@@ -869,12 +1099,16 @@
   ],
   "titulos_modulo": [
    "M8 · MCP a fondo"
+  ],
+  "archivos": [
+   "M8-mcp.md"
   ]
  },
  {
   "sintoma": "Mi tarea en segundo plano desapareció",
   "causa": "No sobrevive a salir de la sesión",
   "modulo": "M8",
+  "archivo": "M8-mcp.md",
   "titulo_modulo": "M8 · MCP a fondo",
   "resuelve": "integrar sin regalar contexto ni permisos, y sin que la factura suba sin que te enteres.",
   "contexto": "- Claude recibe el identificador de la tarea de inmediato y sigue trabajando. - El resultado llega como notificación cuando la llamada se resuelve. - Aparece en /tasks, desde donde también se para. - No sobrevive a salir de la sesión. - Los límites por llamada siguen aplicando mientras corre en segundo plano: el de reloj, por el timeout del servidor o MCP_TOOL_TIMEOUT, y el de inactividad, por CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT. - El umbral de los dos minutos se cambia con CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS, en milisegundos.",
@@ -884,12 +1118,16 @@
   ],
   "titulos_modulo": [
    "M8 · MCP a fondo"
+  ],
+  "archivos": [
+   "M8-mcp.md"
   ]
  },
  {
   "sintoma": "Mis subagentes no se coordinan entre sí",
   "causa": "Por diseño: solo reportan al principal. Si deben hablarse, es un equipo",
   "modulo": "M9",
+  "archivo": "M9-paralelismo-y-agentes.md",
   "titulo_modulo": "M9 · Paralelismo y agentes",
   "resuelve": "la decisión que más dinero y más tiempo mueve de toda la guía.",
   "contexto": "La diferencia visual entre los dos primeros es exacta y viene de la documentación: los subagentes solo reportan al agente principal y nunca hablan entre ellos. En un agent team, los compañeros comparten lista de tareas, reclaman trabajo y se comunican directamente.",
@@ -899,12 +1137,16 @@
   ],
   "titulos_modulo": [
    "M9 · Paralelismo y agentes"
+  ],
+  "archivos": [
+   "M9-paralelismo-y-agentes.md"
   ]
  },
  {
   "sintoma": "Concurrent subagent limit reached",
   "causa": "20 corriendo. Sube CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS o espera",
   "modulo": "M9",
+  "archivo": "M9-paralelismo-y-agentes.md",
   "titulo_modulo": "M9 · Paralelismo y agentes",
   "resuelve": "la decisión que más dinero y más tiempo mueve de toda la guía.",
   "contexto": "- Por defecto, con 20 subagentes corriendo en una sesión, lanzar otro falla con Concurrent subagent limit reached, y el error le dice a Claude que no reintente. Vuelve a funcionar cuando bajan. - Se cambia con CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS. - Las sesiones con ultracode activo están exentas. - Requiere v2.1.217 o posterior. - No hay límite del total de subagentes que Claude puede lanzar a lo largo de una sesión.",
@@ -914,12 +1156,16 @@
   ],
   "titulos_modulo": [
    "M9 · Paralelismo y agentes"
+  ],
+  "archivos": [
+   "M9-paralelismo-y-agentes.md"
   ]
  },
  {
   "sintoma": "Leí que hay un tope de 200 por sesión",
   "causa": "Se eliminó en la semana 32",
   "modulo": "M9",
+  "archivo": "M9-paralelismo-y-agentes.md",
   "titulo_modulo": "M9 · Paralelismo y agentes",
   "resuelve": "la decisión que más dinero y más tiempo mueve de toda la guía.",
   "contexto": "Trampa de tutoriales viejos: existía un tope de 200 subagentes por sesión y se eliminó en la semana 32. Si lees en algún sitio que las sesiones largas dejan de aceptar subagentes, ya no es cierto: siguen aplicando la concurrencia y la profundidad, no el total.",
@@ -929,12 +1175,16 @@
   ],
   "titulos_modulo": [
    "M9 · Paralelismo y agentes"
+  ],
+  "archivos": [
+   "M9-paralelismo-y-agentes.md"
   ]
  },
  {
   "sintoma": "El workflow me llena el contexto",
   "causa": "No debería: los intermedios viven en el script. Revisa qué devuelves",
   "modulo": "M9",
+  "archivo": "M9-paralelismo-y-agentes.md",
   "titulo_modulo": "M9 · Paralelismo y agentes",
   "resuelve": "la decisión que más dinero y más tiempo mueve de toda la guía.",
   "contexto": "- Subagentes: trabajadores delegados dentro de una sesión, que hacen una tarea lateral en su propio contexto y devuelven un resumen. - Agent view: una pantalla para despachar y vigilar sesiones que corren en segundo plano, que se abre con claude agents. Research preview. - Agent teams: varias sesiones coordinadas con una lista de tareas compartida y mensajería entre ellas, dirigidas por un líder. Experimental y desactivado por defecto. - Workflows dinámicos: un script que corre muchos subagentes y contrasta sus resultados entre sí.",
@@ -944,12 +1194,16 @@
   ],
   "titulos_modulo": [
    "M9 · Paralelismo y agentes"
+  ],
+  "archivos": [
+   "M9-paralelismo-y-agentes.md"
   ]
  },
  {
   "sintoma": "Dos sesiones se pisan los archivos",
   "causa": "No están en worktrees",
   "modulo": "M9",
+  "archivo": "M9-paralelismo-y-agentes.md",
   "titulo_modulo": "M9 · Paralelismo y agentes",
   "resuelve": "la decisión que más dinero y más tiempo mueve de toda la guía.",
   "contexto": "- Worktrees: dan a cada sesión un checkout de git separado. Son el mecanismo de aislamiento, no de paralelismo. - Cross-session messaging: deja que Claude liste y escriba a tus otras sesiones. Es un canal, no un orquestador. - /batch: una skill que parte un cambio grande en de 5 a 30 subagentes aislados en worktrees, cada uno abriendo su propia pull request. Es un uso empaquetado de subagentes más worktrees, no un estilo de coordinación aparte.",
@@ -959,12 +1213,16 @@
   ],
   "titulos_modulo": [
    "M9 · Paralelismo y agentes"
+  ],
+  "archivos": [
+   "M9-paralelismo-y-agentes.md"
   ]
  },
  {
   "sintoma": "Mi comando se bloquea en un worktree y no entiendo por qué",
   "causa": "Cuarta comprobación: lo que no se puede verificar, se bloquea",
   "modulo": "M9",
+  "archivo": "M9-paralelismo-y-agentes.md",
   "titulo_modulo": "M9 · Paralelismo y agentes",
   "resuelve": "la decisión que más dinero y más tiempo mueve de toda la guía.",
   "contexto": "1. Ediciones de archivo: se bloquea Edit, Write o NotebookEdit que apunte a una ruta del checkout principal. 2. Directorio de trabajo del comando: se bloquea un comando de Bash, PowerShell o Monitor cuyo directorio de trabajo caiga en el checkout principal, o cuyo directorio no se pueda verificar que queda fuera. 3. Redirecciones de git: se bloquea el comando que redirige git al checkout principal, venga por git -C, --git-dir, las variables GIT_DIR o GIT_WORK_TREE, o un cd al principal antes de lanzar git. 4. Forma del comando: se bloquea el comando que no se puede verificar.",
@@ -974,12 +1232,16 @@
   ],
   "titulos_modulo": [
    "M9 · Paralelismo y agentes"
+  ],
+  "archivos": [
+   "M9-paralelismo-y-agentes.md"
   ]
  },
  {
   "sintoma": "La otra sesión no recibe nada",
   "causa": "Requiere v2.1.224+, macOS o Linux. Comprueba con /list-agents",
   "modulo": "M9",
+  "archivo": "M9-paralelismo-y-agentes.md",
   "titulo_modulo": "M9 · Paralelismo y agentes",
   "resuelve": "la decisión que más dinero y más tiempo mueve de toda la guía.",
   "contexto": "- Subagentes: trabajadores delegados dentro de una sesión, que hacen una tarea lateral en su propio contexto y devuelven un resumen. - Agent view: una pantalla para despachar y vigilar sesiones que corren en segundo plano, que se abre con claude agents. Research preview. - Agent teams: varias sesiones coordinadas con una lista de tareas compartida y mensajería entre ellas, dirigidas por un líder. Experimental y desactivado por defecto. - Workflows dinámicos: un script que corre muchos subagentes y contrasta sus resultados entre sí.",
@@ -989,12 +1251,16 @@
   ],
   "titulos_modulo": [
    "M9 · Paralelismo y agentes"
+  ],
+  "archivos": [
+   "M9-paralelismo-y-agentes.md"
   ]
  },
  {
   "sintoma": "El equipo de agentes se ha comido el presupuesto",
   "causa": "Es el enfoque más caro: sesiones completas y longevas",
   "modulo": "M9",
+  "archivo": "M9-paralelismo-y-agentes.md",
   "titulo_modulo": "M9 · Paralelismo y agentes",
   "resuelve": "la decisión que más dinero y más tiempo mueve de toda la guía.",
   "contexto": "Opinión operativa. \"Experimental y desactivado por defecto\" hay que tomárselo al pie de la letra: es la pieza más cara de las cuatro, porque son sesiones completas y longevas, cada una con su propio contexto que crece. Antes de encender un equipo, la pregunta honesta es si el trabajo necesita que los trabajadores hablen entre sí. Si no la necesitan, subagentes o un workflow salen mucho más baratos y se depuran mejor.",
@@ -1004,12 +1270,16 @@
   ],
   "titulos_modulo": [
    "M9 · Paralelismo y agentes"
+  ],
+  "archivos": [
+   "M9-paralelismo-y-agentes.md"
   ]
  },
  {
   "sintoma": "Mi hook no dispara nunca",
   "causa": "El evento no admite ese tipo de manejador. Repasa la lista de 10.2",
   "modulo": "M10",
+  "archivo": "M10-automatizacion.md",
   "titulo_modulo": "M10 · Automatización: hooks, programación y modo no interactivo",
   "resuelve": "convertir lo no negociable en código, y dejar de vigilar procesos a mano.",
   "contexto": "Una advertencia que se deduce sola pero conviene decir: un hook que razona ya no es determinista. Sigue siendo mucho más fiable que una instrucción en el CLAUDE.md, porque el evento siempre dispara y la decisión siempre se toma, pero si lo que buscas es una garantía dura, el tipo correcto es command.",
@@ -1019,12 +1289,16 @@
   ],
   "titulos_modulo": [
    "M10 · Automatización: hooks, programación y modo no interactivo"
+  ],
+  "archivos": [
+   "M10-automatizacion.md"
   ]
  },
  {
   "sintoma": "Mi hook async no bloquea nada",
   "causa": "Por diseño: decision y continue no tienen efecto en async",
   "modulo": "M10",
+  "archivo": "M10-automatizacion.md",
   "titulo_modulo": "M10 · Automatización: hooks, programación y modo no interactivo",
   "resuelve": "convertir lo no negociable en código, y dejar de vigilar procesos a mano.",
   "contexto": "- Solo está disponible en hooks de tipo command. - Un hook asíncrono no puede bloquear ni controlar nada. Los campos de respuesta decision, permissionDecision y continue no tienen efecto, porque la acción que habrían controlado ya ocurrió.",
@@ -1034,12 +1308,16 @@
   ],
   "titulos_modulo": [
    "M10 · Automatización: hooks, programación y modo no interactivo"
+  ],
+  "archivos": [
+   "M10-automatizacion.md"
   ]
  },
  {
   "sintoma": "Puse async en un hook http",
   "causa": "Solo existe en type: \"command",
   "modulo": "M10",
+  "archivo": "M10-automatizacion.md",
   "titulo_modulo": "M10 · Automatización: hooks, programación y modo no interactivo",
   "resuelve": "convertir lo no negociable en código, y dejar de vigilar procesos a mano.",
   "contexto": "- Los cinco tipos (13 eventos): PreToolUse, PostToolUse, PostToolUseFailure, PostToolBatch, PermissionRequest, PermissionDenied, Stop, SubagentStop, TaskCreated, TaskCompleted, TeammateIdle, UserPromptSubmit, UserPromptExpansion. - Solo command, http y mcp_tool (15 eventos): ConfigChange, CwdChanged, DirectoryAdded, Elicitation, ElicitationResult, FileChanged, InstructionsLoaded, Notification, PreCompact, PostCompact, SessionEnd, StopFailure, SubagentStart, WorktreeCreate, WorktreeRemove. - Solo command y mcp_tool: SessionStart y Setup.",
@@ -1049,12 +1327,16 @@
   ],
   "titulos_modulo": [
    "M10 · Automatización: hooks, programación y modo no interactivo"
+  ],
+  "archivos": [
+   "M10-automatizacion.md"
   ]
  },
  {
   "sintoma": "Las sesiones van lentas desde que puse hooks",
   "causa": "Tienes uno pesado en cadencia de cada herramienta",
   "modulo": "M10",
+  "archivo": "M10-automatizacion.md",
   "titulo_modulo": "M10 · Automatización: hooks, programación y modo no interactivo",
   "resuelve": "convertir lo no negociable en código, y dejar de vigilar procesos a mano.",
   "contexto": "Fíjate en el campo if: es un segundo filtro más fino que el matcher. El matcher dice \"solo para la herramienta Bash\"; el if dice \"y solo cuando el comando case con rm *\". Sin él acabas ejecutando tu script en cada llamada a Bash y filtrando dentro, que es más lento y más frágil.",
@@ -1064,12 +1346,16 @@
   ],
   "titulos_modulo": [
    "M10 · Automatización: hooks, programación y modo no interactivo"
+  ],
+  "archivos": [
+   "M10-automatizacion.md"
   ]
  },
  {
   "sintoma": "Mi StopFailure no cambia nada",
   "causa": "Se ignoran su salida y su código de salida",
   "modulo": "M10",
+  "archivo": "M10-automatizacion.md",
   "titulo_modulo": "M10 · Automatización: hooks, programación y modo no interactivo",
   "resuelve": "convertir lo no negociable en código, y dejar de vigilar procesos a mano.",
   "contexto": "",
@@ -1079,12 +1365,16 @@
   ],
   "titulos_modulo": [
    "M10 · Automatización: hooks, programación y modo no interactivo"
+  ],
+  "archivos": [
+   "M10-automatizacion.md"
   ]
  },
  {
   "sintoma": "Mis tareas de /loop desaparecieron",
   "causa": "Son de ámbito de sesión, y caducan a los 7 días",
   "modulo": "M10",
+  "archivo": "M10-automatizacion.md",
   "titulo_modulo": "M10 · Automatización: hooks, programación y modo no interactivo",
   "resuelve": "convertir lo no negociable en código, y dejar de vigilar procesos a mano.",
   "contexto": "Las tareas de /loop y los recordatorios son de ámbito de sesión: viven en la conversación actual y mueren al empezar otra. --resume o --continue recuperan las que no hayan caducado a los siete días: una recurrente creada en la última semana, o una de un solo disparo cuya hora aún no pasó.",
@@ -1094,12 +1384,16 @@
   ],
   "titulos_modulo": [
    "M10 · Automatización: hooks, programación y modo no interactivo"
+  ],
+  "archivos": [
+   "M10-automatizacion.md"
   ]
  },
  {
   "sintoma": "La tarea en la nube no ve mis archivos",
   "causa": "Corre sobre un clon nuevo, sin tu disco",
   "modulo": "M10",
+  "archivo": "M10-automatizacion.md",
   "titulo_modulo": "M10 · Automatización: hooks, programación y modo no interactivo",
   "resuelve": "convertir lo no negociable en código, y dejar de vigilar procesos a mano.",
   "contexto": "",
@@ -1109,12 +1403,16 @@
   ],
   "titulos_modulo": [
    "M10 · Automatización: hooks, programación y modo no interactivo"
+  ],
+  "archivos": [
+   "M10-automatizacion.md"
   ]
  },
  {
   "sintoma": "Quiero sondear cada minuto en la nube",
   "causa": "El mínimo en la nube es 1 hora. Usa escritorio o /loop",
   "modulo": "M10",
+  "archivo": "M10-automatizacion.md",
   "titulo_modulo": "M10 · Automatización: hooks, programación y modo no interactivo",
   "resuelve": "convertir lo no negociable en código, y dejar de vigilar procesos a mano.",
   "contexto": "Opinión operativa. La secuencia sana es: si puedes reaccionar a un evento, usa channels; si tienes una condición verificable, usa /goal; si de verdad hay que sondear algo externo, usa /loop con un intervalo acorde a lo que tarda en cambiar ese algo. Sondear cada minuto un despliegue que tarda ocho es pagar ocho veces por la misma respuesta.",
@@ -1124,12 +1422,16 @@
   ],
   "titulos_modulo": [
    "M10 · Automatización: hooks, programación y modo no interactivo"
+  ],
+  "archivos": [
+   "M10-automatizacion.md"
   ]
  },
  {
   "sintoma": "Mi plugin no encuentra las skills",
   "causa": "Las metiste dentro de .claude-plugin/. Solo va plugin.json",
   "modulo": "M11",
+  "archivo": "M11-plugins.md",
   "titulo_modulo": "M11 · Plugins y distribución interna",
   "resuelve": "el \"a mí me va y a ti no\", y el reparto versionado.",
   "contexto": "La recomendación oficial coincide con la del árbol de decisión del M1: empieza suelto en .claude/ para iterar rápido, y conviértelo en plugin cuando esté listo para compartir. Empaquetar antes de que funcione solo reparte el problema.",
@@ -1139,12 +1441,16 @@
   ],
   "titulos_modulo": [
    "M11 · Plugins y distribución interna"
+  ],
+  "archivos": [
+   "M11-plugins.md"
   ]
  },
  {
   "sintoma": "Puse un .mcp.json en ~/.claude/ y no lo lee",
   "causa": "La raíz del plugin nunca es ~/.claude/",
   "modulo": "M11",
+  "archivo": "M11-plugins.md",
   "titulo_modulo": "M11 · Plugins y distribución interna",
   "resuelve": "el \"a mí me va y a ti no\", y el reparto versionado.",
   "contexto": "La segunda parte del aviso, que aclara una confusión aún más común: la raíz del plugin es el directorio propio de ese plugin, el que pasas a --plugin-dir o el que contiene .claude-plugin/plugin.json. Nunca es ~/.claude/. Por eso un .mcp.json colocado en ~/.claude/.mcp.json no lo lee nadie.",
@@ -1154,12 +1460,16 @@
   ],
   "titulos_modulo": [
    "M11 · Plugins y distribución interna"
+  ],
+  "archivos": [
+   "M11-plugins.md"
   ]
  },
  {
   "sintoma": "Mi ruta relativa no resuelve",
   "causa": "Debe empezar por ./ y se resuelve contra la raíz del catálogo",
   "modulo": "M11",
+  "archivo": "M11-plugins.md",
   "titulo_modulo": "M11 · Plugins y distribución interna",
   "resuelve": "el \"a mí me va y a ti no\", y el reparto versionado.",
   "contexto": "Opinión operativa. Que el catálogo no admita sha y el plugin sí es exactamente lo que quieres: el catálogo debe poder moverse para añadir entradas, mientras que lo que se ejecuta en la máquina de tu gente debe poder clavarse a un commit. Si tu política de seguridad exige reproducibilidad, el anclaje va en la entrada del plugin, no en el catálogo.",
@@ -1169,12 +1479,16 @@
   ],
   "titulos_modulo": [
    "M11 · Plugins y distribución interna"
+  ],
+  "archivos": [
+   "M11-plugins.md"
   ]
  },
  {
   "sintoma": "Quise anclar el catálogo a un commit y no me deja",
   "causa": "Las fuentes de catálogo admiten ref, no sha. El anclaje fino va en el plugin",
   "modulo": "M11",
+  "archivo": "M11-plugins.md",
   "titulo_modulo": "M11 · Plugins y distribución interna",
   "resuelve": "el \"a mí me va y a ti no\", y el reparto versionado.",
   "contexto": "Opinión operativa. Que el catálogo no admita sha y el plugin sí es exactamente lo que quieres: el catálogo debe poder moverse para añadir entradas, mientras que lo que se ejecuta en la máquina de tu gente debe poder clavarse a un commit. Si tu política de seguridad exige reproducibilidad, el anclaje va en la entrada del plugin, no en el catálogo.",
@@ -1184,12 +1498,16 @@
   ],
   "titulos_modulo": [
    "M11 · Plugins y distribución interna"
+  ],
+  "archivos": [
+   "M11-plugins.md"
   ]
  },
  {
   "sintoma": "Una actualización de otro equipo me rompió el plugin",
   "causa": "Falta restricción de versión en la dependencia",
   "modulo": "M11",
+  "archivo": "M11-plugins.md",
   "titulo_modulo": "M11 · Plugins y distribución interna",
   "resuelve": "el \"a mí me va y a ti no\", y el reparto versionado.",
   "contexto": "La documentación cubre además cómo agrupar plugins para un equipo, cómo depender de un plugin de otro catálogo, cómo etiquetar releases para que la resolución de versiones funcione, cómo interactúan varias restricciones, y algo que se agradece: eliminar las dependencias autoinstaladas que quedan huérfanas.",
@@ -1199,12 +1517,16 @@
   ],
   "titulos_modulo": [
    "M11 · Plugins y distribución interna"
+  ],
+  "archivos": [
+   "M11-plugins.md"
   ]
  },
  {
   "sintoma": "En las máquinas de mi equipo no hay git",
   "causa": "Fuente archive: zip por HTTPS, v2.1.224+",
   "modulo": "M11",
+  "archivo": "M11-plugins.md",
   "titulo_modulo": "M11 · Plugins y distribución interna",
   "resuelve": "el \"a mí me va y a ti no\", y el reparto versionado.",
   "contexto": "",
@@ -1214,12 +1536,16 @@
   ],
   "titulos_modulo": [
    "M11 · Plugins y distribución interna"
+  ],
+  "archivos": [
+   "M11-plugins.md"
   ]
  },
  {
   "sintoma": "Nadie usa el plugin interno",
   "causa": "Bloque relevance en el catálogo, o hints desde tu propio CLI",
   "modulo": "M11",
+  "archivo": "M11-plugins.md",
   "titulo_modulo": "M11 · Plugins y distribución interna",
   "resuelve": "el \"a mí me va y a ti no\", y el reparto versionado.",
   "contexto": "Relevance, o sugerir el plugin adecuado. Si operas un catálogo para tu organización, añades un bloque relevance a la entrada del plugin en marketplace.json y pones el catálogo en la lista blanca de los settings gestionados. Cuando la sesión de alguien case con las señales declaradas, Claude Code le sugiere instalarlo.",
@@ -1229,12 +1555,16 @@
   ],
   "titulos_modulo": [
    "M11 · Plugins y distribución interna"
+  ],
+  "archivos": [
+   "M11-plugins.md"
   ]
  },
  {
   "sintoma": "Desde el móvil no veo mis archivos",
   "causa": "El móvil es un cliente. Depende de dónde corra la sesión",
   "modulo": "M12",
+  "archivo": "M12-superficies.md",
   "titulo_modulo": "M12 · Superficies",
   "resuelve": "qué se puede hacer desde dónde, sin descubrirlo a mitad de una tarea.",
   "contexto": "Una sesión puede correr en tu máquina y pilotarla desde el móvil. Puede correr en la nube y pilotarla desde el terminal. Confundir los dos ejes produce preguntas sin respuesta como \"¿el móvil tiene acceso a mis archivos?\", que depende enteramente de dónde corra la sesión, no del móvil.",
@@ -1244,12 +1574,16 @@
   ],
   "titulos_modulo": [
    "M12 · Superficies"
+  ],
+  "archivos": [
+   "M12-superficies.md"
   ]
  },
  {
   "sintoma": "Busco la app de Claude Code y no existe",
   "causa": "No hay app separada: pestaña Code de la app de Claude",
   "modulo": "M12",
+  "archivo": "M12-superficies.md",
   "titulo_modulo": "M12 · Superficies",
   "resuelve": "qué se puede hacer desde dónde, sin descubrirlo a mitad de una tarea.",
   "contexto": "El móvil, de hecho, es el ejemplo perfecto: la aplicación de Claude para iOS y Android es un cliente de sesiones, no un sitio donde corre código. Y no hay aplicación móvil separada de Claude Code: las sesiones cloud y Remote Control viven en la pestaña Code de la app de Claude, y Dispatch es una tarea a la que le escribes.",
@@ -1259,12 +1593,16 @@
   ],
   "titulos_modulo": [
    "M12 · Superficies"
+  ],
+  "archivos": [
+   "M12-superficies.md"
   ]
  },
  {
   "sintoma": "Computer use no me aparece",
   "causa": "Research preview, macOS, solo Pro y Max, y no con -p",
   "modulo": "M12",
+  "archivo": "M12-superficies.md",
   "titulo_modulo": "M12 · Superficies",
   "resuelve": "qué se puede hacer desde dónde, sin descubrirlo a mitad de una tarea.",
   "contexto": "1. Es research preview. 2. En Team y Enterprise está apagado por defecto hasta que un propietario active el interruptor en la configuración de administración. 3. Del M3: la configuración confirmada en un repositorio ya no puede activar la conexión automática de Remote Control. Se fija en los settings de usuario o gestionados, y los de proyecto y local solo pueden desactivarla. Es un endurecimiento de la semana 32 y va en la dirección correcta: un repositorio ajeno no puede abrirte un canal remoto.",
@@ -1274,12 +1612,16 @@
   ],
   "titulos_modulo": [
    "M12 · Superficies"
+  ],
+  "archivos": [
+   "M12-superficies.md"
   ]
  },
  {
   "sintoma": "Remote Control no conecta en la empresa",
   "causa": "Apagado por defecto en Team y Enterprise",
   "modulo": "M12",
+  "archivo": "M12-superficies.md",
   "titulo_modulo": "M12 · Superficies",
   "resuelve": "qué se puede hacer desde dónde, sin descubrirlo a mitad de una tarea.",
   "contexto": "1. Es research preview. 2. En Team y Enterprise está apagado por defecto hasta que un propietario active el interruptor en la configuración de administración. 3. Del M3: la configuración confirmada en un repositorio ya no puede activar la conexión automática de Remote Control. Se fija en los settings de usuario o gestionados, y los de proyecto y local solo pueden desactivarla. Es un endurecimiento de la semana 32 y va en la dirección correcta: un repositorio ajeno no puede abrirte un canal remoto.",
@@ -1289,12 +1631,16 @@
   ],
   "titulos_modulo": [
    "M12 · Superficies"
+  ],
+  "archivos": [
+   "M12-superficies.md"
   ]
  },
  {
   "sintoma": "Puse la conexión automática en el repo y no funciona",
   "causa": "Desde la w32, el repositorio solo puede desactivarla",
   "modulo": "M12",
+  "archivo": "M12-superficies.md",
   "titulo_modulo": "M12 · Superficies",
   "resuelve": "qué se puede hacer desde dónde, sin descubrirlo a mitad de una tarea.",
   "contexto": "1. Es research preview. 2. En Team y Enterprise está apagado por defecto hasta que un propietario active el interruptor en la configuración de administración. 3. Del M3: la configuración confirmada en un repositorio ya no puede activar la conexión automática de Remote Control. Se fija en los settings de usuario o gestionados, y los de proyecto y local solo pueden desactivarla. Es un endurecimiento de la semana 32 y va en la dirección correcta: un repositorio ajeno no puede abrirte un canal remoto.",
@@ -1304,12 +1650,16 @@
   ],
   "titulos_modulo": [
    "M12 · Superficies"
+  ],
+  "archivos": [
+   "M12-superficies.md"
   ]
  },
  {
   "sintoma": "Activamos ZDR y desapareció la web",
   "causa": "Se desactiva automáticamente",
   "modulo": "M12",
+  "archivo": "M12-superficies.md",
   "titulo_modulo": "M12 · Superficies",
   "resuelve": "qué se puede hacer desde dónde, sin descubrirlo a mitad de una tarea.",
   "contexto": "Dos límites que hay que tener presentes: no ven tu disco, porque trabajan sobre un clon; y del M16, se desactivan automáticamente bajo ZDR, junto con las sesiones cloud desde escritorio y Artifacts.",
@@ -1319,12 +1669,16 @@
   ],
   "titulos_modulo": [
    "M12 · Superficies"
+  ],
+  "archivos": [
+   "M12-superficies.md"
   ]
  },
  {
   "sintoma": "Nuestro Slack va a dejar de funcionar",
   "causa": "Retirada en Team y Enterprise en favor de Claude Tag",
   "modulo": "M12",
+  "archivo": "M12-superficies.md",
   "titulo_modulo": "M12 · Superficies",
   "resuelve": "qué se puede hacer desde dónde, sin descubrirlo a mitad de una tarea.",
   "contexto": "Cambio importante que pertenece también al M21. La versión actual de Claude Code en Slack, que corre cada sesión bajo la cuenta de un usuario individual, está siendo retirada en los planes Team y Enterprise en favor de Claude Tag, que ejecuta @Claude como identidad compartida de la organización con acceso configurado por administración.",
@@ -1334,12 +1688,16 @@
   ],
   "titulos_modulo": [
    "M12 · Superficies"
+  ],
+  "archivos": [
+   "M12-superficies.md"
   ]
  },
  {
   "sintoma": "Claude entró en un panel donde yo estaba logueado",
   "causa": "Comparte el estado de sesión del navegador. Por diseño",
   "modulo": "M12",
+  "archivo": "M12-superficies.md",
   "titulo_modulo": "M12 · Superficies",
   "resuelve": "qué se puede hacer desde dónde, sin descubrirlo a mitad de una tarea.",
   "contexto": "Tu banco, tu panel de administración, tu correo. Las acciones ocurren en una ventana visible y en tiempo real, y cuando encuentra una pantalla de acceso o un CAPTCHA se detiene y te pide que lo resuelvas tú. Pero la superficie es tu sesión entera del navegador. Eso pertenece a la conversación del M5, no a la de comodidad.",
@@ -1349,12 +1707,16 @@
   ],
   "titulos_modulo": [
    "M12 · Superficies"
+  ],
+  "archivos": [
+   "M12-superficies.md"
   ]
  },
  {
   "sintoma": "La revisión no aplica nuestras reglas",
   "causa": "Falta REVIEW.md, o pusiste un @import que no se expande",
   "modulo": "M13",
+  "archivo": "M13-cicd-y-revision.md",
   "titulo_modulo": "M13 · CI/CD y revisión de código",
   "resuelve": "poner a Claude en la tubería con presupuesto, permisos y criterio propio.",
   "contexto": "La trampa, y es de las que cuestan una tarde: se pega literalmente. La sintaxis de import con @ no se expande y los archivos referenciados no se leen. Si escribes @docs/estandares.md esperando que se cargue, lo que has metido en el prompt es el texto @docs/estandares.md. Las reglas van dentro del archivo, escritas.",
@@ -1364,12 +1726,16 @@
   ],
   "titulos_modulo": [
    "M13 · CI/CD y revisión de código"
+  ],
+  "archivos": [
+   "M13-cicd-y-revision.md"
   ]
  },
  {
   "sintoma": "La primera revisión del legacy es un muro",
   "causa": "Para eso está 🟣 Pre-existing. Calibra con REVIEW.md",
   "modulo": "M13",
+  "archivo": "M13-cicd-y-revision.md",
   "titulo_modulo": "M13 · CI/CD y revisión de código",
   "resuelve": "poner a Claude en la tubería con presupuesto, permisos y criterio propio.",
   "contexto": "La tercera es la que hace que el sistema sea usable en un repositorio con historia: sin ella, la primera revisión de un proyecto legacy sería un muro de mil hallazgos y nadie volvería a mirarla.",
@@ -1379,12 +1745,16 @@
   ],
   "titulos_modulo": [
    "M13 · CI/CD y revisión de código"
+  ],
+  "archivos": [
+   "M13-cicd-y-revision.md"
   ]
  },
  {
   "sintoma": "Corre pero no veo nada",
   "causa": "Modo automatización: el resultado va al registro, no a un comentario",
   "modulo": "M13",
+  "archivo": "M13-cicd-y-revision.md",
   "titulo_modulo": "M13 · CI/CD y revisión de código",
   "resuelve": "poner a Claude en la tubería con presupuesto, permisos y criterio propio.",
   "contexto": "- Modo interactivo, cuando el flujo no lleva entrada prompt: Claude espera la frase disparadora, @claude por defecto, en un comentario de incidencia o de pull request, en una revisión de PR, o en el cuerpo o el título de una incidencia recién abierta. El progreso y el resultado aparecen como comentario. - Modo automatización, cuando el flujo sí lleva prompt: corre sin esperar a que la mencionen. El resultado aparece en el registro de la ejecución, no como comentario.",
@@ -1394,12 +1764,16 @@
   ],
   "titulos_modulo": [
    "M13 · CI/CD y revisión de código"
+  ],
+  "archivos": [
+   "M13-cicd-y-revision.md"
   ]
  },
  {
   "sintoma": "A un compañero le falla siempre el disparo",
   "causa": "No tiene acceso de escritura. allowed_non_write_users",
   "modulo": "M13",
+  "archivo": "M13-cicd-y-revision.md",
   "titulo_modulo": "M13 · CI/CD y revisión de código",
   "resuelve": "poner a Claude en la tubería con presupuesto, permisos y criterio propio.",
   "contexto": "1. Acceso de escritura. En eventos de incidencia y de pull request, quien dispara debe tener acceso de escritura al repositorio. Para permitir a personas concretas sin escritura, allowed_non_write_users y pasar tu propio github_token. Los eventos que no tienen autor, como un disparo programado, se saltan esta comprobación. 2. Actor humano. En todos los eventos, se rechaza a un actor que sea un bot, salvo que lo listes en allowed_bots.",
@@ -1409,12 +1783,16 @@
   ],
   "titulos_modulo": [
    "M13 · CI/CD y revisión de código"
+  ],
+  "archivos": [
+   "M13-cicd-y-revision.md"
   ]
  },
  {
   "sintoma": "Nuestro bot no puede dispararla",
   "causa": "Se rechazan los bots salvo los de allowed_bots",
   "modulo": "M13",
+  "archivo": "M13-cicd-y-revision.md",
   "titulo_modulo": "M13 · CI/CD y revisión de código",
   "resuelve": "poner a Claude en la tubería con presupuesto, permisos y criterio propio.",
   "contexto": "1. Acceso de escritura. En eventos de incidencia y de pull request, quien dispara debe tener acceso de escritura al repositorio. Para permitir a personas concretas sin escritura, allowed_non_write_users y pasar tu propio github_token. Los eventos que no tienen autor, como un disparo programado, se saltan esta comprobación. 2. Actor humano. En todos los eventos, se rechaza a un actor que sea un bot, salvo que lo listes en allowed_bots.",
@@ -1424,12 +1802,16 @@
   ],
   "titulos_modulo": [
    "M13 · CI/CD y revisión de código"
+  ],
+  "archivos": [
+   "M13-cicd-y-revision.md"
   ]
  },
  {
   "sintoma": "Factura de ultrareview disparada",
   "causa": "Lo estáis lanzando en cada push. Es para antes de fusionar",
   "modulo": "M13",
+  "archivo": "M13-cicd-y-revision.md",
   "titulo_modulo": "M13 · CI/CD y revisión de código",
   "resuelve": "poner a Claude en la tubería con presupuesto, permisos y criterio propio.",
   "contexto": "- Fusionar. La revisión automática informa la decisión, no la toma. - Ultrareview en cada push. A 5-25 $ la pasada, es para antes de fusionar cambios sustanciales, no para cada commit. - Nada con credenciales de escritura en producción, del M5. - Lo que nadie va a leer. Un informe automático que llega a un canal que todo el mundo silencia es gasto puro.",
@@ -1439,12 +1821,16 @@
   ],
   "titulos_modulo": [
    "M13 · CI/CD y revisión de código"
+  ],
+  "archivos": [
+   "M13-cicd-y-revision.md"
   ]
  },
  {
   "sintoma": "Seguridad nos ha parado la instalación",
   "causa": "Explica antes que el permiso de la app es un superconjunto",
   "modulo": "M13",
+  "archivo": "M13-cicd-y-revision.md",
   "titulo_modulo": "M13 · CI/CD y revisión de código",
   "resuelve": "poner a Claude en la tubería con presupuesto, permisos y criterio propio.",
   "contexto": "Traducción para la reunión con seguridad: al instalar concedes el superconjunto, no el mínimo de la función que te interesa. No es un fallo, es cómo funcionan las apps de GitHub, pero hay que decirlo antes y no cuando alguien lo descubra.",
@@ -1454,12 +1840,16 @@
   ],
   "titulos_modulo": [
    "M13 · CI/CD y revisión de código"
+  ],
+  "archivos": [
+   "M13-cicd-y-revision.md"
   ]
  },
  {
   "sintoma": "Nos fuimos a Bedrock y perdimos la revisión de código",
   "causa": "Requiere suscripción. Estaba en la lista del 14.1",
   "modulo": "M14",
+  "archivo": "M14-despliegue-empresarial.md",
   "titulo_modulo": "M14 · Despliegue empresarial",
   "resuelve": "qué arquitectura elegir, y qué pierdes con cada una.",
   "contexto": "Opinión operativa. Esta lista, y no el precio por token, es lo que decide la arquitectura en la mayoría de los equipos que he visto. Un CTO que se lleva su tráfico a Bedrock por cumplimiento y descubre tres meses después que su gente ha perdido la revisión de código y el trabajo desde el móvil ha tomado una decisión correcta con información incompleta. Enséñale esta lista antes, no después.",
@@ -1469,12 +1859,16 @@
   ],
   "titulos_modulo": [
    "M14 · Despliegue empresarial"
+  ],
+  "archivos": [
+   "M14-despliegue-empresarial.md"
   ]
  },
  {
   "sintoma": "No me funcionan los server-managed settings",
   "causa": "No están en Bedrock, y requieren Team o Enterprise",
   "modulo": "M14",
+  "archivo": "M14-despliegue-empresarial.md",
   "titulo_modulo": "M14 · Despliegue empresarial",
   "resuelve": "qué arquitectura elegir, y qué pierdes con cada una.",
   "contexto": "Recuerda que server-managed settings requiere Team o Enterprise, y no está disponible en Bedrock. Si tu arquitectura combina Bedrock con gobierno centralizado, ahí tienes un conflicto que resolver de antemano.",
@@ -1484,12 +1878,16 @@
   ],
   "titulos_modulo": [
    "M14 · Despliegue empresarial"
+  ],
+  "archivos": [
+   "M14-despliegue-empresarial.md"
   ]
  },
  {
   "sintoma": "Con el gateway se nos come el contexto",
   "causa": "No reenvía tool_reference. Mira GET /protocol",
   "modulo": "M14",
+  "archivo": "M14-despliegue-empresarial.md",
   "titulo_modulo": "M14 · Despliegue empresarial",
   "resuelve": "qué arquitectura elegir, y qué pierdes con cada una.",
   "contexto": "El caso concreto que ya nos ha mordido: si tu gateway no reenvía los bloques tool_reference, tool search se desactiva y MCP vuelve a ser un peaje permanente en cada turno. Claude Code lo desactiva solo, de forma preventiva, cuando ANTHROPIC_BASE_URL apunta a un host que no es de primera parte. Comprueba el protocolo antes de forzar ENABLE_TOOL_SEARCH.",
@@ -1499,12 +1897,16 @@
   ],
   "titulos_modulo": [
    "M14 · Despliegue empresarial"
+  ],
+  "archivos": [
+   "M14-despliegue-empresarial.md"
   ]
  },
  {
   "sintoma": "Pedimos ZDR y no aparece",
   "causa": "Solo Enterprise",
   "modulo": "M14",
+  "archivo": "M14-despliegue-empresarial.md",
   "titulo_modulo": "M14 · Despliegue empresarial",
   "resuelve": "qué arquitectura elegir, y qué pierdes con cada una.",
   "contexto": "1. Cada rama que se aleja de la suscripción cuesta funciones, y la lista está en el 14.1. Recórrela con el equipo antes de elegir. 2. Zero Data Retention solo existe en Enterprise. Si es un requisito, la rama está decidida antes de empezar. 3. Un proveedor externo y un gateway son decisiones independientes. Puedes tener gateway contra la API de Anthropic, o ir directo a Bedrock sin gateway. Se combinan.",
@@ -1514,12 +1916,16 @@
   ],
   "titulos_modulo": [
    "M14 · Despliegue empresarial"
+  ],
+  "archivos": [
+   "M14-despliegue-empresarial.md"
   ]
  },
  {
   "sintoma": "Nuestro lanzador no envuelve el servicio en segundo plano",
   "causa": "Envuelve el claude del PATH. Usa CLAUDE_CODE_PROCESS_WRAPPER",
   "modulo": "M14",
+  "archivo": "M14-despliegue-empresarial.md",
   "titulo_modulo": "M14 · Despliegue empresarial",
   "resuelve": "qué arquitectura elegir, y qué pierdes con cada una.",
   "contexto": "Lanzador corporativo, y la trampa. Algunas organizaciones exigen que todo proceso arranque a través de un lanzador obligatorio que aplica el sandbox, los controles de red o la inyección de credenciales. CLAUDE_CODE_PROCESS_WRAPPER hace que todos los procesos que Claude Code lanza desde su propio binario pasen por tu lanzador: el servicio en segundo plano, cada sesión de agent view, y los relanzamientos tras una actualización. Requiere v2.1.208 o posterior; las versiones anteriores ignoran la variable y arrancan todo sin envolver.",
@@ -1529,12 +1935,16 @@
   ],
   "titulos_modulo": [
    "M14 · Despliegue empresarial"
+  ],
+  "archivos": [
+   "M14-despliegue-empresarial.md"
   ]
  },
  {
   "sintoma": "Puse la variable del lanzador y no hace nada",
   "causa": "Requiere v2.1.208+. Antes se ignora en silencio",
   "modulo": "M14",
+  "archivo": "M14-despliegue-empresarial.md",
   "titulo_modulo": "M14 · Despliegue empresarial",
   "resuelve": "qué arquitectura elegir, y qué pierdes con cada una.",
   "contexto": "Lanzador corporativo, y la trampa. Algunas organizaciones exigen que todo proceso arranque a través de un lanzador obligatorio que aplica el sandbox, los controles de red o la inyección de credenciales. CLAUDE_CODE_PROCESS_WRAPPER hace que todos los procesos que Claude Code lanza desde su propio binario pasen por tu lanzador: el servicio en segundo plano, cada sesión de agent view, y los relanzamientos tras una actualización. Requiere v2.1.208 o posterior; las versiones anteriores ignoran la variable y arrancan todo sin envolver.",
@@ -1544,12 +1954,16 @@
   ],
   "titulos_modulo": [
    "M14 · Despliegue empresarial"
+  ],
+  "archivos": [
+   "M14-despliegue-empresarial.md"
   ]
  },
  {
   "sintoma": "Los settings del plist se ignoran",
   "causa": "Los de servidor entregaron claves. Dentro de managed no se fusionan",
   "modulo": "M14",
+  "archivo": "M14-despliegue-empresarial.md",
   "titulo_modulo": "M14 · Despliegue empresarial",
   "resuelve": "qué arquitectura elegir, y qué pierdes con cada una.",
   "contexto": "- Server-managed settings frente a los gestionados por endpoint (plist, registro, managed-settings.json). No se fusionan entre sí, salvo las lock keys y el bloque env. Elige una fuente. - policyHelper preempta a todo lo demás dentro del nivel gestionado. - forceRemoteSettingsRefresh: true para arranque a prueba de fallos: bloquea hasta tener settings frescos y sale si la descarga falla. Se autoperpetúa. - requiredMinimumVersion falla abierto por diseño, para que una política mal empujada no impida arrancar. - Los settings gestionados toleran entradas inválidas retirándolas; los de usuario, proyecto y local rechazan el archivo entero.",
@@ -1559,12 +1973,16 @@
   ],
   "titulos_modulo": [
    "M14 · Despliegue empresarial"
+  ],
+  "archivos": [
+   "M14-despliegue-empresarial.md"
   ]
  },
  {
   "sintoma": "Auto mode no va en Bedrock",
   "causa": "Soporte parcial: solo Sonnet 5, Opus 4.7+ y Fable 5",
   "modulo": "M14",
+  "archivo": "M14-despliegue-empresarial.md",
   "titulo_modulo": "M14 · Despliegue empresarial",
   "resuelve": "qué arquitectura elegir, y qué pierdes con cada una.",
   "contexto": "Lo que no está disponible en Amazon Bedrock, además de todo lo que requiere suscripción: búsqueda web, fast mode, Advisor, Channels, mensajería entre sesiones, panel de analítica, server-managed settings, y los comandos /design-sync, /import y /radio. Con soporte parcial: Desktop solo vía Claude Desktop de terceros, auto mode solo en Sonnet 5, Opus 4.7 o posterior y Fable 5, y /loop solo con intervalos explícitos.",
@@ -1574,12 +1992,16 @@
   ],
   "titulos_modulo": [
    "M14 · Despliegue empresarial"
+  ],
+  "archivos": [
+   "M14-despliegue-empresarial.md"
   ]
  },
  {
   "sintoma": "A mi compañero le sale otro modelo con default",
   "causa": "Depende del tipo de cuenta, y cambió en v2.1.219",
   "modulo": "M15",
+  "archivo": "M15-modelos-coste-observabilidad.md",
   "titulo_modulo": "M15 · Modelos, coste y observabilidad",
   "resuelve": "que el gasto deje de sorprender, y saber qué palanca mover.",
   "contexto": "Default no es un modelo: es un valor especial que limpia cualquier anulación y vuelve al recomendado para tu tipo de cuenta, o al modelo por defecto que haya fijado tu organización.",
@@ -1589,12 +2011,16 @@
   ],
   "titulos_modulo": [
    "M15 · Modelos, coste y observabilidad"
+  ],
+  "archivos": [
+   "M15-modelos-coste-observabilidad.md"
   ]
  },
  {
   "sintoma": "Puse xhigh y corre como high",
   "causa": "El modelo no admite ese nivel. Baja al más alto admitido",
   "modulo": "M15",
+  "archivo": "M15-modelos-coste-observabilidad.md",
   "titulo_modulo": "M15 · Modelos, coste y observabilidad",
   "resuelve": "que el gasto deje de sorprender, y saber qué palanca mover.",
   "contexto": "1. El esfuerzo por defecto es high en todos los que lo admiten, salvo Opus 4.7, que va a xhigh. 2. Si fijas un nivel que el modelo activo no admite, baja al más alto admitido por debajo del que pediste. xhigh corre como high en Opus 4.6. 3. Tu organización puede limitar qué niveles están disponibles. 4. Al estrenar Fable 5, Opus 4.8 u Opus 4.7, Claude Code aplica el esfuerzo por defecto de ese modelo aunque tuvieras otro puesto, y lo mantiene entre sesiones hasta que elijas explícitamente con /effort o --effort. Opus 5 no hace esa retención: el nivel que tuvieras se arrastra.",
@@ -1604,12 +2030,16 @@
   ],
   "titulos_modulo": [
    "M15 · Modelos, coste y observabilidad"
+  ],
+  "archivos": [
+   "M15-modelos-coste-observabilidad.md"
   ]
  },
  {
   "sintoma": "Estrené modelo y se me cambió el esfuerzo",
   "causa": "Fable 5, Opus 4.8 y 4.7 imponen su defecto hasta que elijas",
   "modulo": "M15",
+  "archivo": "M15-modelos-coste-observabilidad.md",
   "titulo_modulo": "M15 · Modelos, coste y observabilidad",
   "resuelve": "que el gasto deje de sorprender, y saber qué palanca mover.",
   "contexto": "1. El esfuerzo por defecto es high en todos los que lo admiten, salvo Opus 4.7, que va a xhigh. 2. Si fijas un nivel que el modelo activo no admite, baja al más alto admitido por debajo del que pediste. xhigh corre como high en Opus 4.6. 3. Tu organización puede limitar qué niveles están disponibles. 4. Al estrenar Fable 5, Opus 4.8 u Opus 4.7, Claude Code aplica el esfuerzo por defecto de ese modelo aunque tuvieras otro puesto, y lo mantiene entre sesiones hasta que elijas explícitamente con /effort o --effort. Opus 5 no hace esa retención: el nivel que tuvieras se arrastra.",
@@ -1619,12 +2049,16 @@
   ],
   "titulos_modulo": [
    "M15 · Modelos, coste y observabilidad"
+  ],
+  "archivos": [
+   "M15-modelos-coste-observabilidad.md"
   ]
  },
  {
   "sintoma": "Activé fast mode para ahorrar",
   "causa": "Fast mode sube el coste. Lo que baja coste es menos esfuerzo",
   "modulo": "M15",
+  "archivo": "M15-modelos-coste-observabilidad.md",
   "titulo_modulo": "M15 · Modelos, coste y observabilidad",
   "resuelve": "que el gasto deje de sorprender, y saber qué palanca mover.",
   "contexto": "1. Deja de tocar la configuración a mitad de sesión. Modelo, esfuerzo, fast mode, MCP, plugins: cada cambio recalcula el prefijo entero. Decídelo al arrancar. 2. Adelgaza lo que se paga en cada turno, que es el CLAUDE.md (M4). 3. Elimina los turnos que no producen artefactos. Instrucciones con criterio de aceptación y permisos decididos de antemano, para no gastar tres turnos en aclarar lo que cabía en el primero. 4. Manda el ruido a un subagente (M9), que no computa en tu ventana. 5. Ajusta el esfuerzo a la tarea, sabiendo que baja calidad y no solo coste. 6. Fast mode solo cuando la latencia valga dinero, porque sube el coste.",
@@ -1634,12 +2068,16 @@
   ],
   "titulos_modulo": [
    "M15 · Modelos, coste y observabilidad"
+  ],
+  "archivos": [
+   "M15-modelos-coste-observabilidad.md"
   ]
  },
  {
   "sintoma": "La caché no me aprovecha nada",
   "causa": "Repasa la columna izquierda de la tabla 10",
   "modulo": "M15",
+  "archivo": "M15-modelos-coste-observabilidad.md",
   "titulo_modulo": "M15 · Modelos, coste y observabilidad",
   "resuelve": "que el gasto deje de sorprender, y saber qué palanca mover.",
   "contexto": "La columna derecha es la buena noticia y casi nadie la aprovecha: editar tu código no invalida nada. Puedes trabajar todo el día tocando archivos sin recalcular el prefijo. Lo que rompe la caché es tocar la configuración, no el trabajo.",
@@ -1649,12 +2087,16 @@
   ],
   "titulos_modulo": [
    "M15 · Modelos, coste y observabilidad"
+  ],
+  "archivos": [
+   "M15-modelos-coste-observabilidad.md"
   ]
  },
  {
   "sintoma": "El primer turno tras el café va lentísimo",
   "causa": "Caducó la caché por inactividad. Es lo esperado",
   "modulo": "M15",
+  "archivo": "M15-modelos-coste-observabilidad.md",
   "titulo_modulo": "M15 · Modelos, coste y observabilidad",
   "resuelve": "que el gasto deje de sorprender, y saber qué palanca mover.",
   "contexto": "Los prefijos cacheados caducan por inactividad, y cada petición que acierta reinicia el reloj, así que la caché se mantiene caliente mientras trabajas. Tras un hueco suficiente, la siguiente petición recalcula la entrada entera, y por eso el primer turno al volver de un descanso es notablemente más lento.",
@@ -1664,12 +2106,16 @@
   ],
   "titulos_modulo": [
    "M15 · Modelos, coste y observabilidad"
+  ],
+  "archivos": [
+   "M15-modelos-coste-observabilidad.md"
   ]
  },
  {
   "sintoma": "Mis subagentes no aprovechan la caché",
   "causa": "Empiezan de cero y usan TTL de 5 minutos. Un fork sí hereda",
   "modulo": "M15",
+  "archivo": "M15-modelos-coste-observabilidad.md",
   "titulo_modulo": "M15 · Modelos, coste y observabilidad",
   "resuelve": "que el gasto deje de sorprender, y saber qué palanca mover.",
   "contexto": "El contraste que hay que tener presente al elegir entre los dos: un fork hereda el system prompt, las herramientas y el historial del padre exactamente, así que su primera petición lee la caché del padre. Un subagente empieza de cero; un fork llega caliente. En trabajo repetido sobre el mismo contexto, esa diferencia es dinero real.",
@@ -1679,12 +2125,16 @@
   ],
   "titulos_modulo": [
    "M15 · Modelos, coste y observabilidad"
+  ],
+  "archivos": [
+   "M15-modelos-coste-observabilidad.md"
   ]
  },
  {
   "sintoma": "Cambié de modelo para ahorrar y gasto igual",
   "causa": "El coste lo decide el contexto, no la tarifa",
   "modulo": "M15",
+  "archivo": "M15-modelos-coste-observabilidad.md",
   "titulo_modulo": "M15 · Modelos, coste y observabilidad",
   "resuelve": "que el gasto deje de sorprender, y saber qué palanca mover.",
   "contexto": "Lo que estos números no son. No hay euros en las tablas: los tokens están medidos uno a uno, pero los euros dependen de la tarifa de cada modelo en cada fecha, y publicar una cifra sin la tabla de precios exacta sería fabricar un dato. El script acepta --precios con tu propia tabla. Y los datos son de una operación que corre sobre otros modelos: lo que transfiere es la estructura del gasto, no las proporciones.",
@@ -1694,12 +2144,16 @@
   ],
   "titulos_modulo": [
    "M15 · Modelos, coste y observabilidad"
+  ],
+  "archivos": [
+   "M15-modelos-coste-observabilidad.md"
   ]
  },
  {
   "sintoma": "No entrenan con nuestro código",
   "causa": "Cierto en comercial. Falso en Free, Pro y Max con el ajuste activado",
   "modulo": "M16",
+  "archivo": "M16-datos-y-cumplimiento.md",
   "titulo_modulo": "M16 · Datos, cumplimiento y privacidad",
   "resuelve": "poder contestar por escrito qué sale de aquí, adónde va y cuánto se queda.",
   "contexto": "Cuentas de consumo (Free, Pro y Max): Anthropic te da la opción de permitir que tus datos se usen para mejorar futuros modelos. Cuando ese ajuste está activado, se entrena con datos de esas cuentas, incluido lo que hagas con Claude Code desde ellas.",
@@ -1709,12 +2163,16 @@
   ],
   "titulos_modulo": [
    "M16 · Datos, cumplimiento y privacidad"
+  ],
+  "archivos": [
+   "M16-datos-y-cumplimiento.md"
   ]
  },
  {
   "sintoma": "Tenemos ZDR, estamos cubiertos",
   "causa": "No cubre analítica, gestión de plazas ni integraciones de terceros",
   "modulo": "M16",
+  "archivo": "M16-datos-y-cumplimiento.md",
   "titulo_modulo": "M16 · Datos, cumplimiento y privacidad",
   "resuelve": "poder contestar por escrito qué sale de aquí, adónde va y cuánto se queda.",
   "contexto": "Opinión operativa. La fila de integraciones de terceros es la que más gente pasa por alto, y es la que más nos toca después del M8: un servidor MCP que conecta con un sistema de la empresa queda fuera del paraguas de ZDR. Si has justificado el proyecto ante legal con \"tenemos ZDR\", y luego conectas tres MCP de terceros, has cambiado el perímetro sin decírselo a nadie.",
@@ -1724,12 +2182,16 @@
   ],
   "titulos_modulo": [
    "M16 · Datos, cumplimiento y privacidad"
+  ],
+  "archivos": [
+   "M16-datos-y-cumplimiento.md"
   ]
  },
  {
   "sintoma": "Activamos ZDR y desapareció Claude Code en la web",
   "causa": "Se desactiva automáticamente, junto con sesiones cloud y Artifacts",
   "modulo": "M16",
+  "archivo": "M16-datos-y-cumplimiento.md",
   "titulo_modulo": "M16 · Datos, cumplimiento y privacidad",
   "resuelve": "poder contestar por escrito qué sale de aquí, adónde va y cuánto se queda.",
   "contexto": "Qué apaga. Al activar ZDR se desactivan automáticamente, en el servidor, las funciones que necesitan guardar prompts o respuestas: Claude Code en la web, las sesiones cloud desde la aplicación de escritorio y Artifacts.",
@@ -1739,12 +2201,16 @@
   ],
   "titulos_modulo": [
    "M16 · Datos, cumplimiento y privacidad"
+  ],
+  "archivos": [
+   "M16-datos-y-cumplimiento.md"
   ]
  },
  {
   "sintoma": "Usamos Bedrock, no sale nada a Anthropic",
   "causa": "El chequeo de dominio de WebFetch sale igual",
   "modulo": "M16",
+  "archivo": "M16-datos-y-cumplimiento.md",
   "titulo_modulo": "M16 · Datos, cumplimiento y privacidad",
   "resuelve": "poder contestar por escrito qué sale de aquí, adónde va y cuánto se queda.",
   "contexto": "En Amazon Bedrock, Agent Platform de Google, Microsoft Foundry y Claude Platform on AWS, el reporte de errores y la telemetría hacia Anthropic están apagados por defecto. Pero \"apagado por defecto\" no es \"nada sale\", y la documentación tiene una página entera de comportamientos por proveedor.",
@@ -1754,12 +2220,16 @@
   ],
   "titulos_modulo": [
    "M16 · Datos, cumplimiento y privacidad"
+  ],
+  "archivos": [
+   "M16-datos-y-cumplimiento.md"
   ]
  },
  {
   "sintoma": "Desactivé el tráfico no esencial y WebFetch sigue llamando",
   "causa": "Ese chequeo no se ve afectado por esa variable",
   "modulo": "M16",
+  "archivo": "M16-datos-y-cumplimiento.md",
   "titulo_modulo": "M16 · Datos, cumplimiento y privacidad",
   "resuelve": "poder contestar por escrito qué sale de aquí, adónde va y cuánto se queda.",
   "contexto": "- Este chequeo corre uses el proveedor de modelo que uses. - No lo afecta CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC. - Un host que pasa el chequeo se cachea cinco minutos; uno bloqueado o fallido se vuelve a comprobar en la siguiente petición. - Si tu red bloquea api.anthropic.com, las peticiones de WebFetch fallan hasta que lo permitas o pongas skipWebFetchPreflight: true.",
@@ -1769,12 +2239,16 @@
   ],
   "titulos_modulo": [
    "M16 · Datos, cumplimiento y privacidad"
+  ],
+  "archivos": [
+   "M16-datos-y-cumplimiento.md"
   ]
  },
  {
   "sintoma": "WebFetch falla en toda la red corporativa",
   "causa": "Bloqueáis api.anthropic.com. Permitidlo o skipWebFetchPreflight",
   "modulo": "M16",
+  "archivo": "M16-datos-y-cumplimiento.md",
   "titulo_modulo": "M16 · Datos, cumplimiento y privacidad",
   "resuelve": "poder contestar por escrito qué sale de aquí, adónde va y cuánto se queda.",
   "contexto": "- Este chequeo corre uses el proveedor de modelo que uses. - No lo afecta CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC. - Un host que pasa el chequeo se cachea cinco minutos; uno bloqueado o fallido se vuelve a comprobar en la siguiente petición. - Si tu red bloquea api.anthropic.com, las peticiones de WebFetch fallan hasta que lo permitas o pongas skipWebFetchPreflight: true.",
@@ -1784,12 +2258,16 @@
   ],
   "titulos_modulo": [
    "M16 · Datos, cumplimiento y privacidad"
+  ],
+  "archivos": [
+   "M16-datos-y-cumplimiento.md"
   ]
  },
  {
   "sintoma": "Los MCP están dentro de nuestro perímetro",
   "causa": "No, y además no los cubre ZDR. Inventaríalos",
   "modulo": "M16",
+  "archivo": "M16-datos-y-cumplimiento.md",
   "titulo_modulo": "M16 · Datos, cumplimiento y privacidad",
   "resuelve": "poder contestar por escrito qué sale de aquí, adónde va y cuánto se queda.",
   "contexto": "Qué cubre: las llamadas de inferencia hechas a través de Claude Code en Claude for Enterprise. Los prompts que envías y las respuestas que genera Claude no los retiene Anthropic. Aplica a todos los modelos disponibles para organizaciones con ZDR, y algunos modelos requieren retención de datos y no están disponibles bajo ZDR.",
@@ -1799,12 +2277,16 @@
   ],
   "titulos_modulo": [
    "M16 · Datos, cumplimiento y privacidad"
+  ],
+  "archivos": [
+   "M16-datos-y-cumplimiento.md"
   ]
  },
  {
   "sintoma": "No puedo interrumpir al agente",
   "causa": "Estás en mensaje único. El streaming es el modo recomendado",
   "modulo": "M17",
+  "archivo": "M17-agent-sdk.md",
   "titulo_modulo": "M17 · Agent SDK",
   "resuelve": "cuándo dejar el CLI, y qué te llevas al hacerlo.",
   "contexto": "Modo de entrada en streaming, que es el preferido: una sesión persistente e interactiva. Deja que el agente funcione como un proceso de vida larga que recibe entrada, maneja interrupciones, expone peticiones de permiso y gestiona la sesión.",
@@ -1814,12 +2296,16 @@
   ],
   "titulos_modulo": [
    "M17 · Agent SDK"
+  ],
+  "archivos": [
+   "M17-agent-sdk.md"
   ]
  },
  {
   "sintoma": "Una réplica no reanuda la sesión de otra",
   "causa": "Transcripciones en disco local. Necesitas SessionStore",
   "modulo": "M17",
+  "archivo": "M17-agent-sdk.md",
   "titulo_modulo": "M17 · Agent SDK",
   "resuelve": "cuándo dejar el CLI, y qué te llevas al hacerlo.",
   "contexto": "- Despliegues multi-host. Funciones serverless, trabajadores autoescalados y runners de CI no comparten sistema de archivos. Un almacén compartido deja que cualquier réplica reanude cualquier sesión. - Durabilidad. Los contenedores locales son efímeros. Un almacén sobre S3 o base de datos sobrevive a reinicios y redespliegues. - Cumplimiento y auditoría. Guardar las transcripciones en almacenamiento que ya gobiernas, con tus reglas de retención, tu cifrado y tus controles de acceso.",
@@ -1829,12 +2315,16 @@
   ],
   "titulos_modulo": [
    "M17 · Agent SDK"
+  ],
+  "archivos": [
+   "M17-agent-sdk.md"
   ]
  },
  {
   "sintoma": "A veces devuelve un error en vez de mi JSON",
   "causa": "Falló la validación tras los reintentos. Es una rama esperada",
   "modulo": "M17",
+  "archivo": "M17-agent-sdk.md",
   "titulo_modulo": "M17 · Agent SDK",
   "resuelve": "cuándo dejar el CLI, y qué te llevas al hacerlo.",
   "contexto": "1. El SDK valida y vuelve a preguntar si no casa. No falla al primer intento. 2. Si la validación no pasa dentro del límite de reintentos, el resultado es un error, no datos estructurados. Tu código tiene que contemplar esa rama, y es la que nadie escribe hasta que la ve en producción.",
@@ -1844,12 +2334,16 @@
   ],
   "titulos_modulo": [
    "M17 · Agent SDK"
+  ],
+  "archivos": [
+   "M17-agent-sdk.md"
   ]
  },
  {
   "sintoma": "Mi coste no cuadra con la factura",
   "causa": "El campo del SDK es una estimación con tabla congelada",
   "modulo": "M17",
+  "archivo": "M17-agent-sdk.md",
   "titulo_modulo": "M17 · Agent SDK",
   "resuelve": "cuándo dejar el CLI, y qué te llevas al hacerlo.",
   "contexto": "Si construyes un producto que repercute costes a tus clientes, esto no es un matiz: es un requisito. Facturar a un tercero con una estimación calculada contra una tabla de precios congelada en tiempo de compilación es un problema que se descubre tarde y en forma de discusión con un cliente.",
@@ -1859,12 +2353,16 @@
   ],
   "titulos_modulo": [
    "M17 · Agent SDK"
+  ],
+  "archivos": [
+   "M17-agent-sdk.md"
   ]
  },
  {
   "sintoma": "unstable_v2_createSession ya no existe",
   "causa": "Eliminado en TypeScript SDK 0.3.142. Migra a query()",
   "modulo": "M17",
+  "archivo": "M17-agent-sdk.md",
   "titulo_modulo": "M17 · Agent SDK",
   "resuelve": "cuándo dejar el CLI, y qué te llevas al hacerlo.",
   "contexto": "La API de sesiones V2 de TypeScript ya no está soportada. El SDK de TypeScript 0.3.142 elimina unstable_v2_createSession, unstable_v2_resumeSession, unstable_v2_prompt y los tipos SDKSession y SDKSessionOptions.",
@@ -1874,12 +2372,16 @@
   ],
   "titulos_modulo": [
    "M17 · Agent SDK"
+  ],
+  "archivos": [
+   "M17-agent-sdk.md"
   ]
  },
  {
   "sintoma": "El agente de un cliente vio datos de otro",
   "causa": "Eso no lo arreglan los permisos: es aislamiento",
   "modulo": "M17",
+  "archivo": "M17-agent-sdk.md",
   "titulo_modulo": "M17 · Agent SDK",
   "resuelve": "cuándo dejar el CLI, y qué te llevas al hacerlo.",
   "contexto": "En un producto multi-inquilino la pregunta cambia de \"¿qué puede tocar el agente?\" a \"¿qué puede tocar el agente del inquilino A que pertenezca al inquilino B?\", y esa no se responde con permisos: se responde con aislamiento de proceso y de almacenamiento.",
@@ -1889,12 +2391,16 @@
   ],
   "titulos_modulo": [
    "M17 · Agent SDK"
+  ],
+  "archivos": [
+   "M17-agent-sdk.md"
   ]
  },
  {
   "sintoma": "Nuestro DPO pregunta dónde están las conversaciones",
   "causa": "Por defecto en disco local. SessionStore a vuestro almacén",
   "modulo": "M17",
+  "archivo": "M17-agent-sdk.md",
   "titulo_modulo": "M17 · Agent SDK",
   "resuelve": "cuándo dejar el CLI, y qué te llevas al hacerlo.",
   "contexto": "Ese tercer punto conecta directamente con el M16: si tu DPO pregunta dónde viven las conversaciones de tu producto, la respuesta correcta es \"en nuestro almacén, con nuestra retención\", y el mecanismo para que sea verdad es este.",
@@ -1904,12 +2410,16 @@
   ],
   "titulos_modulo": [
    "M17 · Agent SDK"
+  ],
+  "archivos": [
+   "M17-agent-sdk.md"
   ]
  },
  {
   "sintoma": "Relanzar el comando esperando que funcione",
   "causa": "Ya reintentó hasta diez veces. Lee el mensaje",
   "modulo": "M18",
+  "archivo": "M18-diagnostico.md",
   "titulo_modulo": "M18 · Diagnóstico y errores",
   "resuelve": "no perder una tarde. Es el módulo que más se consulta y el que menos se lee entero.",
   "contexto": "Cuando ves un mensaje, los reintentos que aplicaban ya se han hecho. No lo vuelvas a lanzar esperando que \"esta vez pille\". No siempre reintenta un fallo que llega a mitad de la respuesta, y la documentación separa qué fallos reciben el presupuesto completo de reintentos, cuáles uno menor y cuáles ninguno.",
@@ -1919,12 +2429,16 @@
   ],
   "titulos_modulo": [
    "M18 · Diagnóstico y errores"
+  ],
+  "archivos": [
+   "M18-diagnostico.md"
   ]
  },
  {
   "sintoma": "Buscar en Google la paráfrasis del error",
   "causa": "El catálogo está indexado por mensaje literal",
   "modulo": "M18",
+  "archivo": "M18-diagnostico.md",
   "titulo_modulo": "M18 · Diagnóstico y errores",
   "resuelve": "no perder una tarde. Es el módulo que más se consulta y el que menos se lee entero.",
   "contexto": "- La versión exacta, de claude --version. - El mensaje literal, no una paráfrasis. El catálogo está organizado por mensaje literal precisamente por eso. - Que reproduce en configuración limpia, que es lo que descarta tu entorno. - El proveedor y el plan, porque medio módulo depende de eso.",
@@ -1934,12 +2448,16 @@
   ],
   "titulos_modulo": [
    "M18 · Diagnóstico y errores"
+  ],
+  "archivos": [
+   "M18-diagnostico.md"
   ]
  },
  {
   "sintoma": "Culpar a la red de un 403 host_not_allowed",
   "causa": "Es la política del entorno cloud, no tu red",
   "modulo": "M18",
+  "archivo": "M18-diagnostico.md",
   "titulo_modulo": "M18 · Diagnóstico y errores",
   "resuelve": "no perder una tarde. Es el módulo que más se consulta y el que menos se lee entero.",
   "contexto": "HTTP 403 x-deny-reason: host_not_allowed. Una petición saliente de una sesión en la nube bloqueada por la política de red del entorno. Puedes ver además un certificado TLS que no casa con el del destino real: eso significa que el proxy terminó la conexión, no el destino. No es un problema de red del cliente, y perseguirlo como si lo fuera es la tarde perdida clásica.",
@@ -1949,12 +2467,16 @@
   ],
   "titulos_modulo": [
    "M18 · Diagnóstico y errores"
+  ],
+  "archivos": [
+   "M18-diagnostico.md"
   ]
  },
  {
   "sintoma": "Tocar la configuración a ciegas",
   "causa": "Modo mínimo primero, para saber de quién es el problema",
   "modulo": "M18",
+  "archivo": "M18-diagnostico.md",
   "titulo_modulo": "M18 · Diagnóstico y errores",
   "resuelve": "no perder una tarde. Es el módulo que más se consulta y el que menos se lee entero.",
   "contexto": "1. claude --version. Anótala. Media docena de comportamientos de esta guía cambian según la versión, y comparar dos máquinas con versiones distintas no compara nada. 2. Arranca en modo mínimo, sin CLAUDE.md, sin hooks y sin plugins. 3. Decide de quién es el problema. Si en mínimo no pasa, el problema es tuyo y está en una de esas tres piezas. Si sigue pasando, es del CLI y merece la pena reportarlo.",
@@ -1964,12 +2486,16 @@
   ],
   "titulos_modulo": [
    "M18 · Diagnóstico y errores"
+  ],
+  "archivos": [
+   "M18-diagnostico.md"
   ]
  },
  {
   "sintoma": "Comparar dos máquinas sin mirar versiones",
   "causa": "Media docena de comportamientos cambian por versión",
   "modulo": "M18",
+  "archivo": "M18-diagnostico.md",
   "titulo_modulo": "M18 · Diagnóstico y errores",
   "resuelve": "no perder una tarde. Es el módulo que más se consulta y el que menos se lee entero.",
   "contexto": "1. claude --version. Anótala. Media docena de comportamientos de esta guía cambian según la versión, y comparar dos máquinas con versiones distintas no compara nada. 2. Arranca en modo mínimo, sin CLAUDE.md, sin hooks y sin plugins. 3. Decide de quién es el problema. Si en mínimo no pasa, el problema es tuyo y está en una de esas tres piezas. Si sigue pasando, es del CLI y merece la pena reportarlo.",
@@ -1979,12 +2505,16 @@
   ],
   "titulos_modulo": [
    "M18 · Diagnóstico y errores"
+  ],
+  "archivos": [
+   "M18-diagnostico.md"
   ]
  },
  {
   "sintoma": "Dar por hecho que un allow de proyecto se aplica",
   "causa": "Necesita confianza del espacio de trabajo",
   "modulo": "M18",
+  "archivo": "M18-diagnostico.md",
   "titulo_modulo": "M18 · Diagnóstico y errores",
   "resuelve": "no perder una tarde. Es el módulo que más se consulta y el que menos se lee entero.",
   "contexto": "Ignoring N ... por confianza del espacio de trabajo. Encontró reglas permissions.allow o entradas additionalDirectories en el settings del proyecto y no las aplicó, porque las reglas allow de proyecto requieren confianza del espacio de trabajo. Las reglas deny y ask no se ven afectadas, que es exactamente el diseño correcto: lo que restringe se aplica siempre, lo que permite necesita tu consentimiento.",
@@ -1994,12 +2524,16 @@
   ],
   "titulos_modulo": [
    "M18 · Diagnóstico y errores"
+  ],
+  "archivos": [
+   "M18-diagnostico.md"
   ]
  },
  {
   "sintoma": "Suponer que MEMORY.md entero se carga",
   "causa": "200 líneas o 25 KB, lo que llegue antes",
   "modulo": "M18",
+  "archivo": "M18-diagnostico.md",
   "titulo_modulo": "M18 · Diagnóstico y errores",
   "resuelve": "no perder una tarde. Es el módulo que más se consulta y el que menos se lee entero.",
   "contexto": "Memory index is over its read limit. Claude escribió en el MEMORY.md de la auto memory y lo dejó por encima de sus límites de lectura, 200 líneas o 25 KB. La escritura funcionó, pero solo se carga hasta ese límite, así que todo lo que pase se descarta en cada arranque. ⚠️ Antes de v2.1.210 se truncaba en silencio, sin ninguna señal en el momento de escribir.",
@@ -2009,12 +2543,16 @@
   ],
   "titulos_modulo": [
    "M18 · Diagnóstico y errores"
+  ],
+  "archivos": [
+   "M18-diagnostico.md"
   ]
  },
  {
   "sintoma": "WebFetch dice que la página no menciona eso",
   "causa": "Puede ser que tu prompt no preguntara. Es lossy. Usa curl para la página cruda",
   "modulo": "M19",
+  "archivo": "M19-referencia-rapida.md",
   "titulo_modulo": "M19 · Referencia rápida",
   "resuelve": "dejar de buscar. Todo en tablas, pensado para imprimir.",
   "contexto": "La salida es pedirlo otra vez con un prompt más específico, o usar curl desde Bash para la página sin procesar. Es exactamente la trampa en la que se cae al investigar documentación, y quien escribe esta guía ha caído en ella hoy mismo.",
@@ -2024,12 +2562,16 @@
   ],
   "titulos_modulo": [
    "M19 · Referencia rápida"
+  ],
+  "archivos": [
+   "M19-referencia-rapida.md"
   ]
  },
  {
   "sintoma": "Mi patrón de Grep no encuentra nada",
   "causa": "Sintaxis de ripgrep, no de grep POSIX. Escapa los metacaracteres",
   "modulo": "M19",
+  "archivo": "M19-referencia-rapida.md",
   "titulo_modulo": "M19 · Referencia rápida",
   "resuelve": "dejar de buscar. Todo en tablas, pensado para imprimir.",
   "contexto": "",
@@ -2039,12 +2581,16 @@
   ],
   "titulos_modulo": [
    "M19 · Referencia rápida"
+  ],
+  "archivos": [
+   "M19-referencia-rapida.md"
   ]
  },
  {
   "sintoma": "El cd no se mantiene entre comandos",
   "causa": "Salió del proyecto y se reseteó. Mira si el resultado dice Shell cwd was reset to",
   "modulo": "M19",
+  "archivo": "M19-referencia-rapida.md",
   "titulo_modulo": "M19 · Referencia rápida",
   "resuelve": "dejar de buscar. Todo en tablas, pensado para imprimir.",
   "contexto": "",
@@ -2054,12 +2600,16 @@
   ],
   "titulos_modulo": [
    "M19 · Referencia rápida"
+  ],
+  "archivos": [
+   "M19-referencia-rapida.md"
   ]
  },
  {
   "sintoma": "Un subagente no hereda mi directorio de trabajo",
   "causa": "Nunca lo hace. Por diseño",
   "modulo": "M19",
+  "archivo": "M19-referencia-rapida.md",
   "titulo_modulo": "M19 · Referencia rápida",
   "resuelve": "dejar de buscar. Todo en tablas, pensado para imprimir.",
   "contexto": "",
@@ -2069,12 +2619,16 @@
   ],
   "titulos_modulo": [
    "M19 · Referencia rápida"
+  ],
+  "archivos": [
+   "M19-referencia-rapida.md"
   ]
  },
  {
   "sintoma": "Busqué la bandera en la referencia y no está",
   "causa": "Puede estar en el binario y no en cli-reference.md. claude --help manda",
   "modulo": "M19",
+  "archivo": "M19-referencia-rapida.md",
   "titulo_modulo": "M19 · Referencia rápida",
   "resuelve": "dejar de buscar. Todo en tablas, pensado para imprimir.",
   "contexto": "Este módulo es el sitio natural para aplicar la disciplina de la guía a la propia guía. Comparando cli-reference.md con lo que responde claude --help en la versión 2.1.228 instalada:",
@@ -2084,12 +2638,16 @@
   ],
   "titulos_modulo": [
    "M19 · Referencia rápida"
+  ],
+  "archivos": [
+   "M19-referencia-rapida.md"
   ]
  },
  {
   "sintoma": "Cambié el ajuste en los cuatro ámbitos y sigue igual",
   "causa": "Una variable de entorno es otra capa por encima",
   "modulo": "M19",
+  "archivo": "M19-referencia-rapida.md",
   "titulo_modulo": "M19 · Referencia rápida",
   "resuelve": "dejar de buscar. Todo en tablas, pensado para imprimir.",
   "contexto": "Regla de oro: una variable de entorno es otra capa de anulación por encima de tus settings (M3). Cuando un ajuste no se aplica y ya has mirado los cuatro ámbitos, mira el entorno.",
@@ -2099,12 +2657,16 @@
   ],
   "titulos_modulo": [
    "M19 · Referencia rápida"
+  ],
+  "archivos": [
+   "M19-referencia-rapida.md"
   ]
  },
  {
   "sintoma": "Puse allowed_domains y blocked_domains a la vez",
   "causa": "No se pueden combinar en la misma llamada",
   "modulo": "M19",
+  "archivo": "M19-referencia-rapida.md",
   "titulo_modulo": "M19 · Referencia rápida",
   "resuelve": "dejar de buscar. Todo en tablas, pensado para imprimir.",
   "contexto": "",
@@ -2114,12 +2676,16 @@
   ],
   "titulos_modulo": [
    "M19 · Referencia rápida"
+  ],
+  "archivos": [
+   "M19-referencia-rapida.md"
   ]
  },
  {
   "sintoma": "Mi MEMORY.md largo no se carga entero",
   "causa": "200 líneas o 25 KB, lo que llegue antes",
   "modulo": "M19",
+  "archivo": "M19-referencia-rapida.md",
   "titulo_modulo": "M19 · Referencia rápida",
   "resuelve": "dejar de buscar. Todo en tablas, pensado para imprimir.",
   "contexto": "",
@@ -2129,12 +2695,16 @@
   ],
   "titulos_modulo": [
    "M19 · Referencia rápida"
+  ],
+  "archivos": [
+   "M19-referencia-rapida.md"
   ]
  },
  {
   "sintoma": "En el monorepo se cuela el contexto de otros equipos",
   "causa": "Falta claudeMdExcludes y capas por directorio",
   "modulo": "M20",
+  "archivo": "M20-playbooks.md",
   "titulo_modulo": "M20 · Playbooks",
   "resuelve": "el \"vale, ¿y todo junto cómo queda?\".",
   "contexto": "Cuarenta paquetes, cuatro equipos, un repositorio. Cada equipo tiene sus convenciones y ninguno quiere las del vecino en su contexto. Las sesiones se ahogan antes de comer.",
@@ -2144,12 +2714,16 @@
   ],
   "titulos_modulo": [
    "M20 · Playbooks"
+  ],
+  "archivos": [
+   "M20-playbooks.md"
   ]
  },
  {
   "sintoma": "Cada tarea del legacy acaba en refactor gigante",
   "causa": "Falta acotar en el plan, y tests de caracterización",
   "modulo": "M20",
+  "archivo": "M20-playbooks.md",
   "titulo_modulo": "M20 · Playbooks",
   "resuelve": "el \"vale, ¿y todo junto cómo queda?\".",
   "contexto": "- El impulso de refactorizar de paso. Diffs de novecientas líneas que nadie revisa. Se acota en el plan (M6), no después. - Los tests de caracterización congelan bugs. Es intencionado, pero hay que escribirlo en el CLAUDE.md para que nadie los tome por especificación. - Y congelan más de lo que crees. En la prueba real, la suite acabó fijando por contrato el valor literal de una credencial hardcodeada: rotarla dejaba la CI en rojo. Revisa qué está afirmando tu red antes de fiarte de ella.",
@@ -2159,12 +2733,16 @@
   ],
   "titulos_modulo": [
    "M20 · Playbooks"
+  ],
+  "archivos": [
+   "M20-playbooks.md"
   ]
  },
  {
   "sintoma": "El nuevo no tiene la misma configuración",
   "causa": "No está en git, o no ha aceptado la confianza",
   "modulo": "M20",
+  "archivo": "M20-playbooks.md",
   "titulo_modulo": "M20 · Playbooks",
   "resuelve": "el \"vale, ¿y todo junto cómo queda?\".",
   "contexto": "- Un desarrollador nuevo clona, acepta la confianza del espacio de trabajo y tiene la misma configuración que el resto, sin instrucciones por chat. - /status en cualquier máquina dice la misma fuente gestionada. - La revisión automática se lee, en vez de cerrarse sin mirar. - Hay una cifra de gasto del mes pasado y alguien la mira.",
@@ -2174,12 +2752,16 @@
   ],
   "titulos_modulo": [
    "M20 · Playbooks"
+  ],
+  "archivos": [
+   "M20-playbooks.md"
   ]
  },
  {
   "sintoma": "La factura de revisión se disparó",
   "causa": "Ultrareview en cada push. Sin ejecuciones gratis en Team",
   "modulo": "M20",
+  "archivo": "M20-playbooks.md",
   "titulo_modulo": "M20 · Playbooks",
   "resuelve": "el \"vale, ¿y todo junto cómo queda?\".",
   "contexto": "- Ultrareview en cada push. A 5-25 $ la pasada y sin ejecuciones gratis en Team ni Enterprise (M13), veinte personas construyen una factura sorprendente en una semana. Es para antes de fusionar cambios sustanciales. - Auto mode pasa a ser el modo por defecto el 14 de agosto de 2026 (M5). Si no fijáis vuestro defaultMode en los settings gestionados, os cambia solo. - Los MCP conectados son subencargados de facto (M16) y no los cubre ZDR.",
@@ -2189,12 +2771,16 @@
   ],
   "titulos_modulo": [
    "M20 · Playbooks"
+  ],
+  "archivos": [
+   "M20-playbooks.md"
   ]
  },
  {
   "sintoma": "La puerta de calidad nunca veta",
   "causa": "O el trabajo es trivial, o no comprueba nada",
   "modulo": "M20",
+  "archivo": "M20-playbooks.md",
   "titulo_modulo": "M20 · Playbooks",
   "resuelve": "el \"vale, ¿y todo junto cómo queda?\".",
   "contexto": "- Por la mañana hay una propuesta de cambio revisable, no una rama tocada a mano. - La puerta de calidad ha vetado al menos una vez en el primer mes. Si nunca veta, o el trabajo es trivial o la puerta no comprueba nada. - El registro de auditoría permite responder qué tocó y por qué tres semanas después. - El coste por ejecución es estable entre noches.",
@@ -2204,12 +2790,16 @@
   ],
   "titulos_modulo": [
    "M20 · Playbooks"
+  ],
+  "archivos": [
+   "M20-playbooks.md"
   ]
  },
  {
   "sintoma": "El trabajo nocturno tocó la rama principal",
   "causa": "Falta --worktree",
   "modulo": "M20",
+  "archivo": "M20-playbooks.md",
   "titulo_modulo": "M20 · Playbooks",
   "resuelve": "el \"vale, ¿y todo junto cómo queda?\".",
   "contexto": "Seis. Programación. Del M10: si puedes reaccionar a un evento, channels; si tienes condición verificable, /goal; si hay que sondear, /loop con intervalo acorde. Para trabajo nocturno que debe correr con el portátil cerrado, routines o tareas programadas de escritorio, según si hace falta acceso al disco local (M12).",
@@ -2219,12 +2809,16 @@
   ],
   "titulos_modulo": [
    "M20 · Playbooks"
+  ],
+  "archivos": [
+   "M20-playbooks.md"
   ]
  },
  {
   "sintoma": "Mi plugin no le funciona a nadie más",
   "causa": "Estructura mal: solo plugin.json en .claude-plugin/",
   "modulo": "M20",
+  "archivo": "M20-playbooks.md",
   "titulo_modulo": "M20 · Playbooks",
   "resuelve": "el \"vale, ¿y todo junto cómo queda?\".",
   "contexto": "Dos. Dale forma, y aquí es donde se equivoca todo el mundo (M11): dentro de .claude-plugin/ solo va plugin.json; skills/, agents/ y hooks/ van en la raíz del plugin. Y la raíz del plugin nunca es ~/.claude/.",
@@ -2234,12 +2828,16 @@
   ],
   "titulos_modulo": [
    "M20 · Playbooks"
+  ],
+  "archivos": [
+   "M20-playbooks.md"
   ]
  },
  {
   "sintoma": "El tutorial dice /ultraplan y no existe",
   "causa": "Retirado en la semana 32",
   "modulo": "M21",
+  "archivo": "M21-retiradas-y-cambios.md",
   "titulo_modulo": "M21 · Features retiradas, renombradas y trampas de tutoriales viejos",
   "resuelve": "horas perdidas persiguiendo algo que ya no existe o que cambió de nombre.",
   "contexto": "1. Habla de /ultraplan. Está retirado. La fuente es de antes de agosto. 2. Dice que los subagentes bloquean. Corren en segundo plano desde la semana 27. 3. Dice que hay un tope de 200 subagentes. Se eliminó en la semana 32. 4. Dice que MCP carga todas sus herramientas en contexto. Van diferidas por defecto, y esta guía tuvo publicado ese mismo error hasta que lo verificó.",
@@ -2249,12 +2847,16 @@
   ],
   "titulos_modulo": [
    "M21 · Features retiradas, renombradas y trampas de tutoriales viejos"
+  ],
+  "archivos": [
+   "M21-retiradas-y-cambios.md"
   ]
  },
  {
   "sintoma": "Mi subagente no bloquea como esperaba",
   "causa": "Segundo plano por defecto desde la semana 27",
   "modulo": "M21",
+  "archivo": "M21-retiradas-y-cambios.md",
   "titulo_modulo": "M21 · Features retiradas, renombradas y trampas de tutoriales viejos",
   "resuelve": "horas perdidas persiguiendo algo que ya no existe o que cambió de nombre.",
   "contexto": "1. Habla de /ultraplan. Está retirado. La fuente es de antes de agosto. 2. Dice que los subagentes bloquean. Corren en segundo plano desde la semana 27. 3. Dice que hay un tope de 200 subagentes. Se eliminó en la semana 32. 4. Dice que MCP carga todas sus herramientas en contexto. Van diferidas por defecto, y esta guía tuvo publicado ese mismo error hasta que lo verificó.",
@@ -2264,12 +2866,16 @@
   ],
   "titulos_modulo": [
    "M21 · Features retiradas, renombradas y trampas de tutoriales viejos"
+  ],
+  "archivos": [
+   "M21-retiradas-y-cambios.md"
   ]
  },
  {
   "sintoma": "De pronto ya no me pregunta por los permisos",
   "causa": "Auto mode pasó a ser el modo por defecto",
   "modulo": "M21",
+  "archivo": "M21-retiradas-y-cambios.md",
   "titulo_modulo": "M21 · Features retiradas, renombradas y trampas de tutoriales viejos",
   "resuelve": "horas perdidas persiguiendo algo que ya no existe o que cambió de nombre.",
   "contexto": "",
@@ -2279,12 +2885,16 @@
   ],
   "titulos_modulo": [
    "M21 · Features retiradas, renombradas y trampas de tutoriales viejos"
+  ],
+  "archivos": [
+   "M21-retiradas-y-cambios.md"
   ]
  },
  {
   "sintoma": "Mi script del SDK dejó de compilar",
   "causa": "API de sesiones V2 eliminada en 0.3.142",
   "modulo": "M21",
+  "archivo": "M21-retiradas-y-cambios.md",
   "titulo_modulo": "M21 · Features retiradas, renombradas y trampas de tutoriales viejos",
   "resuelve": "horas perdidas persiguiendo algo que ya no existe o que cambió de nombre.",
   "contexto": "",
@@ -2294,12 +2904,16 @@
   ],
   "titulos_modulo": [
    "M21 · Features retiradas, renombradas y trampas de tutoriales viejos"
+  ],
+  "archivos": [
+   "M21-retiradas-y-cambios.md"
   ]
  },
  {
   "sintoma": "Mi pkill ya no funciona",
   "causa": "Se rechaza si casa con el proceso. Solo en Linux",
   "modulo": "M21",
+  "archivo": "M21-retiradas-y-cambios.md",
   "titulo_modulo": "M21 · Features retiradas, renombradas y trampas de tutoriales viejos",
   "resuelve": "horas perdidas persiguiendo algo que ya no existe o que cambió de nombre.",
   "contexto": "Un aviso sobre las fuentes, importante para quien mantenga esta guía: los resúmenes semanales oficiales no cubren todas las semanas. No existe digest de la semana 31 ni de la 33. Para todo lo posterior al 7 de agosto, la única fuente es el changelog. Cualquier proceso de actualización que se apoye solo en los digests nace desfasado.",
@@ -2309,12 +2923,16 @@
   ],
   "titulos_modulo": [
    "M21 · Features retiradas, renombradas y trampas de tutoriales viejos"
+  ],
+  "archivos": [
+   "M21-retiradas-y-cambios.md"
   ]
  },
  {
   "sintoma": "Comparo dos máquinas y dan resultados distintos",
   "causa": "Versiones distintas. Media docena de comportamientos cambian",
   "modulo": "M21",
+  "archivo": "M21-retiradas-y-cambios.md",
   "titulo_modulo": "M21 · Features retiradas, renombradas y trampas de tutoriales viejos",
   "resuelve": "horas perdidas persiguiendo algo que ya no existe o que cambió de nombre.",
   "contexto": "Claude Code publica versiones casi a diario. Entre la 2.1.178 de mediados de junio y la 2.1.228 del 11 de agosto hay cincuenta versiones en ocho semanas.",
@@ -2324,6 +2942,9 @@
   ],
   "titulos_modulo": [
    "M21 · Features retiradas, renombradas y trampas de tutoriales viejos"
+  ],
+  "archivos": [
+   "M21-retiradas-y-cambios.md"
   ]
  }
 ]
