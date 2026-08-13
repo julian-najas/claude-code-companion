@@ -29,12 +29,21 @@ se vea bien o se vea mal:
 
 - **Edición redactada contra:** Claude Code 2.1.228
 - **Compatibilidad comprobada contra:** 2.1.231 (Claude Code)
-- **Generado desde el commit:** [`74d9050`](https://github.com/julian-najas/manual-claude-code/commit/74d9050f2aa37078c8a3bbbda8457b80642b83ec)
-- **Generado el:** 2026-08-13T11:06:35Z
+- **Generado desde el commit:** [`e5ff0ef`](https://github.com/julian-najas/manual-claude-code/commit/e5ff0ef44137723078eec74f51d5ea4c3b8580f3)
+- **Generado el:** 2026-08-13T11:11:09Z
 
 La procedencia completa, legible por máquina, está en
 [`procedencia.json`](/claude-code-companion/procedencia.json): con ella cualquiera puede clonar la
 fábrica en ese commit exacto y **regenerar byte a byte** lo que está leyendo.
+
+## Licencia
+
+El **generador y la fábrica** que producen este sitio son MIT: están en el
+[repositorio de origen](https://github.com/julian-najas/manual-claude-code/blob/main/LICENSE).
+
+El **texto de estas páginas** es © 2026 Cosas Agénticas, todos los derechos
+reservados. Puedes leerlo, usarlo en tu trabajo y citarlo con enlace. No puedes
+republicarlo ni traducirlo.
 
 ## Aviso
 
