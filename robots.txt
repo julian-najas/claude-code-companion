@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://julian-najas.github.io/claude-code-companion/sitemap.xml
