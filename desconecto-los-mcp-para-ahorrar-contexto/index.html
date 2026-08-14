@@ -7,17 +7,18 @@
 <meta property="og:description" content="Desconecto los MCP para ahorrar contexto — Por defecto solo pesan los nombres. Mide con /mcp antes de amputar">
 <style>
 :root{--bg:#ECEEEE;--sf:#FBFCFC;--sf2:#F3F5F5;--ink:#15191B;--ink2:#4E585C;
---mut:#78838A;--rl:#D2D8D9;--br:#9A6F14;
+--mut:#78838A;--rl:#D2D8D9;--br:#9A6F14;--ok:#2C6E49;--okbg:#E4EEE7;
 --sr:"Charter","Bitstream Charter","Iowan Old Style",Palatino,Georgia,serif;
 --sa:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 --mo:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121516;--sf:#191D1F;
---sf2:#1E2325;--ink:#E8EAEA;--ink2:#A9B3B7;--mut:#7E888D;--rl:#2A3033;--br:#D5A442}}
+--sf2:#1E2325;--ink:#E8EAEA;--ink2:#A9B3B7;--mut:#7E888D;--rl:#2A3033;--br:#D5A442;
+--ok:#7FBF9A;--okbg:#17241D}}
 :root[data-theme=dark]{--bg:#121516;--sf:#191D1F;--sf2:#1E2325;--ink:#E8EAEA;
---ink2:#A9B3B7;--mut:#7E888D;--rl:#2A3033;--br:#D5A442}
+--ink2:#A9B3B7;--mut:#7E888D;--rl:#2A3033;--br:#D5A442;--ok:#7FBF9A;--okbg:#17241D}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--sa);font-size:17px;
-line-height:1.6;margin:0;-webkit-font-smoothing:antialiased}
+line-height:1.6;margin:0;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
 .w{max-width:760px;margin:0 auto;padding:44px 20px 80px}
 a{color:var(--br)}
 h1{font-family:var(--sr);font-weight:600;font-size:clamp(1.6rem,5vw,2.3rem);
@@ -43,10 +44,82 @@ ul.lista .m{font-family:var(--mo);font-size:.7rem;color:var(--mut);margin-left:.
 .cta{background:var(--sf2);border:1px solid var(--rl);padding:20px;margin-top:2.5em}
 .cta .t{font-family:var(--sr);font-size:1.15rem;margin-bottom:.4em}
 .cta p{color:var(--ink2);margin:.4em 0 0;font-size:.95rem}
+
+/* — resolución completa — */
+h2 .n{font-family:var(--mo);font-size:.7rem;color:var(--mut);margin-right:.6em;
+letter-spacing:.1em;vertical-align:.15em}
+pre{background:var(--sf);border:1px solid var(--rl);border-left:2px solid var(--br);
+padding:12px 14px;overflow-x:auto;margin:.5em 0;font-family:var(--mo);font-size:.86rem;
+line-height:1.5;color:var(--ink)}
+pre .p{color:var(--mut);user-select:none}
+/* `overflow-wrap:anywhere` y NUNCA `nowrap`: con nowrap, un nombre de variable
+   largo se sale de la caja en un móvil de 420 px y se come la página. Que
+   `curl | bash` parta por el espacio es feo; que el cuerpo haga scroll
+   horizontal es un fallo. Y nada de `&nbsp;` para evitarlo: esto se copia y se
+   pega en una terminal, donde un espacio duro rompe el comando. */
+code{font-family:var(--mo);font-size:.9em;background:var(--sf2);padding:.1em .35em;
+border:1px solid var(--rl);overflow-wrap:anywhere}
+pre code{background:none;border:0;padding:0;font-size:1em;white-space:pre;
+overflow-wrap:normal}
+.chk{margin:1.1em 0}
+.chk .q{font-size:.88rem;color:var(--ink2);margin:.15em 0 0}
+.chk .q b{color:var(--ink);font-weight:600}
+ol.pasos{padding-left:0;margin:.6em 0 0;list-style:none;counter-reset:p}
+ol.pasos li{counter-increment:p;position:relative;padding:0 0 0 2.1em;margin:0 0 .8em;
+color:var(--ink2)}
+ol.pasos li::before{content:counter(p);position:absolute;left:0;top:.05em;
+font-family:var(--mo);font-size:.72rem;color:var(--br);border:1px solid var(--rl);
+width:1.5em;height:1.5em;display:grid;place-items:center}
+ol.pasos li code{color:var(--ink)}
+.pasa{background:var(--okbg);border:1px solid var(--ok);padding:16px 18px;margin:1.4em 0}
+.pasa .t{font-family:var(--mo);font-size:.7rem;letter-spacing:.14em;
+text-transform:uppercase;color:var(--ok);margin-bottom:.4em}
+.pasa p{margin:0;color:var(--ink)}
+dl.ficha{display:grid;grid-template-columns:auto 1fr;gap:.55em 1.2em;margin:1.4em 0 0;
+padding-top:14px;border-top:1px solid var(--rl);font-size:.9rem}
+dl.ficha dt{font-family:var(--mo);font-size:.68rem;letter-spacing:.1em;
+text-transform:uppercase;color:var(--mut);padding-top:.35em;white-space:nowrap}
+dl.ficha dd{margin:0;color:var(--ink2)}
+dl.ficha dd b{color:var(--ink);font-weight:600}
+@media(max-width:560px){dl.ficha{grid-template-columns:1fr;gap:.15em}
+dl.ficha dt{padding-top:.8em}}
+.rel{list-style:none;padding:0;margin:.5em 0 0;display:flex;flex-wrap:wrap;gap:.5em}
+.rel a{display:block;padding:7px 12px;border:1px solid var(--rl);background:var(--sf);
+text-decoration:none;color:var(--ink);font-size:.88rem}
+.rel a:hover{border-color:var(--br)}
+.bd{font-family:var(--mo);font-size:.6rem;letter-spacing:.08em;color:var(--ok);
+border:1px solid var(--ok);padding:.15em .4em;margin-left:.5em;vertical-align:.1em}
+ul.lista .m{white-space:nowrap}
+.filtro{display:flex;gap:1.2em;align-items:center;margin-top:.9em;font-size:.85rem;
+color:var(--ink2);flex-wrap:wrap}
+.filtro label{display:flex;gap:.4em;align-items:center;cursor:pointer}
+.corta{background:var(--sf2);border:1px dashed var(--rl);padding:16px 18px;margin:1.6em 0;
+font-size:.92rem;color:var(--ink2)}
+.corta b{color:var(--ink)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Desconecto los MCP para ahorrar contexto</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Por defecto solo pesan los nombres. Mide con /mcp antes de amputar</p></div>
-<h2>Por qué pasa</h2><p>Esto corrige un error que circula mucho, y que este mismo proyecto tenía publicado. Las definiciones de herramientas MCP están diferidas por defecto: solo se cargan los nombres, para que Claude sepa qué hay disponible, y los esquemas completos se traen bajo demanda mediante tool search cuando la tarea lo necesita. No es un peaje permanente proporcional al número de servidores, salvo que tú lo conviertas en uno:</p>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Tool search está activado por defecto: al arrancar solo entran los nombres de las herramientas y las instrucciones del servidor, y los esquemas completos se difieren hasta que la tarea los necesita. Amputar servidores para ahorrar contexto suele resolver un problema que no tienes. Salvo en un caso, que es justo el que hay que comprobar antes de tocar nada.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">› </span>/mcp</code></pre><p class="q"><b>Dentro de una sesión.</b> Mira el coste por servidor, servidor a servidor</p></div><div class="chk"><pre><code><span class="p">$ </span>echo $ANTHROPIC_BASE_URL</code></pre><p class="q"><b>En la terminal.</b> Mira si apunta a un host que no es de primera parte, tool search está desactivado y el peaje sí es real</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Mide antes de desconectar. <code>/context</code> da el reparto real de la sesión y <code>/mcp</code> el coste por servidor.</li><li>Si el peaje es alto, mira si estás en una de las cinco situaciones que apagan tool search: <code>ANTHROPIC_BASE_URL</code> hacia un host que no es de primera parte, <code>CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS</code> puesto, despliegues de Microsoft Foundry, Agent Platform de Google con modelos anteriores a la generación 4.5, o un modelo sin soporte de <code>tool_reference</code>.</li><li>Con gateway propio: comprueba primero que reenvía los bloques <code>tool_reference</code>. Solo entonces pon <code>ENABLE_TOOL_SEARCH</code>. Forzarlo sobre un gateway que no los reenvía no te da tool search, te da fallos.</li><li>Si quieres un punto medio, <code>ENABLE_TOOL_SEARCH=auto</code> carga los esquemas por adelantado cuando caben en el 10 % de la ventana y difiere el resto.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p><code>echo $ANTHROPIC_BASE_URL</code> sale vacío o apunta a un host de primera parte, y <code>/context</code> te da un número concreto de tokens para las herramientas MCP en vez de una sospecha.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>cualquiera; fijarlo desde settings gestionados requiere 2.1.227</b></dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>mcp.md</code> y <code>context-window.md</code>. Esta guía publicó la afirmación contraria y la corrigió: es la afirmación <code>MCP-002</code> del registro del verificador.</dd>
+<dt>No aplica si</dt><dd>Tu modelo no admite <code>tool_reference</code> (hace falta Sonnet 4.5, Haiku 4.5, Opus 4.5 o posteriores). Ahí no hay nada que activar y el coste por adelantado es inevitable.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/con-el-gateway-me-como-el-contexto/">Con el gateway me como el contexto</a></li><li><a href="/claude-code-companion/puse-enable-tool-search-y-sigue-cargando-todo/">Puse ENABLE_TOOL_SEARCH y sigue cargando todo</a></li><li><a href="/claude-code-companion/con-el-gateway-se-nos-come-el-contexto/">Con el gateway se nos come el contexto</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M1 · Qué es Claude Code y cómo funciona por dentro</strong>.</p>
@@ -61,10 +134,10 @@ Companion público de <strong>Claude Code en producción</strong>, la guía en c
 que se verifica contra el binario.<br>
 <strong>Edición redactada contra:</strong> Claude Code 2.1.228 ·
 <strong>compatibilidad comprobada contra:</strong>
-<a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.229 (Claude Code)</a>,
+<a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/8ae09ae9c2db6f89a61b637a2295a2f40a1f355b">8ae09ae</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

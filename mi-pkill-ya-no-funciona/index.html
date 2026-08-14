@@ -7,17 +7,18 @@
 <meta property="og:description" content="Mi pkill ya no funciona — Se rechaza si casa con el proceso. Solo en Linux">
 <style>
 :root{--bg:#ECEEEE;--sf:#FBFCFC;--sf2:#F3F5F5;--ink:#15191B;--ink2:#4E585C;
---mut:#78838A;--rl:#D2D8D9;--br:#9A6F14;
+--mut:#78838A;--rl:#D2D8D9;--br:#9A6F14;--ok:#2C6E49;--okbg:#E4EEE7;
 --sr:"Charter","Bitstream Charter","Iowan Old Style",Palatino,Georgia,serif;
 --sa:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 --mo:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121516;--sf:#191D1F;
---sf2:#1E2325;--ink:#E8EAEA;--ink2:#A9B3B7;--mut:#7E888D;--rl:#2A3033;--br:#D5A442}}
+--sf2:#1E2325;--ink:#E8EAEA;--ink2:#A9B3B7;--mut:#7E888D;--rl:#2A3033;--br:#D5A442;
+--ok:#7FBF9A;--okbg:#17241D}}
 :root[data-theme=dark]{--bg:#121516;--sf:#191D1F;--sf2:#1E2325;--ink:#E8EAEA;
---ink2:#A9B3B7;--mut:#7E888D;--rl:#2A3033;--br:#D5A442}
+--ink2:#A9B3B7;--mut:#7E888D;--rl:#2A3033;--br:#D5A442;--ok:#7FBF9A;--okbg:#17241D}
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--sa);font-size:17px;
-line-height:1.6;margin:0;-webkit-font-smoothing:antialiased}
+line-height:1.6;margin:0;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
 .w{max-width:760px;margin:0 auto;padding:44px 20px 80px}
 a{color:var(--br)}
 h1{font-family:var(--sr);font-weight:600;font-size:clamp(1.6rem,5vw,2.3rem);
@@ -43,10 +44,82 @@ ul.lista .m{font-family:var(--mo);font-size:.7rem;color:var(--mut);margin-left:.
 .cta{background:var(--sf2);border:1px solid var(--rl);padding:20px;margin-top:2.5em}
 .cta .t{font-family:var(--sr);font-size:1.15rem;margin-bottom:.4em}
 .cta p{color:var(--ink2);margin:.4em 0 0;font-size:.95rem}
+
+/* — resolución completa — */
+h2 .n{font-family:var(--mo);font-size:.7rem;color:var(--mut);margin-right:.6em;
+letter-spacing:.1em;vertical-align:.15em}
+pre{background:var(--sf);border:1px solid var(--rl);border-left:2px solid var(--br);
+padding:12px 14px;overflow-x:auto;margin:.5em 0;font-family:var(--mo);font-size:.86rem;
+line-height:1.5;color:var(--ink)}
+pre .p{color:var(--mut);user-select:none}
+/* `overflow-wrap:anywhere` y NUNCA `nowrap`: con nowrap, un nombre de variable
+   largo se sale de la caja en un móvil de 420 px y se come la página. Que
+   `curl | bash` parta por el espacio es feo; que el cuerpo haga scroll
+   horizontal es un fallo. Y nada de `&nbsp;` para evitarlo: esto se copia y se
+   pega en una terminal, donde un espacio duro rompe el comando. */
+code{font-family:var(--mo);font-size:.9em;background:var(--sf2);padding:.1em .35em;
+border:1px solid var(--rl);overflow-wrap:anywhere}
+pre code{background:none;border:0;padding:0;font-size:1em;white-space:pre;
+overflow-wrap:normal}
+.chk{margin:1.1em 0}
+.chk .q{font-size:.88rem;color:var(--ink2);margin:.15em 0 0}
+.chk .q b{color:var(--ink);font-weight:600}
+ol.pasos{padding-left:0;margin:.6em 0 0;list-style:none;counter-reset:p}
+ol.pasos li{counter-increment:p;position:relative;padding:0 0 0 2.1em;margin:0 0 .8em;
+color:var(--ink2)}
+ol.pasos li::before{content:counter(p);position:absolute;left:0;top:.05em;
+font-family:var(--mo);font-size:.72rem;color:var(--br);border:1px solid var(--rl);
+width:1.5em;height:1.5em;display:grid;place-items:center}
+ol.pasos li code{color:var(--ink)}
+.pasa{background:var(--okbg);border:1px solid var(--ok);padding:16px 18px;margin:1.4em 0}
+.pasa .t{font-family:var(--mo);font-size:.7rem;letter-spacing:.14em;
+text-transform:uppercase;color:var(--ok);margin-bottom:.4em}
+.pasa p{margin:0;color:var(--ink)}
+dl.ficha{display:grid;grid-template-columns:auto 1fr;gap:.55em 1.2em;margin:1.4em 0 0;
+padding-top:14px;border-top:1px solid var(--rl);font-size:.9rem}
+dl.ficha dt{font-family:var(--mo);font-size:.68rem;letter-spacing:.1em;
+text-transform:uppercase;color:var(--mut);padding-top:.35em;white-space:nowrap}
+dl.ficha dd{margin:0;color:var(--ink2)}
+dl.ficha dd b{color:var(--ink);font-weight:600}
+@media(max-width:560px){dl.ficha{grid-template-columns:1fr;gap:.15em}
+dl.ficha dt{padding-top:.8em}}
+.rel{list-style:none;padding:0;margin:.5em 0 0;display:flex;flex-wrap:wrap;gap:.5em}
+.rel a{display:block;padding:7px 12px;border:1px solid var(--rl);background:var(--sf);
+text-decoration:none;color:var(--ink);font-size:.88rem}
+.rel a:hover{border-color:var(--br)}
+.bd{font-family:var(--mo);font-size:.6rem;letter-spacing:.08em;color:var(--ok);
+border:1px solid var(--ok);padding:.15em .4em;margin-left:.5em;vertical-align:.1em}
+ul.lista .m{white-space:nowrap}
+.filtro{display:flex;gap:1.2em;align-items:center;margin-top:.9em;font-size:.85rem;
+color:var(--ink2);flex-wrap:wrap}
+.filtro label{display:flex;gap:.4em;align-items:center;cursor:pointer}
+.corta{background:var(--sf2);border:1px dashed var(--rl);padding:16px 18px;margin:1.6em 0;
+font-size:.92rem;color:var(--ink2)}
+.corta b{color:var(--ink)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Mi pkill ya no funciona</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Se rechaza si casa con el proceso. Solo en Linux</p></div>
-<h2>Por qué pasa</h2><p>Un aviso sobre las fuentes, importante para quien mantenga esta guía: los resúmenes semanales oficiales no cubren todas las semanas. No existe digest de la semana 31 ni de la 33. Para todo lo posterior al 7 de agosto, la única fuente es el changelog. Cualquier proceso de actualización que se apoye solo en los digests nace desfasado.</p>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Endurecimiento deliberado: desde <strong>v2.1.214</strong>, un <code>pkill</code> cuyo patrón case con el proceso de Claude Code <strong>se rechaza</strong>. Antes corría y mataba la sesión, que es exactamente lo que se quiso cerrar. <strong>Solo en Linux.</strong></p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>claude --version</code></pre><p class="q"><b>En la terminal.</b> Mira 2.1.214 o posterior</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Estrecha el patrón para que no case con el proceso de Claude Code. Casi siempre el patrón era demasiado ancho de todas formas.</li><li>Mata por PID en vez de por nombre: <code>pgrep -f &#x27;mi-servicio-concreto&#x27;</code> y luego <code>kill</code> sobre ese PID.</li><li>Si lo que quieres es parar trabajo de Claude Code, la vía es <code>/tasks</code>, no matar procesos.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>El <code>pkill</code> mata lo que querías y la sesión sigue viva.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>2.1.214</b></dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 el 13 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: Changelog de 2.1.214, recogido en el módulo 21. <code>claude --version</code> se ejecutó: 2.1.229, por encima del corte.</dd>
+<dt>No aplica si</dt><dd>Estás en macOS o en Windows. El endurecimiento es solo de Linux.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/no-puedo-interrumpir-al-agente/">No puedo interrumpir al agente</a></li><li><a href="/claude-code-companion/comparo-dos-maquinas-y-dan-resultados-distintos/">Comparo dos máquinas y dan resultados distintos</a></li><li><a href="/claude-code-companion/mi-comando-se-bloquea-en-un-worktree-y-no-entiendo-por-que/">Mi comando se bloquea en un worktree y no entiendo por qué</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M21 · Features retiradas, renombradas y trampas de tutoriales viejos</strong>.</p>
@@ -61,10 +134,10 @@ Companion público de <strong>Claude Code en producción</strong>, la guía en c
 que se verifica contra el binario.<br>
 <strong>Edición redactada contra:</strong> Claude Code 2.1.228 ·
 <strong>compatibilidad comprobada contra:</strong>
-<a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.229 (Claude Code)</a>,
+<a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/8ae09ae9c2db6f89a61b637a2295a2f40a1f355b">8ae09ae</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

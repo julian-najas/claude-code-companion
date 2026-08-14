@@ -28,9 +28,9 @@ se vea bien o se vea mal:
 [estado de verificación](https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md).
 
 - **Edición redactada contra:** Claude Code 2.1.228
-- **Compatibilidad comprobada contra:** 2.1.229 (Claude Code)
-- **Generado desde el commit:** [`8ae09ae`](https://github.com/julian-najas/manual-claude-code/commit/8ae09ae9c2db6f89a61b637a2295a2f40a1f355b)
-- **Generado el:** 2026-08-13T17:06:34Z
+- **Compatibilidad comprobada contra:** 2.1.232 (Claude Code)
+- **Generado desde el commit:** [`11d4ab2`](https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906)
+- **Generado el:** 2026-08-14T08:15:14Z
 
 La procedencia completa, legible por máquina, está en
 [`procedencia.json`](/claude-code-companion/procedencia.json): con ella cualquiera puede clonar la
