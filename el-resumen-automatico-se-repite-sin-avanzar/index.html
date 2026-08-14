@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>El resumen automático se repite sin avanzar</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Un archivo o salida gigante. Es el error de thrashing, está documentado</p></div>
-<h2>Por qué pasa</h2><p>Caso de fallo documentado: si un solo archivo o salida es tan grande que el contexto se vuelve a llenar justo después de cada resumen, Claude Code deja de auto-compactar tras unos intentos y muestra un error en vez de entrar en bucle.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Es el error de *thrashing*, y está documentado. Algo enorme, un archivo o la salida de un comando, vuelve a llenar la ventana justo después de cada resumen. Claude Code deja de auto-compactar tras unos intentos y muestra un error en vez de entrar en bucle infinito.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">› </span>/context</code></pre><p class="q"><b>Dentro de una sesión.</b> Mira qué bloque se ha comido la ventana. Casi siempre es uno solo y se ve a la primera</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Localiza al culpable con <code>/context</code> antes de tocar nada. Suele ser un archivo generado, un log o la salida de un comando sin recortar.</li><li>Empieza sesión nueva y no vuelvas a leerlo entero: <code>head</code>, <code>tail</code>, <code>grep</code> o Grep con un patrón, en vez de la lectura completa.</li><li>Si es un directorio de artefactos, sácalo de en medio con <code>deny</code>: <code>&quot;deny&quot;: [&quot;Read(./dist/**)&quot;]</code> en el settings del proyecto.</li><li>Si es la salida de una herramienta MCP, súbela o bájala con <code>MAX_MCP_OUTPUT_TOKENS</code>, que por defecto son 25.000 tokens.</li><li>Compacta con foco en vez de a secas: <code>/compact céntrate en los cambios de la API</code>.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p><code>/context</code> muestra la ventana con holgura y un <code>/compact</code> deja sitio que no se vuelve a llenar en el turno siguiente.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>context-window.md</code>, compactación y error de thrashing.</dd>
+<dt>No aplica si</dt><dd>Estás en Bedrock con una versión anterior a 2.1.217. Ahí la autocompactación <strong>nunca se disparaba</strong> porque no se reconocía la redacción del error de ese proveedor, y el arreglo es actualizar.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/se-le-olvido-lo-que-le-dije-al-principio/">Se le olvidó lo que le dije al principio</a></li><li><a href="/claude-code-companion/se-le-va-el-contexto-en-leer-dist/">Se le va el contexto en leer dist/</a></li><li><a href="/claude-code-companion/la-herramienta-devuelve-menos-de-lo-que-deberia/">La herramienta devuelve menos de lo que debería</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M1 · Qué es Claude Code y cómo funciona por dentro</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>El trabajo nocturno tocó la rama principal</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Falta --worktree</p></div>
-<h2>Por qué pasa</h2><p>Seis. Programación. Del M10: si puedes reaccionar a un evento, channels; si tienes condición verificable, /goal; si hay que sondear, /loop con intervalo acorde. Para trabajo nocturno que debe correr con el portátil cerrado, routines o tareas programadas de escritorio, según si hace falta acceso al disco local (M12).</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Falta <code>--worktree</code>. Sin árbol de trabajo propio, lo que corre de noche escribe donde escribes tú, y por la mañana no hay forma de saber qué es de quién.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>git worktree list</code></pre><p class="q"><b>En la terminal.</b> Mira si solo hay una línea, todo comparte el checkout principal</p></div><div class="chk"><pre><code><span class="p">$ </span>git reflog --date=iso | head -10</code></pre><p class="q"><b>En la terminal.</b> Mira qué se movió durante la noche y cuándo</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Lanza el trabajo desatendido con <code>claude --worktree &lt;nombre&gt;</code>.</li><li>Deja <code>worktree.baseRef</code> en <code>&quot;fresh&quot;</code>, que es el valor por defecto: ramifica desde <code>origin/&lt;rama-por-defecto&gt;</code> y te da un árbol limpio igual que el remoto. Con <code>&quot;head&quot;</code> arrastras commits sin publicar, que de noche es justo lo que no quieres.</li><li>Deja <code>worktree.bgIsolation</code> en <code>&quot;worktree&quot;</code>, también el valor por defecto: bloquea <code>Edit</code> y <code>Write</code> en el checkout principal hasta llamar a <code>EnterWorktree</code>. Requiere v2.1.143 o posterior.</li><li>Y pon la barrera dura además de la convención: una regla de protección de rama en la forja, para que ni tú puedas empujar directo.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p><code>git worktree list</code> muestra el trabajo nocturno en su propio árbol y la rama principal no se movió sola.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>cualquiera; `bgIsolation` desde 2.1.143</b></dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: <code>settings.md</code>, settings de worktree. <code>-w, --worktree</code> se comprobó en <code>claude --help</code> de 2.1.229.</dd>
+<dt>No aplica si</dt><dd>El trabajo nocturno corre en la nube. Ahí trabaja sobre un clon y no puede tocar tu rama principal salvo que empuje, que es otra puerta.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/dos-sesiones-se-pisan-los-archivos/">Dos sesiones se pisan los archivos</a></li><li><a href="/claude-code-companion/mi-comando-se-bloquea-en-un-worktree-y-no-entiendo-por-que/">Mi comando se bloquea en un worktree y no entiendo por qué</a></li><li><a href="/claude-code-companion/la-tarea-en-la-nube-no-ve-mis-archivos/">La tarea en la nube no ve mis archivos</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M20 · Playbooks</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

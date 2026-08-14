@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Nuestro lanzador no envuelve el servicio en segundo plano</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Envuelve el claude del PATH. Usa CLAUDE_CODE_PROCESS_WRAPPER</p></div>
-<h2>Por qué pasa</h2><p>Lanzador corporativo, y la trampa. Algunas organizaciones exigen que todo proceso arranque a través de un lanzador obligatorio que aplica el sandbox, los controles de red o la inyección de credenciales. CLAUDE_CODE_PROCESS_WRAPPER hace que todos los procesos que Claude Code lanza desde su propio binario pasen por tu lanzador: el servicio en segundo plano, cada sesión de agent view, y los relanzamientos tras una actualización. Requiere v2.1.208 o posterior; las versiones anteriores ignoran la variable y arrancan todo sin envolver.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Vuestro lanzador envuelve el comando <code>claude</code> del <code>PATH</code>, y eso no alcanza a lo que hace falta: <strong>los procesos que Claude Code lanza desde su propio binario arrancan por la ruta directa</strong>, sin consultar el <code>PATH</code>. El servicio en segundo plano, cada sesión de agent view y los relanzamientos tras una actualización se os escapan.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>readlink -f $(command -v claude)</code></pre><p class="q"><b>En la terminal.</b> Mira la ruta real del binario. Esa es por la que arrancan los procesos hijos, no la del PATH</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Poned <strong><code>CLAUDE_CODE_PROCESS_WRAPPER</code></strong>. Es lo que hace que todos esos procesos pasen por vuestro lanzador.</li><li>Requiere <strong>v2.1.208 o posterior</strong>. Las versiones anteriores <strong>ignoran la variable y arrancan todo sin envolver</strong>, en silencio, que es la parte peligrosa.</li><li>Entended por qué pasa: la instalación nativa deja <code>~/.local/bin/claude</code> como enlace simbólico a una versión concreta, y los hijos salen de la ruta resuelta.</li><li>Ponedlo en la lista de comprobación de despliegue de flota, junto a la versión mínima, la rotación de credenciales y quién puede activar entornos self-hosted.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Un proceso en segundo plano arranca y lo veis pasar por vuestro lanzador, no solo la sesión que lanzáis a mano.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>2.1.208</b></dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: Módulo 14, lanzador corporativo. <code>readlink -f</code> sobre el <code>claude</code> de esta máquina se ejecutó como comprobación válida.</dd>
+<dt>No aplica si</dt><dd>No tenéis lanzador obligatorio. Entonces esta variable no os hace falta y solo añade una pieza que mantener.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/puse-la-variable-del-lanzador-y-no-hace-nada/">Puse la variable del lanzador y no hace nada</a></li><li><a href="/claude-code-companion/homebrew-no-me-actualiza-a-la-ultima/">Homebrew no me actualiza a la última</a></li><li><a href="/claude-code-companion/los-settings-del-plist-se-ignoran/">Los settings del plist se ignoran</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M14 · Despliegue empresarial</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

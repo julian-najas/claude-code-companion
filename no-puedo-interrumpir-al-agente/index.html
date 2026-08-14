@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>No puedo interrumpir al agente</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Estás en mensaje único. El streaming es el modo recomendado</p></div>
-<h2>Por qué pasa</h2><p>Modo de entrada en streaming, que es el preferido: una sesión persistente e interactiva. Deja que el agente funcione como un proceso de vida larga que recibe entrada, maneja interrupciones, expone peticiones de permiso y gestiona la sesión.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Estás en <strong>modo de mensaje único</strong>. Sin <strong>entrada en streaming</strong> no hay interrupciones ni diálogo de permisos, y sin eso no hay producto con humano en el bucle: solo un trabajo por lotes que va a terminar haga lo que haga.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>grep -rn &#x27;query(&#x27; src/ | head -5</code></pre><p class="q"><b>En la terminal.</b> Mira si le pasas una cadena en vez de un AsyncIterable, estás en mensaje único</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Pasa a <strong>entrada en streaming</strong>, que es el modo preferido: una sesión persistente e interactiva que deja al agente funcionar como proceso de vida larga, <strong>maneja interrupciones</strong> y <strong>expone peticiones de permiso</strong>.</li><li>Deja el mensaje único para lo que de verdad es de un tiro y usa estado de sesión y reanudación.</li><li>Si construyes producto para terceros, esto no es una preferencia de estilo: sin streaming no puedes ofrecer ni parar ni aprobar, que son las dos cosas que un usuario espera poder hacer.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Puedes interrumpir una tarea larga a mitad y el agente para de verdad.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>typescript-sdk.md</code>, modos de entrada.</dd>
+<dt>No aplica si</dt><dd>Tu caso es realmente por lotes y desatendido. Ahí el mensaje único es correcto y no hay a quién enseñarle un diálogo de permisos.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/mi-pkill-ya-no-funciona/">Mi pkill ya no funciona</a></li><li><a href="/claude-code-companion/una-replica-no-reanuda-la-sesion-de-otra/">Una réplica no reanuda la sesión de otra</a></li><li><a href="/claude-code-companion/a-veces-devuelve-un-error-en-vez-de-mi-json/">A veces devuelve un error en vez de mi JSON</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M17 · Agent SDK</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

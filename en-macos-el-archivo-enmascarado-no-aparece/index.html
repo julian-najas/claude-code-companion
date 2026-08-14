@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>En macOS el archivo enmascarado no aparece</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>En macOS se bloquea el archivo, no se sustituye</p></div>
-<h2>Por qué pasa</h2><p>1. El proxy tiene que ver el contenido de la petición para sustituir dentro, así que hace falta network.tlsTerminate para que termine el TLS él mismo. Sin eso, el enmascarado falla sin exponer nada: el comando sigue viendo solo el centinela. 2. Para archivos de credenciales, la sustitución es comportamiento de Linux y WSL2. macOS bloquea el archivo en su lugar.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>En macOS el mecanismo es distinto: <strong>se bloquea el archivo, no se sustituye</strong>. Así que no es que el enmascarado falle, es que en esa plataforma hace otra cosa, y esperar el archivo con un valor centinela dentro es esperar algo que no va a pasar.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>uname -s</code></pre><p class="q"><b>En la terminal.</b> Mira <code>Darwin</code> confirma que estás en el caso de macOS</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Ajusta la expectativa: en macOS el archivo queda inaccesible desde dentro del sandbox. Si tu herramienta lo lee, va a fallar por acceso, no por valor incorrecto.</li><li>Si la herramienta necesita el archivo de verdad, pásale la credencial por variable de entorno enmascarada en vez de por archivo.</li><li>Si el proceso tiene que correr con acceso real, sácalo del sandbox y acótalo por otra vía: es preferible a fingir que está aislado.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>El comportamiento que observas coincide con «bloqueado», y tu herramienta o bien no necesita ese archivo o bien recibe la credencial por otra vía.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>sandboxing.md</code>, diferencias de plataforma en el enmascarado.</dd>
+<dt>No aplica si</dt><dd><code>uname -s</code> dice <code>Linux</code>. Ahí sí se sustituye por un centinela y el arreglo pasa por <code>network.tlsTerminate</code>.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/enmascare-la-credencial-y-la-herramienta-ya-no-autentica/">Enmascaré la credencial y la herramienta ya no autentica</a></li><li><a href="/claude-code-companion/el-sandbox-no-protege-de-mi-servidor-mcp/">El sandbox no protege de mi servidor MCP</a></li><li><a href="/claude-code-companion/los-settings-del-plist-se-ignoran/">Los settings del plist se ignoran</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M5 · Permisos, modos y seguridad operativa</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

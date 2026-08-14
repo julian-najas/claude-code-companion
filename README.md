@@ -29,8 +29,8 @@ se vea bien o se vea mal:
 
 - **Edición redactada contra:** Claude Code 2.1.228
 - **Compatibilidad comprobada contra:** 2.1.232 (Claude Code)
-- **Generado desde el commit:** [`11d4ab2`](https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906)
-- **Generado el:** 2026-08-14T08:15:14Z
+- **Generado desde el commit:** [`2cf7712`](https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170)
+- **Generado el:** 2026-08-14T08:45:27Z
 
 La procedencia completa, legible por máquina, está en
 [`procedencia.json`](/claude-code-companion/procedencia.json): con ella cualquiera puede clonar la

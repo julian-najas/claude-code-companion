@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Mi coste no cuadra con la factura</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>El campo del SDK es una estimación con tabla congelada</p></div>
-<h2>Por qué pasa</h2><p>Si construyes un producto que repercute costes a tus clientes, esto no es un matiz: es un requisito. Facturar a un tercero con una estimación calculada contra una tabla de precios congelada en tiempo de compilación es un problema que se descubre tarde y en forma de discusión con un cliente.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>El campo de coste del SDK es una <strong>estimación</strong>, calculada contra una <strong>tabla de precios congelada en tiempo de compilación</strong>. Sirve para orientarte, no para facturar.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>npm ls @anthropic-ai/claude-code</code></pre><p class="q"><b>En la terminal.</b> Mira la versión, que es la que fija la tabla de precios congelada dentro</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>No factures a un tercero con ese número. Es un problema que se descubre tarde y en forma de discusión con un cliente.</li><li>Aplica la regla que vale en todo el libro: <strong>los tokens se miden, los euros se consultan</strong>. Cuenta tokens con el SDK y aplica las tarifas desde tu propia fuente, actualizada.</li><li>Si necesitas cifras de facturación reales, tíralas de la fuente de facturación, no de la estimación del cliente.</li><li>Para vigilar tu propio consumo sin facturar a nadie, la estimación vale, y <code>/cost</code> en sesión te da el reparto.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Ningún importe que le cobras a alguien sale del campo de coste del SDK.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>typescript-sdk.md</code> y el módulo 15 de la guía.</dd>
+<dt>No aplica si</dt><dd>Solo lo usas para orientarte. Para eso está bien y no hace falta montar nada.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/cambie-de-modelo-para-ahorrar-y-gasto-igual/">Cambié de modelo para ahorrar y gasto igual</a></li><li><a href="/claude-code-companion/el-equipo-de-agentes-se-ha-comido-el-presupuesto/">El equipo de agentes se ha comido el presupuesto</a></li><li><a href="/claude-code-companion/la-cache-no-me-aprovecha-nada/">La caché no me aprovecha nada</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M17 · Agent SDK</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

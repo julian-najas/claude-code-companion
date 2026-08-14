@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>En el monorepo se cuela el contexto de otros equipos</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Falta claudeMdExcludes y capas por directorio</p></div>
-<h2>Por qué pasa</h2><p>Cuarenta paquetes, cuatro equipos, un repositorio. Cada equipo tiene sus convenciones y ninguno quiere las del vecino en su contexto. Las sesiones se ahogan antes de comer.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Faltan dos cosas a la vez: <strong><code>claudeMdExcludes</code></strong> para no cargar los <code>CLAUDE.md</code> ajenos, y <strong>capas por directorio</strong> para que lo que sí necesitáis de cada zona entre solo cuando toca.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>find . -maxdepth 4 -name &#x27;CLAUDE.md&#x27; | wc -l</code></pre><p class="q"><b>En la terminal.</b> Mira cuántos hay. En un monorepo grande el número asusta</p></div><div class="chk"><pre><code><span class="p">› </span>/context</code></pre><p class="q"><b>Dentro de una sesión.</b> Mira cuánto pesa el bloque de memoria del proyecto en cada turno</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Poned <code>claudeMdExcludes</code> con los directorios de otros equipos.</li><li>Convertid lo específico de cada zona en reglas con frontmatter <code>paths</code> dentro de <code>.claude/rules/</code>: entran al leer un archivo que casa y no cuestan nada mientras tanto. <strong>Una regla sin <code>paths</code> es tan cara como el CLAUDE.md.</strong></li><li>Dejad en la raíz solo lo que hace falta en <strong>todas</strong> las tareas del repositorio. Esa es la única justificación para pagarlo en cada turno.</li><li>Recordad la carga: los <code>CLAUDE.md</code> <strong>suben</strong> por el árbol desde vuestro directorio; los de subdirectorios por debajo entran cuando Claude lee archivos de ahí.</li><li>Si además os pesa el disco, <code>worktree.sparsePaths</code> escribe solo los directorios que nombréis.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p><code>/context</code> muestra el bloque de memoria del proyecto más pequeño y sin instrucciones de equipos ajenos.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: <code>settings.md</code> y <code>memory.md</code>. El recuento de archivos se ejecutó como comprobación válida.</dd>
+<dt>No aplica si</dt><dd>El contexto ajeno viene de settings gestionados o de un CLAUDE.md de máquina. Esos no los excluye la configuración individual, a propósito.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/en-el-monorepo-se-cuela-el-claudemd-de-otro-equipo/">En el monorepo se cuela el CLAUDE.md de otro equipo</a></li><li><a href="/claude-code-companion/en-el-monorepo-no-coge-mi-configuracion/">En el monorepo no coge mi configuración</a></li><li><a href="/claude-code-companion/el-workflow-me-llena-el-contexto/">El workflow me llena el contexto</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M20 · Playbooks</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>unstable_v2_createSession ya no existe</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Eliminado en TypeScript SDK 0.3.142. Migra a query()</p></div>
-<h2>Por qué pasa</h2><p>La API de sesiones V2 de TypeScript ya no está soportada. El SDK de TypeScript 0.3.142 elimina unstable_v2_createSession, unstable_v2_resumeSession, unstable_v2_prompt y los tipos SDKSession y SDKSessionOptions.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Eliminado en el <strong>SDK de TypeScript 0.3.142</strong>, junto con <code>unstable_v2_resumeSession</code>, <code>unstable_v2_prompt</code> y los tipos <code>SDKSession</code> y <code>SDKSessionOptions</code>. El prefijo <code>unstable_</code> era el aviso por escrito.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>grep -rn &#x27;unstable_v2_&#x27; src/</code></pre><p class="q"><b>En la terminal.</b> Mira todas las llamadas que hay que migrar</p></div><div class="chk"><pre><code><span class="p">$ </span>npm ls @anthropic-ai/claude-code</code></pre><p class="q"><b>En la terminal.</b> Mira si estás en 0.3.142 o posterior, ya no existen</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Migra a la API <strong><code>query()</code></strong> con <code>AsyncIterable&lt;SDKUserMessage&gt;</code>, o usa <code>options.resume</code> para reanudar.</li><li>Cambia los tipos <code>SDKSession</code> y <code>SDKSessionOptions</code> por los de <code>query()</code>.</li><li>De paso ganas lo que probablemente querías: <code>query()</code> con entrada en streaming maneja interrupciones y expone peticiones de permiso.</li><li>Regla para el futuro: lo que lleva <code>unstable_</code> en el nombre es una promesa explícita de que va a cambiar. Fija la versión del SDK y súbela a propósito.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p><code>grep -rn &#x27;unstable_v2_&#x27; src/</code> no devuelve nada y el proyecto compila.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>SDK de TypeScript 0.3.142</b></dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>typescript-sdk.md</code> y el changelog del SDK.</dd>
+<dt>No aplica si</dt><dd>Usas el SDK de Python. Esta retirada es del de TypeScript.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/mi-script-del-sdk-dejo-de-compilar/">Mi script del SDK dejó de compilar</a></li><li><a href="/claude-code-companion/no-puedo-interrumpir-al-agente/">No puedo interrumpir al agente</a></li><li><a href="/claude-code-companion/una-replica-no-reanuda-la-sesion-de-otra/">Una réplica no reanuda la sesión de otra</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M17 · Agent SDK</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

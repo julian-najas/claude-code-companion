@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>El workflow me llena el contexto</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>No debería: los intermedios viven en el script. Revisa qué devuelves</p></div>
-<h2>Por qué pasa</h2><p>- Subagentes: trabajadores delegados dentro de una sesión, que hacen una tarea lateral en su propio contexto y devuelven un resumen. - Agent view: una pantalla para despachar y vigilar sesiones que corren en segundo plano, que se abre con claude agents. Research preview. - Agent teams: varias sesiones coordinadas con una lista de tareas compartida y mensajería entre ellas, dirigidas por un líder. Experimental y desactivado por defecto. - Workflows dinámicos: un script que corre muchos subagentes y contrasta sus resultados entre sí.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>No debería. En un flujo bien montado <strong>los pasos intermedios viven en el script</strong>, no en la conversación: lo que entra en tu contexto es solo lo que devuelves. Si se llena, estás devolviendo demasiado.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">› </span>/context</code></pre><p class="q"><b>Dentro de una sesión.</b> Mira qué bloque crece. Si son resultados de herramienta, es esto</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Revisa qué devuelve cada paso. Un comando que escupe mil líneas para que tú mires tres es mil líneas de contexto.</li><li>Filtra en el script, no en la conversación: <code>| tail -20</code>, <code>| grep</code>, <code>| jq &#x27;.campo&#x27;</code>. El trabajo de recortar es del shell.</li><li>Para investigación pesada, un subagente: su system prompt, su copia del CLAUDE.md, sus herramientas y <strong>todas sus lecturas computan cero</strong> en tu sesión. Solo vuelve el resumen.</li><li>Si lo que crece son salidas de MCP, el tope por defecto son 25.000 tokens y se avisa a los 10.000. <code>MAX_MCP_OUTPUT_TOKENS</code> lo mueve.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p><code>/context</code> se mantiene estable a lo largo del flujo en vez de crecer con cada paso.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>context-window.md</code> y <code>sub-agents.md</code>.</dd>
+<dt>No aplica si</dt><dd>Lo que llena el contexto es el CLAUDE.md o las reglas sin <code>paths</code>. Eso se paga en cada turno pase lo que pase y tiene otro arreglo.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/el-resumen-automatico-se-repite-sin-avanzar/">El resumen automático se repite sin avanzar</a></li><li><a href="/claude-code-companion/la-herramienta-devuelve-menos-de-lo-que-deberia/">La herramienta devuelve menos de lo que debería</a></li><li><a href="/claude-code-companion/se-le-va-el-contexto-en-leer-dist/">Se le va el contexto en leer dist/</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M9 · Paralelismo y agentes</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

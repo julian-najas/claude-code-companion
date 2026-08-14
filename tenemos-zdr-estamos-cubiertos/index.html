@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Tenemos ZDR, estamos cubiertos</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>No cubre analítica, gestión de plazas ni integraciones de terceros</p></div>
-<h2>Por qué pasa</h2><p>Opinión operativa. La fila de integraciones de terceros es la que más gente pasa por alto, y es la que más nos toca después del M8: un servidor MCP que conecta con un sistema de la empresa queda fuera del paraguas de ZDR. Si has justificado el proyecto ante legal con &quot;tenemos ZDR&quot;, y luego conectas tres MCP de terceros, has cambiado el perímetro sin decírselo a nadie.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>ZDR <strong>no cubre analítica, gestión de plazas ni integraciones de terceros</strong>. Cubre la retención de conversaciones, que es importante y es solo una parte. Decir «tenemos ZDR» en una auditoría sin ese matiz es donde empieza el problema.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>claude mcp list</code></pre><p class="q"><b>En la terminal.</b> Mira cada servidor de esa lista es un subencargado de facto que ZDR no cubre</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Separad las tres preguntas y contestad cada una por su lado: qué se retiene, qué se usa para entrenar y <strong>quién más toca los datos</strong>.</li><li>Inventariad los servidores MCP. <strong>Cada uno tiene su propio tratamiento de datos y su propio contrato</strong>, y son subencargados de facto. La lista blanca del módulo 8 no es solo seguridad: es cumplimiento.</li><li>Contad la metadata de analítica y de gestión de plazas, que queda fuera y suele ser lo que nadie ha mirado.</li><li>Y recordad lo que ZDR <strong>apaga</strong>: Claude Code en la web, las sesiones cloud desde escritorio y Artifacts.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Tenéis un inventario escrito de servidores MCP con su contrato, y la frase que usáis en auditoría incluye lo que ZDR no cubre.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: <code>data-usage.md</code> y el módulo 16. <code>claude mcp list</code> se ejecutó y enumera los servidores conectados.</dd>
+<dt>No aplica si</dt><dd>No tenéis ZDR. Entonces la conversación empieza antes: solo existe en Enterprise.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/los-mcp-estan-dentro-de-nuestro-perimetro/">Los MCP están dentro de nuestro perímetro</a></li><li><a href="/claude-code-companion/pedimos-zdr-y-no-aparece/">Pedimos ZDR y no aparece</a></li><li><a href="/claude-code-companion/no-entrenan-con-nuestro-codigo/">No entrenan con nuestro código</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M16 · Datos, cumplimiento y privacidad</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

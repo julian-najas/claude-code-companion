@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Mi tarea en segundo plano desapareció</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>No sobrevive a salir de la sesión</p></div>
-<h2>Por qué pasa</h2><p>- Claude recibe el identificador de la tarea de inmediato y sigue trabajando. - El resultado llega como notificación cuando la llamada se resuelve. - Aparece en /tasks, desde donde también se para. - No sobrevive a salir de la sesión. - Los límites por llamada siguen aplicando mientras corre en segundo plano: el de reloj, por el timeout del servidor o MCP_TOOL_TIMEOUT, y el de inactividad, por CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT. - El umbral de los dos minutos se cambia con CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS, en milisegundos.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p><strong>No sobrevive a salir de la sesión.</strong> Una llamada MCP que pasa a segundo plano vive dentro de esa conversación: si la cierras, se va con ella.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">› </span>/tasks</code></pre><p class="q"><b>Dentro de una sesión.</b> Mira qué sigue vivo. Desde ahí también se paran</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Si el trabajo tiene que durar más que tu sesión, esto no es la herramienta. Las <strong>Routines</strong> en la nube persisten al reiniciar y no necesitan tu máquina encendida; a cambio no ven tu disco y su intervalo mínimo es de una hora.</li><li>Para trabajo largo que sí necesita tus archivos, tareas programadas de escritorio: corren en tu máquina, con acceso a tu disco, sin sesión abierta y con intervalo mínimo de un minuto.</li><li>Recuerda que los límites por llamada siguen aplicando mientras corre en segundo plano: el de reloj por el <code>timeout</code> del servidor o <code>MCP_TOOL_TIMEOUT</code>, y el de inactividad por <code>CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT</code>.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>El trabajo corre en una superficie cuya vida es igual o mayor que la que necesitas, y sabes decir cuál es.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>2.1.212 para el paso automático a segundo plano</b></dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>mcp.md</code> y <code>scheduled-tasks.md</code>.</dd>
+<dt>No aplica si</dt><dd>No cerraste la sesión y aun así desapareció. Entonces mira si la mató un límite de reloj o de inactividad, que sí aplican en segundo plano.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/la-sesion-se-congela-con-una-consulta-larga/">La sesión se congela con una consulta larga</a></li><li><a href="/claude-code-companion/mis-tareas-de-loop-desaparecieron/">Mis tareas de /loop desaparecieron</a></li><li><a href="/claude-code-companion/la-tarea-en-la-nube-no-ve-mis-archivos/">La tarea en la nube no ve mis archivos</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M8 · MCP a fondo</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

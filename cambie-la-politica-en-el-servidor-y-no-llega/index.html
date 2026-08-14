@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Cambié la política en el servidor y no llega</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Los settings cacheados persisten hasta el siguiente fetch correcto</p></div>
-<h2>Por qué pasa</h2><p>Opinión operativa. Si vas a desplegar para una flota, la regla práctica es no mezclar fuentes managed. Elige una y deja la otra vacía. La combinación de &quot;no se fusionan salvo dos excepciones&quot; con &quot;los settings cacheados persisten hasta el siguiente fetch correcto&quot; produce diagnósticos imposibles. /status te dice qué fuente managed está activa; úsalo antes de teorizar.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Los settings gestionados <strong>cacheados persisten hasta el siguiente fetch correcto</strong>. No hay empuje desde el servidor: la máquina se los trae al arrancar, y si la descarga falla, sigue con los de antes.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">› </span>/status</code></pre><p class="q"><b>Dentro de una sesión.</b> Mira qué fuente managed está activa. Es lo primero, antes de teorizar</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Reinicia la sesión: los settings remotos se traen al arrancar, no en caliente.</li><li>Si necesitas garantía de que nunca se corre con política vieja, <code>forceRemoteSettingsRefresh: true</code> bloquea al arrancar hasta tener settings frescos y <strong>sale</strong> si la descarga falla.</li><li>Dos detalles de esa clave que importan: <strong>se autoperpetúa</strong>, porque una vez servida se cachea y las siguientes arrancadas aplican el mismo comportamiento; y desde <strong>v2.1.191</strong> es una excepción a la precedencia, así que se honra puesta en cualquier fuente managed.</li><li>Por defecto, si la descarga falla al arrancar el CLI <strong>continúa sin ellos</strong>: hay una ventana breve sin política aplicada. Si eso no es aceptable en tu organización, la clave de arriba es obligatoria.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Tras reiniciar, <code>/status</code> nombra la fuente managed correcta y el ajuste nuevo está aplicado.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>cualquiera; `forceRemoteSettingsRefresh` como excepción a la precedencia desde 2.1.191</b></dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>server-managed-settings.md</code>, cacheo y arranque a prueba de fallos.</dd>
+<dt>No aplica si</dt><dd>Estás mezclando dos fuentes managed. Entonces el problema no es el caché: dentro de managed las fuentes no se fusionan y gana la primera no vacía.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/puse-los-settings-de-servidor-y-los-del-plist-se-ignoran/">Puse los settings de servidor y los del plist se ignoran</a></li><li><a href="/claude-code-companion/no-me-funcionan-los-server-managed-settings/">No me funcionan los server-managed settings</a></li><li><a href="/claude-code-companion/mi-ajuste-no-se-aplica/">Mi ajuste no se aplica</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M3 · El directorio `.claude/` y el sistema de configuración</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

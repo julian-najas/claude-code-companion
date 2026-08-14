@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>El agente de un cliente vio datos de otro</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Eso no lo arreglan los permisos: es aislamiento</p></div>
-<h2>Por qué pasa</h2><p>En un producto multi-inquilino la pregunta cambia de &quot;¿qué puede tocar el agente?&quot; a &quot;¿qué puede tocar el agente del inquilino A que pertenezca al inquilino B?&quot;, y esa no se responde con permisos: se responde con aislamiento de proceso y de almacenamiento.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p><strong>Eso no lo arreglan los permisos.</strong> En un producto multi-inquilino la pregunta deja de ser «¿qué puede tocar el agente?» y pasa a ser <strong>«¿qué puede tocar el agente del inquilino A que pertenezca al inquilino B?»</strong>, y esa se responde con <strong>aislamiento de proceso y de almacenamiento</strong>, no con reglas.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>ls ~/.claude/projects/</code></pre><p class="q"><b>En la terminal.</b> Mira si todos los inquilinos comparten este árbol, comparten almacenamiento</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Aísla por proceso: un contenedor o una máquina virtual por inquilino, no un proceso compartido con reglas distintas.</li><li>Aísla por almacenamiento: <code>SessionStore</code> con separación real por inquilino, no un prefijo en la misma ruta.</li><li>Aísla por credencial: cada inquilino con la suya, y rotatorias vía <code>apiKeyHelper</code> en vez de una clave larga compartida.</li><li>Aísla por red: controles que impidan que el agente de A alcance los sistemas de B, aunque le pidieran hacerlo.</li><li>Y trata las reglas de permisos como lo que son aquí: una segunda capa, nunca la primera.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Puedes describir el aislamiento entre dos inquilinos sin mencionar ni una vez una regla de permisos.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: <code>typescript-sdk.md</code>, sección de multi-inquilino. La ubicación compartida de las transcripciones se comprobó en esta máquina.</dd>
+<dt>No aplica si</dt><dd>Tu producto es de un solo inquilino. Ahí los permisos sí son la capa principal.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/nuestro-dpo-pregunta-donde-estan-las-conversaciones/">Nuestro DPO pregunta dónde están las conversaciones</a></li><li><a href="/claude-code-companion/una-replica-no-reanuda-la-sesion-de-otra/">Una réplica no reanuda la sesión de otra</a></li><li><a href="/claude-code-companion/detecto-la-inyeccion-ya-estamos-seguros/">Detectó la inyección, ya estamos seguros</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M17 · Agent SDK</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

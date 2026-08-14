@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Claude entró en un panel donde yo estaba logueado</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Comparte el estado de sesión del navegador. Por diseño</p></div>
-<h2>Por qué pasa</h2><p>Tu banco, tu panel de administración, tu correo. Las acciones ocurren en una ventana visible y en tiempo real, y cuando encuentra una pantalla de acceso o un CAPTCHA se detiene y te pide que lo resuelvas tú. Pero la superficie es tu sesión entera del navegador. Eso pertenece a la conversación del M5, no a la de comodidad.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Por diseño: la automatización de navegador <strong>comparte el estado de sesión de tu navegador</strong>. Si tú estás dentro, la herramienta está dentro. No hay una frontera de identidad separada que te proteja de eso.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>ls ~/.config/google-chrome/Default 2&gt;/dev/null | head -3</code></pre><p class="q"><b>En la terminal.</b> Mira el perfil cuyo estado de sesión se comparte</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Usa un <strong>perfil de navegador separado</strong> para el trabajo automatizado, sin sesiones iniciadas en nada que no quieras que toque. Es la barrera real y cuesta un minuto.</li><li>Pon reglas <code>deny</code> sobre los dominios que no se tocan, y lista blanca de dominios en el sandbox si la superficie lo merece.</li><li>Trátalo como lo que es en tu modelo de amenaza: la herramienta hereda tus privilegios en ese navegador. Detectar una inyección no es impedirla; el control tiene que existir aunque el modelo se porte mal.</li><li>Y recuerda de dónde entra el texto no confiable: el contenido de las páginas web es una de las tres puertas, junto con lo que devuelve un MCP y los tickets que cualquiera puede abrir.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>El navegador que usa la automatización no tiene sesión iniciada en ningún sistema que te preocupe.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: <code>security.md</code> y el módulo 12. La ruta del perfil de Chrome se comprobó en esta máquina.</dd>
+<dt>No aplica si</dt><dd>Usas un navegador dedicado y limpio. Entonces el diseño está funcionando y el riesgo es el que decidiste asumir.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/detecto-la-inyeccion-ya-estamos-seguros/">Detectó la inyección, ya estamos seguros</a></li><li><a href="/claude-code-companion/el-sandbox-no-protege-de-mi-servidor-mcp/">El sandbox no protege de mi servidor MCP</a></li><li><a href="/claude-code-companion/los-mcp-estan-dentro-de-nuestro-perimetro/">Los MCP están dentro de nuestro perímetro</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M12 · Superficies</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>En el monorepo no coge mi configuración</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>El settings de proyecto se carga desde el directorio de arranque</p></div>
-<h2>Por qué pasa</h2><p>Dónde arrancas importa. El .claude/settings.json del proyecto se carga desde tu directorio de arranque. Si arrancas desde la raíz, ponlo en la raíz; si arrancas desde cada paquete, hace falta un .claude/ en cada uno.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>El <code>settings.json</code> de proyecto se carga <strong>desde el directorio donde arrancas</strong>, no desde la raíz del repositorio. En un monorepo, arrancar en <code>paquetes/api/</code> y esperar el <code>.claude/</code> de la raíz es esperar algo que no pasa.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>pwd &amp;&amp; ls -d .claude 2&gt;/dev/null || echo &#x27;no hay .claude aquí&#x27;</code></pre><p class="q"><b>En la terminal.</b> Mira si no hay <code>.claude/</code> en tu directorio de arranque, no se carga ninguno de proyecto</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Arranca desde donde está el <code>.claude/</code> que quieres, o pon un <code>.claude/</code> en cada paquete que lo necesite.</li><li>Para lo común, sube al CLAUDE.md de la raíz: eso sí se carga porque la memoria <strong>sube</strong> por el árbol, aunque el settings no.</li><li>No confundas los dos mecanismos, que es lo que causa este síntoma: los <code>CLAUDE.md</code> suben por el árbol de directorios; el <code>settings.json</code> de proyecto se lee del directorio de arranque.</li><li>Si el monorepo es grande, mira <code>worktree.sparsePaths</code>: escribe en disco solo los directorios que nombres.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p><code>/status</code> muestra la fuente de proyecto que esperabas como activa.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>settings.md</code> y <code>memory.md</code>.</dd>
+<dt>No aplica si</dt><dd>Ya arrancas desde el directorio correcto. Entonces mira si el archivo valida: usuario, proyecto y local son estrictos y se rechazan enteros.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/mi-ajuste-no-se-aplica/">Mi ajuste no se aplica</a></li><li><a href="/claude-code-companion/en-el-monorepo-se-cuela-el-claudemd-de-otro-equipo/">En el monorepo se cuela el CLAUDE.md de otro equipo</a></li><li><a href="/claude-code-companion/mi-settingsjson-entero-dejo-de-aplicarse/">Mi settings.json entero dejó de aplicarse</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M6 · El flujo de trabajo diario que de verdad funciona</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

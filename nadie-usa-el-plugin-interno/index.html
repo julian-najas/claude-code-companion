@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Nadie usa el plugin interno</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Bloque relevance en el catálogo, o hints desde tu propio CLI</p></div>
-<h2>Por qué pasa</h2><p>Relevance, o sugerir el plugin adecuado. Si operas un catálogo para tu organización, añades un bloque relevance a la entrada del plugin en marketplace.json y pones el catálogo en la lista blanca de los settings gestionados. Cuando la sesión de alguien case con las señales declaradas, Claude Code le sugiere instalarlo.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Existe pero nadie sabe cuándo le toca. Un plugin interno compite con la costumbre, y la costumbre gana siempre salvo que alguien te diga en el momento justo que hay algo mejor.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>python3 -m json.tool .claude-plugin/marketplace.json | grep -A4 relevance</code></pre><p class="q"><b>En la terminal.</b> Mira si no hay bloque <code>relevance</code>, nadie va a descubrirlo solo</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Añade el bloque <strong><code>relevance</code></strong> en la entrada del catálogo: es lo que hace que el plugin se sugiera cuando encaja, en vez de esperar a que alguien se acuerde.</li><li>Si el plugin tiene marketplace oficial, tu herramienta puede <strong>escribir un hint desde su propio CLI</strong> para proponerlo en el momento correcto.</li><li>Revisa las descripciones de sus skills con el mismo criterio que una skill suelta: se escriben con las palabras que diría quien pide el trabajo, no con las que usarías para catalogarlo.</li><li>Y comprueba lo obvio antes de culpar al descubrimiento: que la estructura sea correcta, porque un plugin que no carga tampoco se usa.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Alguien que no sabía del plugin lo acaba usando sin que tú se lo digas.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>plugin-marketplaces.md</code>, bloque <code>relevance</code> y hints.</dd>
+<dt>No aplica si</dt><dd>El plugin no carga en las máquinas de los demás. Eso no es adopción, es estructura, y tiene página propia.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/mi-plugin-no-le-funciona-a-nadie-mas/">Mi plugin no le funciona a nadie más</a></li><li><a href="/claude-code-companion/mi-plugin-no-encuentra-las-skills/">Mi plugin no encuentra las skills</a></li><li><a href="/claude-code-companion/se-activa-cuando-no-toca/">Se activa cuando no toca</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M11 · Plugins y distribución interna</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

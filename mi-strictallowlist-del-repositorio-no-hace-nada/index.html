@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Mi strictAllowlist del repositorio no hace nada</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Correcto: solo aplica desde usuario, gestionada o --settings</p></div>
-<h2>Por qué pasa</h2><p>- No hay dominios permitidos de partida. La primera vez que un comando necesita un dominio nuevo, se pregunta. Aceptar lo permite para el resto de la sesión. Se pre-autorizan con allowedDomains, y las reglas allow de WebFetch también pre-autorizan dominios. - strictAllowlist: true deniega en vez de preguntar. Solo tiene efecto desde configuración de usuario, gestionada o --settings: ponerlo en el .claude/settings.json del repositorio no hace nada. Y solo se aplica a comandos en sandbox; las herramientas en proceso como WebFetch siguen sus propias reglas de permisos.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Correcto, y es el mismo patrón de blindaje que <code>autoMode</code>: <strong>solo se aplica desde la configuración de usuario, desde settings gestionados o con <code>--settings</code></strong>. Se ignora en el <code>.claude/settings.json</code> del proyecto y en el local, para que un repositorio clonado no pueda relajarte las defensas.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>grep -rn strictAllowlist ~/.claude/settings.json .claude/settings.json</code></pre><p class="q"><b>En la terminal.</b> Mira en qué archivo lo has puesto. Si está en el del proyecto, por eso no hace nada</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Muévelo a <code>~/.claude/settings.json</code>, a los settings gestionados, o pásalo con <code>--settings</code>.</li><li>Reconoce el patrón, porque se repite: <strong>lo que un repositorio ajeno podría usar para bajarte las defensas no se lee del repositorio</strong>. Vale igual para <code>autoMode</code>, y <code>autoMemoryDirectory</code> puesto desde el proyecto solo se honra tras aceptar el diálogo de confianza.</li><li>Si lo que quieres es una restricción que el equipo entero herede del repositorio, la herramienta correcta son reglas <code>deny</code> en los permisos: esas sí se fusionan entre ámbitos y no las puede levantar nadie con su configuración local.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>El ajuste está en un ámbito que sí lo lee, y el comportamiento restrictivo se observa.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>settings.md</code> y <code>sandboxing.md</code>.</dd>
+<dt>No aplica si</dt><dd>Ya está en el ámbito correcto. Entonces mira si hay una *cross-source lock key* de la lista blanca del sandbox fijada desde managed, que es la excepción.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/mi-allow-local-no-sustituye-al-del-proyecto/">Mi allow local no sustituye al del proyecto</a></li><li><a href="/claude-code-companion/dar-por-hecho-que-un-allow-de-proyecto-se-aplica/">Dar por hecho que un allow de proyecto se aplica</a></li><li><a href="/claude-code-companion/el-sandbox-no-protege-de-mi-servidor-mcp/">El sandbox no protege de mi servidor MCP</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M5 · Permisos, modos y seguridad operativa</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

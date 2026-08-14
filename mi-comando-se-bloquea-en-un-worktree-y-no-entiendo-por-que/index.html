@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Mi comando se bloquea en un worktree y no entiendo por qué</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Cuarta comprobación: lo que no se puede verificar, se bloquea</p></div>
-<h2>Por qué pasa</h2><p>1. Ediciones de archivo: se bloquea Edit, Write o NotebookEdit que apunte a una ruta del checkout principal. 2. Directorio de trabajo del comando: se bloquea un comando de Bash, PowerShell o Monitor cuyo directorio de trabajo caiga en el checkout principal, o cuyo directorio no se pueda verificar que queda fuera. 3. Redirecciones de git: se bloquea el comando que redirige git al checkout principal, venga por git -C, --git-dir, las variables GIT_DIR o GIT_WORK_TREE, o un cd al principal antes de lanzar git. 4. Forma del comando: se bloquea el comando que no se puede verificar.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Es el aislamiento de worktrees haciendo su trabajo: <strong>lo que no se puede verificar, se bloquea</strong>. Y desde la semana 32 el aislamiento cubre también <strong>comandos Bash y redirecciones de git</strong>, no solo ediciones de archivo, así que un comando que antes pasaba ahora puede no pasar.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>git rev-parse --git-common-dir &amp;&amp; pwd</code></pre><p class="q"><b>En la terminal.</b> Mira si el directorio común de git no está debajo de tu ruta, estás en un worktree</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Si el trabajo tiene que tocar el checkout principal, llama a <code>EnterWorktree</code> primero: es la puerta explícita, y existe para que el paso sea una decisión y no un accidente.</li><li>Si el aislamiento te estorba de forma sistemática, <code>worktree.bgIsolation</code> en <code>&quot;none&quot;</code> deja que los trabajos en segundo plano editen la copia de trabajo directamente. Requiere v2.1.143 o posterior, y piénsalo: lo estás apagando por comodidad.</li><li>Revisa si el comando es realmente necesario ahí. Muchas veces lo que se bloquea es una redirección de git que debería correr en el principal, no en el árbol de trabajo.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>El comando corre, y tú puedes decir si lo hace dentro del worktree o porque entraste explícitamente al principal.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>semana 32 de 2026 para el alcance ampliado a Bash y redirecciones</b></dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: <code>settings.md</code> y el módulo 21, endurecimientos silenciosos. <code>git rev-parse --git-common-dir</code> se ejecutó como comprobación válida.</dd>
+<dt>No aplica si</dt><dd>No estás en un worktree. Entonces lo que bloquea es otra cosa: mira las reglas <code>deny</code> y el modo de permisos.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/dos-sesiones-se-pisan-los-archivos/">Dos sesiones se pisan los archivos</a></li><li><a href="/claude-code-companion/el-trabajo-nocturno-toco-la-rama-principal/">El trabajo nocturno tocó la rama principal</a></li><li><a href="/claude-code-companion/el-cd-no-se-mantiene-entre-comandos/">El cd no se mantiene entre comandos</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M9 · Paralelismo y agentes</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

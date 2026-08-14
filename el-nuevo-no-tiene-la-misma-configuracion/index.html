@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>El nuevo no tiene la misma configuración</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>No está en git, o no ha aceptado la confianza</p></div>
-<h2>Por qué pasa</h2><p>- Un desarrollador nuevo clona, acepta la confianza del espacio de trabajo y tiene la misma configuración que el resto, sin instrucciones por chat. - /status en cualquier máquina dice la misma fuente gestionada. - La revisión automática se lee, en vez de cerrarse sin mirar. - Hay una cifra de gasto del mes pasado y alguien la mira.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Una de dos: <strong>no está en git</strong>, o <strong>no ha aceptado el diálogo de confianza del espacio de trabajo</strong>. La segunda es la que nadie diagnostica, porque el repositorio se ve idéntico y aun así media configuración no se aplica.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>git ls-files .claude/</code></pre><p class="q"><b>En la terminal.</b> Mira si <code>settings.json</code> no aparece, no está confirmado y el nuevo no lo tiene</p></div><div class="chk"><pre><code><span class="p">› </span>/status</code></pre><p class="q"><b>Dentro de una sesión.</b> Mira en su máquina: qué fuentes están activas de verdad</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Confirma <code>.claude/settings.json</code> en git y <strong>deja fuera <code>.claude/settings.local.json</code></strong>, que es personal por definición.</li><li>Explícale que tiene que <strong>aceptar la confianza del espacio de trabajo</strong>, y por qué: de ese diálogo cuelgan cuatro puertas, los <strong>hooks del proyecto</strong>, <code>autoMemoryDirectory</code>, los permisos de proyecto y el <code>allowed-tools</code> de las skills del repositorio.</li><li>Y dile que revise las skills del repositorio <strong>antes</strong> de aceptar, no después: una skill puede concederse a sí misma acceso amplio a herramientas.</li><li>Fija canal y <code>minimumVersion</code> en el settings del repositorio para que además converjan las versiones.</li><li>Si la configuración tiene que valer para toda la organización y no depender de que cada uno acepte nada, el sitio son los settings gestionados.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p><code>/status</code> en su máquina muestra las mismas fuentes activas que en la tuya.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: <code>settings.md</code> y <code>hooks.md</code>. <code>git ls-files</code> se ejecutó como comprobación válida.</dd>
+<dt>No aplica si</dt><dd>Ya está en git y ya aceptó la confianza. Entonces mira si su archivo valida y si tiene variables de entorno pisando el ajuste.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/mi-plugin-no-le-funciona-a-nadie-mas/">Mi plugin no le funciona a nadie más</a></li><li><a href="/claude-code-companion/mi-ajuste-no-se-aplica/">Mi ajuste no se aplica</a></li><li><a href="/claude-code-companion/en-las-maquinas-de-mi-equipo-no-hay-git/">En las máquinas de mi equipo no hay git</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M20 · Playbooks</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

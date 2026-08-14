@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>La revisión no aplica nuestras reglas</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Falta REVIEW.md, o pusiste un @import que no se expande</p></div>
-<h2>Por qué pasa</h2><p>La trampa, y es de las que cuestan una tarde: se pega literalmente. La sintaxis de import con @ no se expande y los archivos referenciados no se leen. Si escribes @docs/estandares.md esperando que se cargue, lo que has metido en el prompt es el texto @docs/estandares.md. Las reglas van dentro del archivo, escritas.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>O falta <code>REVIEW.md</code> en la raíz del repositorio, o lo has escrito con un import <code>@</code>. Y esta es de las que cuestan una tarde: <strong>el <code>REVIEW.md</code> se pega literalmente</strong>, la sintaxis <code>@</code> <strong>no se expande</strong> y los archivos referenciados <strong>no se leen</strong>.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>ls -l REVIEW.md &amp;&amp; grep -n &#x27;^@&#x27; REVIEW.md</code></pre><p class="q"><b>En la terminal.</b> Mira si <code>grep</code> encuentra líneas con <code>@</code>, eso es texto plano en el prompt, no un import</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Crea <code>REVIEW.md</code> en la raíz. Su contenido se inyecta en el system prompt de <strong>todos</strong> los agentes de la tubería de revisión, como bloque de máxima prioridad por encima de la guía por defecto.</li><li><strong>Escribe las reglas dentro del archivo.</strong> Si pones <code>@docs/estandares.md</code> esperando que se cargue, lo que has metido en el prompt es la cadena <code>@docs/estandares.md</code>.</li><li>Calibra lo que más rinde: qué significa 🔴 Important <strong>en tu repositorio</strong>, un tope a los nits para que la señal no se ahogue, qué no reportar nunca y qué comprobar siempre.</li><li>La calibración por defecto apunta a código de producción. Un repositorio de documentación, uno de configuración o un prototipo quieren algo mucho más estrecho.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Una revisión de prueba marca lo que vuestro <code>REVIEW.md</code> dice que es importante, y no marca lo que dice que no reporte.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>code-review.md</code>, sección de <code>REVIEW.md</code>.</dd>
+<dt>No aplica si</dt><dd>Estáis en Pro o en Max. <strong>Code Review no existe en esos planes</strong>, así que no hay revisión que calibrar.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/la-primera-revision-del-legacy-es-un-muro/">La primera revisión del legacy es un muro</a></li><li><a href="/claude-code-companion/la-puerta-de-calidad-nunca-veta/">La puerta de calidad nunca veta</a></li><li><a href="/claude-code-companion/nos-fuimos-a-bedrock-y-perdimos-la-revision-de-codigo/">Nos fuimos a Bedrock y perdimos la revisión de código</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M13 · CI/CD y revisión de código</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

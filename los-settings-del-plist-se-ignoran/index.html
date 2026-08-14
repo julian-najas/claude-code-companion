@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Los settings del plist se ignoran</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Los de servidor entregaron claves. Dentro de managed no se fusionan</p></div>
-<h2>Por qué pasa</h2><p>- Server-managed settings frente a los gestionados por endpoint (plist, registro, managed-settings.json). No se fusionan entre sí, salvo las lock keys y el bloque env. Elige una fuente. - policyHelper preempta a todo lo demás dentro del nivel gestionado. - forceRemoteSettingsRefresh: true para arranque a prueba de fallos: bloquea hasta tener settings frescos y sale si la descarga falla. Se autoperpetúa. - requiredMinimumVersion falla abierto por diseño, para que una política mal empujada no impida arrancar. - Los settings gestionados toleran entradas inválidas retirándolas; los de usuario, proyecto y local rechazan el archivo entero.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Vuestros settings de servidor entregaron claves, y <strong>dentro de managed las fuentes no se fusionan</strong>: se usa la primera que entregue una configuración no vacía. Si los de servidor entregan <strong>cualquier</strong> clave, los de endpoint (plist, registro) se ignoran <strong>enteros</strong>.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">› </span>/status</code></pre><p class="q"><b>Dentro de una sesión.</b> Mira qué fuente managed está activa. Solo va a haber una</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li><strong>No mezcléis fuentes managed.</strong> Elegid una y dejad la otra vacía: es la regla práctica para una flota, y la combinación de «no se fusionan» con «los cacheados persisten hasta el siguiente fetch correcto» produce diagnósticos imposibles.</li><li>Si necesitáis de verdad las dos, las únicas excepciones por clave son las *cross-source lock keys*, como los candados de la lista blanca del sandbox, y el bloque <strong><code>env</code></strong>, que sí se fusiona variable a variable: la fuente de mayor prioridad que la defina gana y las inferiores rellenan lo que quede. Requiere <strong>v2.1.223 o posterior</strong>.</li><li>Usad <code>/status</code> antes de teorizar. Os dice cuál manda en un segundo.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p><code>/status</code> nombra una sola fuente managed activa y es la que queríais desplegar.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>cualquiera; fusión de `env` desde 2.1.223</b></dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>server-managed-settings.md</code>, precedencia managed y excepciones por clave.</dd>
+<dt>No aplica si</dt><dd>No tenéis settings de servidor. Entonces el plist debería mandar, y si no lo hace mirad si valida: managed es tolerante y degrada entradas inválidas.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/puse-los-settings-de-servidor-y-los-del-plist-se-ignoran/">Puse los settings de servidor y los del plist se ignoran</a></li><li><a href="/claude-code-companion/cambie-la-politica-en-el-servidor-y-no-llega/">Cambié la política en el servidor y no llega</a></li><li><a href="/claude-code-companion/no-me-funcionan-los-server-managed-settings/">No me funcionan los server-managed settings</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M14 · Despliegue empresarial</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

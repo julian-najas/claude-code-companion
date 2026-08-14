@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Puse la conexión automática en el repo y no funciona</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Desde la w32, el repositorio solo puede desactivarla</p></div>
-<h2>Por qué pasa</h2><p>1. Es research preview. 2. En Team y Enterprise está apagado por defecto hasta que un propietario active el interruptor en la configuración de administración. 3. Del M3: la configuración confirmada en un repositorio ya no puede activar la conexión automática de Remote Control. Se fija en los settings de usuario o gestionados, y los de proyecto y local solo pueden desactivarla. Es un endurecimiento de la semana 32 y va en la dirección correcta: un repositorio ajeno no puede abrirte un canal remoto.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Endurecimiento de la semana 32: <strong>un repositorio ya no puede activar</strong> la conexión automática de Remote Control, <strong>solo desactivarla</strong>. Es el patrón de siempre: lo que un repositorio ajeno podría usar para ampliar lo que se le permite, no se lee del repositorio.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>claude --version</code></pre><p class="q"><b>En la terminal.</b> Mira cualquier versión posterior a la semana 32 ya tiene el endurecimiento</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Activa la conexión automática desde tu configuración de usuario. Desde el repositorio solo se puede apagar.</li><li>Aprovecha que lo que sí puede hacer el repositorio es <strong>desactivarla</strong>, que es exactamente la dirección segura: un repo sensible puede negarse a que se pilote en remoto.</li><li>Reconoce el patrón porque se repite: <code>autoMode</code> no se lee del proyecto, <code>strictAllowlist</code> tampoco, y <code>autoMemoryDirectory</code> puesto desde el repositorio solo se honra tras el diálogo de confianza.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>La conexión automática está activada en tu configuración de usuario y funciona, o el repositorio la está apagando a propósito y lo sabes.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>semana 32 de 2026</b></dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: Módulo 21, endurecimientos silenciosos. <code>claude --version</code> se ejecutó: 2.1.229, posterior al cambio.</dd>
+<dt>No aplica si</dt><dd>Tienes una versión anterior a la semana 32. Ahí todavía se podía activar desde el repositorio, y el arreglo es entender que eso ya no vuelve.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/remote-control-no-conecta-en-la-empresa/">Remote Control no conecta en la empresa</a></li><li><a href="/claude-code-companion/mi-strictallowlist-del-repositorio-no-hace-nada/">Mi strictAllowlist del repositorio no hace nada</a></li><li><a href="/claude-code-companion/dar-por-hecho-que-un-allow-de-proyecto-se-aplica/">Dar por hecho que un allow de proyecto se aplica</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M12 · Superficies</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

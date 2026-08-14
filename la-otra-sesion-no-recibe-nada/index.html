@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>La otra sesión no recibe nada</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Requiere v2.1.224+, macOS o Linux. Comprueba con /list-agents</p></div>
-<h2>Por qué pasa</h2><p>- Subagentes: trabajadores delegados dentro de una sesión, que hacen una tarea lateral en su propio contexto y devuelven un resumen. - Agent view: una pantalla para despachar y vigilar sesiones que corren en segundo plano, que se abre con claude agents. Research preview. - Agent teams: varias sesiones coordinadas con una lista de tareas compartida y mensajería entre ellas, dirigidas por un líder. Experimental y desactivado por defecto. - Workflows dinámicos: un script que corre muchos subagentes y contrasta sus resultados entre sí.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>La mensajería entre sesiones <strong>requiere v2.1.224 o posterior, y macOS o Linux</strong>. Si estás por debajo, o en Windows, no es que el mensaje se pierda: es que la función no está.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>claude --version</code></pre><p class="q"><b>En la terminal.</b> Mira 2.1.224 o posterior</p></div><div class="chk"><pre><code><span class="p">$ </span>uname -s</code></pre><p class="q"><b>En la terminal.</b> Mira <code>Linux</code> o <code>Darwin</code>. En Windows no aplica</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Comprueba versión y plataforma antes que nada: son dos requisitos duros.</li><li>Lista lo que hay con <code>/list-agents</code>. Si la otra sesión no aparece ahí, no le vas a poder escribir.</li><li>Comprueba que el nombre con el que escribes es exactamente el que imprime esa lista, incluido el sufijo si dos comparten nombre.</li><li>Si necesitas comunicación fiable entre procesos que no cumplen los requisitos, el disco sigue siendo la respuesta: un archivo que uno escribe y otro lee.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p><code>/list-agents</code> muestra la sesión de destino y el mensaje llega.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd><b>2.1.224, y solo macOS o Linux</b></dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: Documentación de mensajería entre sesiones. <code>claude --version</code> y <code>uname -s</code> se ejecutaron: 2.1.229 sobre Linux, así que esta máquina cumple los dos requisitos.</dd>
+<dt>No aplica si</dt><dd>Estás en Windows. Ahí la función no existe y ninguna configuración la trae.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/mis-subagentes-no-se-coordinan-entre-si/">Mis subagentes no se coordinan entre sí</a></li><li><a href="/claude-code-companion/dos-sesiones-se-pisan-los-archivos/">Dos sesiones se pisan los archivos</a></li><li><a href="/claude-code-companion/comparo-dos-maquinas-y-dan-resultados-distintos/">Comparo dos máquinas y dan resultados distintos</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M9 · Paralelismo y agentes</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

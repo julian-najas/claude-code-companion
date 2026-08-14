@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>El equipo de agentes se ha comido el presupuesto</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Es el enfoque más caro: sesiones completas y longevas</p></div>
-<h2>Por qué pasa</h2><p>Opinión operativa. &quot;Experimental y desactivado por defecto&quot; hay que tomárselo al pie de la letra: es la pieza más cara de las cuatro, porque son sesiones completas y longevas, cada una con su propio contexto que crece. Antes de encender un equipo, la pregunta honesta es si el trabajo necesita que los trabajadores hablen entre sí. Si no la necesitan, subagentes o un workflow salen mucho más baratos y se depuran mejor.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Es el enfoque <strong>más caro que hay</strong>, y no por poco: son <strong>sesiones completas y longevas</strong>, cada una con su system prompt, su contexto y su historial, en vez de tareas que devuelven un resumen y desaparecen.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">› </span>/cost</code></pre><p class="q"><b>Dentro de una sesión.</b> Mira el reparto entre la conversación principal y lo demás</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Baja un escalón antes de subirlo: para investigar y devolver un hallazgo, un <strong>subagente</strong> basta y su coste es el resumen. El equipo se reserva para trabajo que de verdad necesita coordinación.</li><li>Si el contexto es el mismo, usa un <strong>fork</strong> en vez de un subagente: hereda system prompt, herramientas e historial del padre, así que <strong>su primera petición lee la caché del padre</strong>. Un subagente empieza en frío, con TTL de cinco minutos incluso con suscripción.</li><li>Pon un techo con <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code>, y recuerda que un fork iniciado con <code>/subtask</code> ocupa plaza mientras corre.</li><li>Mide con el analizador de gasto sobre tus propios registros antes de decidir. Los tokens se miden; los euros los pone quien los tiene.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Puedes nombrar, para cada pieza en marcha, por qué es un equipo y no un subagente o un fork.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>sub-agents.md</code> y <code>costs.md</code>, más el módulo 15 de la guía.</dd>
+<dt>No aplica si</dt><dd>El gasto viene de la conversación principal. Entonces mira la caché: lo que la rompe es tocar configuración, no trabajar.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/mis-subagentes-no-aprovechan-la-cache/">Mis subagentes no aprovechan la caché</a></li><li><a href="/claude-code-companion/mis-subagentes-no-se-coordinan-entre-si/">Mis subagentes no se coordinan entre sí</a></li><li><a href="/claude-code-companion/cambie-de-modelo-para-ahorrar-y-gasto-igual/">Cambié de modelo para ahorrar y gasto igual</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M9 · Paralelismo y agentes</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

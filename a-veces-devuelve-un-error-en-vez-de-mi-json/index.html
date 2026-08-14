@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>A veces devuelve un error en vez de mi JSON</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Falló la validación tras los reintentos. Es una rama esperada</p></div>
-<h2>Por qué pasa</h2><p>1. El SDK valida y vuelve a preguntar si no casa. No falla al primer intento. 2. Si la validación no pasa dentro del límite de reintentos, el resultado es un error, no datos estructurados. Tu código tiene que contemplar esa rama, y es la que nadie escribe hasta que la ve en producción.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Falló la validación del esquema <strong>tras los reintentos</strong>. No es un fallo inesperado: es una <strong>rama esperada</strong> del contrato, y tu código tiene que contemplarla igual que contempla el camino bueno.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>grep -rn &#x27;catch\|except&#x27; src/ | head -5</code></pre><p class="q"><b>En la terminal.</b> Mira si no hay rama de error alrededor de la llamada, ahí está el fallo de diseño</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Trata la rama de error como parte del contrato: qué devuelves tú cuando el agente no pudo devolver un JSON válido.</li><li>Simplifica el esquema. Un esquema con muchos campos obligatorios y anidamiento profundo falla más, y la mayoría de esos campos no los usa nadie.</li><li>Contesta antes de programar las cinco preguntas de diseño: dónde corre, dónde viven las sesiones, <strong>qué devuelve con esquema y validación y su rama de error contemplada</strong>, qué herramientas propias expone, y qué permisos tiene respecto a quién.</li><li>Registra los fallos de validación con la salida cruda: sin eso no vas a poder mejorar el esquema.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Tu código tiene una rama explícita para la validación fallida y la has probado a propósito al menos una vez.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>typescript-sdk.md</code>, salida estructurada.</dd>
+<dt>No aplica si</dt><dd>El error es de autenticación o de red. Eso no es validación de esquema y se diagnostica por otro lado.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/mi-script-del-sdk-dejo-de-compilar/">Mi script del SDK dejó de compilar</a></li><li><a href="/claude-code-companion/no-puedo-interrumpir-al-agente/">No puedo interrumpir al agente</a></li><li><a href="/claude-code-companion/mi-coste-no-cuadra-con-la-factura/">Mi coste no cuadra con la factura</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M17 · Agent SDK</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

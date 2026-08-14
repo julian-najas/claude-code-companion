@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Computer use no me aparece</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Research preview, macOS, solo Pro y Max, y no con -p</p></div>
-<h2>Por qué pasa</h2><p>1. Es research preview. 2. En Team y Enterprise está apagado por defecto hasta que un propietario active el interruptor en la configuración de administración. 3. Del M3: la configuración confirmada en un repositorio ya no puede activar la conexión automática de Remote Control. Se fija en los settings de usuario o gestionados, y los de proyecto y local solo pueden desactivarla. Es un endurecimiento de la semana 32 y va en la dirección correcta: un repositorio ajeno no puede abrirte un canal remoto.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Cuatro condiciones, y basta con fallar una: es <strong>research preview</strong>, solo <strong>macOS</strong>, solo <strong>Pro y Max</strong> (no está en Team ni en Enterprise) y <strong>no funciona en modo no interactivo</strong>.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>uname -s</code></pre><p class="q"><b>En la terminal.</b> Mira <code>Darwin</code>. En Linux o Windows no aparece y no hay nada que activar</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Recorre las cuatro condiciones en orden antes de tocar configuración.</li><li>Fíjate en la inversión, que sorprende a todo el mundo: <strong>computer use y Dispatch no existen en Team ni en Enterprise</strong>, mientras que <strong>Code Review no existe en Pro ni en Max</strong>. No es una escalera lineal donde el plan caro incluye todo lo del barato.</li><li>Si estás en Team o Enterprise y lo necesitas, no hay ajuste que lo traiga: es disponibilidad de plan.</li><li>Si lo querías para automatizar, descártalo: no funciona con <code>-p</code>.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Cumples las cuatro condiciones, o sabes cuál te falta y que no se arregla configurando.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Comprobación ejecutada.</b> El comando de «Compruébalo» se lanzó contra Claude Code 2.1.229 los días 13 y 14 de agosto de 2026 y devolvió lo que dice esta página. Ejecutar la comprobación no es reproducir la avería: el arreglo sale de la fuente citada. Fuente: Tabla 2 de disponibilidad por plan del módulo 14 y tabla de madurez del 12. <code>uname -s</code> se ejecutó: <code>Linux</code>, así que esta máquina no cumple la condición de plataforma.</dd>
+<dt>No aplica si</dt><dd>Estás en macOS con Pro o Max en sesión interactiva y aun así no aparece. Entonces sí es un problema, y toca <code>claude doctor</code>.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/busco-la-app-de-claude-code-y-no-existe/">Busco la app de Claude Code y no existe</a></li><li><a href="/claude-code-companion/nos-fuimos-a-bedrock-y-perdimos-la-revision-de-codigo/">Nos fuimos a Bedrock y perdimos la revisión de código</a></li><li><a href="/claude-code-companion/remote-control-no-conecta-en-la-empresa/">Remote Control no conecta en la empresa</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M12 · Superficies</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

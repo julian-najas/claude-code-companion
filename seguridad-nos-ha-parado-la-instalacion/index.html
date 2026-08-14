@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Seguridad nos ha parado la instalación</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Explica antes que el permiso de la app es un superconjunto</p></div>
-<h2>Por qué pasa</h2><p>Traducción para la reunión con seguridad: al instalar concedes el superconjunto, no el mínimo de la función que te interesa. No es un fallo, es cómo funcionan las apps de GitHub, pero hay que decirlo antes y no cuando alguien lo descubra.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Han visto que el permiso que pide la aplicación es <strong>un superconjunto</strong> de lo que va a usar en la práctica, y han hecho su trabajo. El problema no es técnico: es que la explicación llegó después de la solicitud.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>gh api /repos/:owner/:repo/installation --jq &#x27;.permissions&#x27; 2&gt;/dev/null || echo &#x27;sin instalación&#x27;</code></pre><p class="q"><b>En la terminal.</b> Mira los permisos concedidos de verdad, para poder hablar de datos y no de sensaciones</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Explícalo <strong>antes</strong> de pedirlo, no cuando te lo bloqueen. Que el permiso sea un superconjunto es una propiedad conocida y se puede argumentar.</li><li>Lleva a la reunión lo que a seguridad le sirve de verdad: que cada release publica un <strong><code>manifest.json</code> con las sumas SHA256</strong> de todos los binarios, y que <strong>ese manifiesto está firmado con GPG por Anthropic</strong>, así que verificar la firma verifica de forma transitiva todos los binarios que lista. Es mucho mejor respuesta que «lo bajamos de la web oficial».</li><li>Lleva también las dos puertas de la acción, que juegan a tu favor: se exige acceso de escritura a quien dispara, y se rechaza a los bots salvo los que listéis.</li><li>Y ancla lo que se ejecuta: la fuente del plugin admite <code>sha</code>, así que podéis clavar el código exacto que corre en las máquinas.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>Seguridad tiene por escrito qué permisos se usan, cómo se verifica la procedencia del binario y quién puede disparar la acción.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>setup.md</code> (integridad del binario) y <code>github-actions.md</code> (permisos y disparo).</dd>
+<dt>No aplica si</dt><dd>Lo que os han parado es la salida a internet, no la instalación. Eso es otra conversación: el chequeo de <code>WebFetch</code> contra <code>api.anthropic.com</code>.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/webfetch-falla-en-toda-la-red-corporativa/">WebFetch falla en toda la red corporativa</a></li><li><a href="/claude-code-companion/nuestro-bot-no-puede-dispararla/">Nuestro bot no puede dispararla</a></li><li><a href="/claude-code-companion/una-actualizacion-de-otro-equipo-me-rompio-el-plugin/">Una actualización de otro equipo me rompió el plugin</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M13 · CI/CD y revisión de código</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>

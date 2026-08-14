@@ -99,14 +99,27 @@ font-size:.92rem;color:var(--ink2)}
 </style></head><body><div class="w"><a class="eb" href="/claude-code-companion/">← Índice por síntoma</a>
 <h1>Corre pero no veo nada</h1>
 <div class="card"><div class="t">Qué está pasando</div><p>Modo automatización: el resultado va al registro, no a un comentario</p></div>
-<h2>Por qué pasa</h2><p>- Modo interactivo, cuando el flujo no lleva entrada prompt: Claude espera la frase disparadora, @claude por defecto, en un comentario de incidencia o de pull request, en una revisión de PR, o en el cuerpo o el título de una incidencia recién abierta. El progreso y el resultado aparecen como comentario. - Modo automatización, cuando el flujo sí lleva prompt: corre sin esperar a que la mencionen. El resultado aparece en el registro de la ejecución, no como comentario.</p><div class="corta">
-<b>Esta página está a medias, y se dice.</b> Tiene el síntoma y la causa, que
-salen del módulo; todavía no tiene el procedimiento con su comprobación. Solo se
-publica el arreglo completo cuando existe un comando que tú puedas ejecutar y un
-criterio objetivo que diga si quedó resuelto. Rellenar el hueco con pasos que
-nadie ha comprobado sería exactamente lo que
-<a href="https://github.com/julian-najas/manual-claude-code">esta guía</a> dice que no se hace.
-</div>
+
+<h2><span class="n">01</span>Diagnóstico probable</h2>
+<p>Estás en <strong>modo automatización</strong>, no en interactivo. La acción <strong>detecta sola cómo tiene que correr</strong>: si el flujo lleva entrada <code>prompt</code>, corre sin esperar a que la mencionen y <strong>el resultado va al registro de la ejecución, no a un comentario</strong>.</p>
+
+<h2><span class="n">02</span>Compruébalo</h2>
+<div class="chk"><pre><code><span class="p">$ </span>grep -n -A3 &#x27;prompt:&#x27; .github/workflows/*.yml</code></pre><p class="q"><b>En la terminal.</b> Mira si hay entrada <code>prompt</code>, estás en modo automatización y por eso no hay comentario</p></div>
+
+<h2><span class="n">03</span>Solución</h2>
+<ol class="pasos"><li>Si querías comentarios, <strong>quita la entrada <code>prompt</code></strong>: sin ella la acción entra en modo interactivo y espera la frase disparadora, <code>@claude</code> por defecto, en un comentario o en el cuerpo de una incidencia.</li><li>Si querías automatización, el resultado está en el registro de la ejecución. Y ahí está el peligro real: <strong>si nadie mira el registro, es como si no hubiera corrido</strong>.</li><li>Cuando te quedes en automatización, dale una salida que alguien vea: un comentario escrito por tu propio paso, un aviso a Slack, o un check que bloquee la fusión.</li></ol>
+
+<div class="pasa"><div class="t">Pasa si</div><p>El resultado de cada ejecución aparece en un sitio que alguien mira sin tener que acordarse.</p></div>
+
+<dl class="ficha">
+<dt>Aplica desde</dt><dd>cualquier versión</dd>
+<dt>Evidencia</dt><dd><b>Documentada.</b> Sale de la documentación oficial citada, descargada el 12 de agosto de 2026. No se ha ejecutado contra el binario. Fuente: <code>github-actions.md</code>, los dos modos.</dd>
+<dt>No aplica si</dt><dd>La ejecución falla antes de arrancar Claude. Entonces mira las dos comprobaciones sobre quien dispara: acceso de escritura y actor humano.</dd>
+</dl>
+
+<h2>Síntomas vecinos</h2>
+<ul class="rel"><li><a href="/claude-code-companion/a-un-companero-le-falla-siempre-el-disparo/">A un compañero le falla siempre el disparo</a></li><li><a href="/claude-code-companion/nuestro-bot-no-puede-dispararla/">Nuestro bot no puede dispararla</a></li><li><a href="/claude-code-companion/la-puerta-de-calidad-nunca-veta/">La puerta de calidad nunca veta</a></li></ul>
+
 <div class="cta"><div class="t">Resolverlo del todo</div>
 <p>Esto sale de
 <strong>M13 · CI/CD y revisión de código</strong>.</p>
@@ -124,7 +137,7 @@ que se verifica contra el binario.<br>
 <a href="https://github.com/julian-najas/manual-claude-code/blob/main/D2-verificador/ESTADO.md">2.1.232 (Claude Code)</a>,
 que corre cada madrugada.<br>
 Generado desde
-<a href="https://github.com/julian-najas/manual-claude-code/commit/11d4ab227b27f4235ca66648e0bbd6ee4bc06906">11d4ab2</a>
+<a href="https://github.com/julian-najas/manual-claude-code/commit/2cf771254c995e83a094fd12372ba312d98e8170">2cf7712</a>
 · <a href="/claude-code-companion/procedencia.json">procedencia</a>
 · Cosas Agénticas, sin afiliación con Anthropic.
 </p></div></body></html>
